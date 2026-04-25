@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v82 - Pro Edition</title>
+    <title>e-Penguatkuasa v83 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,7 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-    <!-- SheetJS for Excel Export -->
+    <!-- SheetJS -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
     <style>
@@ -27,7 +27,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* v82 ANIMATED BOX */
+        /* v83 ANIMATED BOX */
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -44,7 +44,7 @@
 
         .section-card {
             background: white; border-radius: 24px; padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0; margin-bottom: 1.5rem;
         }
 
@@ -61,16 +61,13 @@
 
         .animal-grid-item { background: #f8fafc; padding: 10px; border-radius: 16px; border: 1px solid #e2e8f0; }
 
-        /* RESPONSIVE FIXES v82 */
         @media (max-width: 640px) {
             .section-card { padding: 1rem; border-radius: 16px; margin-bottom: 1rem; }
-            .form-input-modern { padding: 10px 14px; font-size: 15px; }
             header { padding: 0.75rem 1rem !important; }
             .btn-action { padding: 8px 12px !important; font-size: 10px !important; }
-            #realtime-clock { font-size: 9px !important; }
         }
 
-        /* PRINT OPTIMIZATION v82 */
+        /* PRINT OPTIMIZATION v83 */
         @media print {
             @page { size: A4 portrait; margin: 0.4cm; }
             body { background: white !important; font-size: 9pt !important; color: black !important; }
@@ -108,14 +105,14 @@
 
     <div id="loader">
         <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Sila Tunggu v82...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Sync Data v83...</p>
     </div>
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-8 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v82</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v83</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase text-sm">
                 LOG MASUK SISTEM
             </button>
@@ -130,7 +127,7 @@
                 <div class="flex items-center gap-3">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8 sm:h-10">
                     <div>
-                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v82</span></h2>
+                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v83</span></h2>
                         <p id="realtime-clock" class="text-[9px] sm:text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
@@ -150,7 +147,7 @@
         <div id="print-header">
             <div class="header-top">
                 <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
-                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v82)</h1>
+                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v83)</h1>
                 <div></div>
             </div>
             <div class="header-sub">
@@ -167,7 +164,7 @@
             <form id="mainForm">
                 <input type="hidden" id="currentDocId" value="">
 
-                <!-- SEKSYEN 1 -->
+                <!-- Section A -->
                 <h3 class="print-section-title">A. Maklumat Pengurusan & Kejadian</h3>
                 <div class="section-card">
                     <h3 class="text-indigo-600 font-black text-xs mb-4 border-b-2 border-indigo-50 pb-2 uppercase no-print">A. Maklumat Pengurusan</h3>
@@ -194,7 +191,7 @@
                     </div>
                 </div>
 
-                <!-- Section 2 -->
+                <!-- Section 2: Rampasan Utama -->
                 <h3 class="print-section-title">B. Butiran Rampasan Utama</h3>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-6">
                     <div class="section-card !mb-0 border-t-4 border-blue-500">
@@ -267,7 +264,7 @@
                     </div>
 
                     <div class="mt-8 no-print flex justify-center">
-                        <button type="button" onclick="saveToFirebase()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v82</button>
+                        <button type="button" onclick="saveToFirebase()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v83</button>
                     </div>
                 </div>
 
@@ -297,14 +294,14 @@
     <!-- DATABASE SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-lg h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v82</span></h2>
+            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v83</span></h2>
             <button onclick="toggleHistory()" class="p-2 bg-white rounded-full border shadow-sm"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
     </aside>
 
     <!-- PROFILE SIDEBAR -->
-    <aside id="profileSidebar" class="fixed top-0 right-[-100%] w-full max-w-sm h-full bg-white z-[2500] shadow-2xl transition-all duration-500 p-8 no-print">
+    <aside id="profileSidebar" class="fixed top-0 right-[-100%] w-full max-w-sm h-full bg-white z-[2500] shadow-2xl transition-all duration-500 p-8 no-print border-l">
         <div class="flex justify-between items-center mb-8">
             <h2 class="font-black text-xl uppercase tracking-tighter">Profil Pegawai</h2>
             <button onclick="toggleProfile()"><i data-lucide="x"></i></button>
@@ -313,7 +310,7 @@
             <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern uppercase"></div>
             <div><label class="input-label">Gred Jabatan</label><input type="text" id="userGred" class="form-input-modern uppercase"></div>
             <div><label class="input-label">Negeri / Cawangan</label><input type="text" id="userCawangan" class="form-input-modern uppercase"></div>
-            <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl uppercase shadow-lg">Simpan Profil</button>
+            <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl uppercase shadow-lg hover:bg-indigo-700 transition">Simpan Profil</button>
             <button onclick="logout()" class="w-full text-red-500 font-bold text-xs uppercase mt-4">Log Keluar</button>
         </div>
     </aside>
@@ -384,12 +381,13 @@
         document.getElementById('mainForm').addEventListener('input', calcTotal);
 
         async function saveToFirebase() {
-            if(!currentUser || !userMeta.name) { alert("Lengkapkan profil!"); toggleProfile(); return; }
+            if(!currentUser || !userMeta.name) { alert("Sila isi profil anda!"); toggleProfile(); return; }
             document.getElementById('loader').style.display = 'flex';
             try {
                 const formData = new FormData(document.getElementById('mainForm'));
                 const data = Object.fromEntries(formData.entries());
                 Object.keys(data).forEach(k => { if(typeof data[k] === 'string') data[k] = data[k].toUpperCase(); });
+                
                 data.userId = currentUser.uid;
                 data.recordedBy = userMeta.name;
                 data.recordedGred = userMeta.gred;
@@ -407,7 +405,7 @@
                 const docId = document.getElementById('currentDocId').value;
                 if(docId) await db.collection("reports").doc(docId).set(data, {merge: true});
                 else await db.collection("reports").add(data);
-                alert("Berjaya Disimpan!");
+                alert("Rekod Berjaya Disimpan!");
                 resetForm();
             } catch (e) { alert(e.message); }
             finally { document.getElementById('loader').style.display = 'none'; }
@@ -415,12 +413,15 @@
 
         async function fetchHistory() {
             const listDiv = document.getElementById('historyList');
-            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs uppercase">Memuatkan...</p>';
+            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs uppercase">Memproses Rekod Database...</p>';
             try {
                 const snapshot = await db.collection("reports").where("userId", "==", currentUser.uid).get();
                 let docs = []; snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
                 docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
+                
                 listDiv.innerHTML = "";
+                if(docs.length === 0) { listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Rekod Ditemui</p>'; return; }
+
                 docs.forEach(d => {
                     const card = document.createElement('div');
                     card.className = "bg-white p-5 rounded-2xl border-l-8 border-indigo-600 shadow-sm hover:shadow-md cursor-pointer transition relative overflow-hidden";
@@ -429,7 +430,24 @@
                         Object.keys(d).forEach(k => { const i = document.querySelector(`[name="${k}"]`); if(i) i.value = d[k]; });
                         calcTotal(); toggleHistory();
                     };
-                    card.innerHTML = `<div class="flex justify-between items-start mb-2"><span class="text-[10px] font-black bg-indigo-50 text-indigo-700 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span><span class="text-emerald-600 font-black text-sm">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span></div><h4 class="font-black text-slate-800 uppercase text-xs truncate mb-2">${d.KATEGORI_KES||'KES'}</h4><div class="mt-2 space-y-1 border-t pt-2 text-[9px] font-bold text-slate-500 uppercase"><p>${d.recordedBy} (${d.recordedGred})</p><p>${d.recordedBranch}</p><p class="text-indigo-400 mt-1 italic">${d.recordedDay} | ${d.recordedTimeStr}</p></div>`;
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-[10px] font-black bg-indigo-50 text-indigo-700 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span>
+                            <span class="text-emerald-600 font-black text-sm">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span>
+                        </div>
+                        <div class="space-y-1.5 text-[10px] font-bold text-slate-600 uppercase border-t pt-3">
+                            <p><span class="text-indigo-500">Kategori Kes :</span> ${d.KATEGORI_KES || 'N/A'}</p>
+                            <p><span class="text-indigo-500">No Repot Polis :</span> ${d.NO_REPOT_POLIS || '-'}</p>
+                            <p><span class="text-indigo-500">Pegawai Penguatkuasa :</span> ${d.recordedBy || d.PENGUATKUASA} (${d.recordedGred || ''})</p>
+                            <p><span class="text-indigo-500">No Kes IP :</span> ${d.NO_KES_IP || '-'}</p>
+                            <p><span class="text-indigo-500">Jenis Rampasan :</span> ${d.JENIS_RAMPASAN || '-'}</p>
+                            <p><span class="text-indigo-500">Negeri/Cawangan :</span> ${d.recordedBranch || '-'}</p>
+                            <div class="flex justify-between items-center text-indigo-400 italic pt-1 border-t border-slate-100">
+                                <span>${d.recordedDay || ''}</span>
+                                <span>${d.recordedTimeStr || ''}</span>
+                            </div>
+                        </div>
+                    `;
                     listDiv.appendChild(card);
                 });
                 lucide.createIcons();
@@ -455,6 +473,7 @@
             const n = document.getElementById('userName').value.toUpperCase();
             const g = document.getElementById('userGred').value.toUpperCase();
             const c = document.getElementById('userCawangan').value.toUpperCase();
+            if(!n || !g || !c) { alert("Lengkapkan maklumat profil!"); return; }
             await db.collection("users").doc(currentUser.uid).set({name:n, gred:g, cawangan:c}, {merge:true});
             location.reload();
         }
