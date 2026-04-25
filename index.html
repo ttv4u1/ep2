@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Penguatkuasa v80 - Pro Edition</title>
+    <title>e-Penguatkuasa v81 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,29 +26,28 @@
             font-size: 16px;
         }
 
-        /* v80 ANIMATED BOX VERSION NUMBERS */
+        /* v81 ANIMATED BOX VERSION NUMBERS */
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
         @keyframes pulseBox {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(79, 70, 229, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 12px rgba(79, 70, 229, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 22px rgba(236, 72, 153, 0.7); }
         }
         .version-box {
             display: inline-block;
-            background: linear-gradient(-45deg, #4f46e5, #ec4899, #06b6d4, #4f46e5);
+            background: linear-gradient(-45deg, #6366f1, #d946ef, #3b82f6, #6366f1);
             background-size: 300% 300%;
-            animation: gradientFlow 5s ease infinite, pulseBox 3s ease-in-out infinite;
+            animation: gradientFlow 4s ease infinite, pulseBox 2.5s ease-in-out infinite;
             color: white;
-            padding: 2px 10px;
-            border-radius: 8px;
+            padding: 3px 12px;
+            border-radius: 10px;
             font-weight: 900;
-            letter-spacing: 1px;
-            font-size: 0.85em;
+            font-size: 0.8em;
             vertical-align: middle;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .section-card {
@@ -66,90 +65,33 @@
         .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
         .animal-grid-item { background: #f8fafc; padding: 10px; border-radius: 15px; border: 1px solid #e2e8f0; }
 
-        /* PRINT OPTIMIZATION v80 - BESARKAN TULISAN */
+        /* PRINT OPTIMIZATION v81 */
         @media print {
             @page { size: A4 portrait; margin: 0.4cm; }
             body { background: white !important; font-size: 9pt !important; color: black !important; }
             .no-print { display: none !important; }
-            
             .section-card, .animal-grid-item, .bg-indigo-50, .bg-slate-900 { 
-                background: transparent !important; 
-                box-shadow: none !important; 
-                border: none !important; 
-                padding: 0 !important; 
-                margin-bottom: 6px !important; 
+                background: transparent !important; box-shadow: none !important; border: none !important; padding: 0 !important; margin-bottom: 6px !important; 
             }
-
             .print-section-title {
-                display: block !important;
-                font-size: 9.5pt;
-                font-weight: 900;
-                border-bottom: 1.5px solid black;
-                margin-top: 8px;
-                margin-bottom: 4px;
-                text-transform: uppercase;
+                display: block !important; font-size: 9.5pt; font-weight: 900; border-bottom: 1.5px solid black; margin-top: 8px; margin-bottom: 4px; text-transform: uppercase;
             }
-            
             .form-input-modern { 
-                border: none !important; 
-                border-bottom: 1px solid #000 !important; 
-                background: transparent !important;
-                padding: 1px 0 !important;
-                font-size: 10pt !important; /* Dibesarkan */
-                font-weight: 700 !important;
-                border-radius: 0 !important;
-                height: auto !important;
+                border: none !important; border-bottom: 1px solid #000 !important; background: transparent !important;
+                padding: 1px 0 !important; font-size: 10pt !important; font-weight: 700 !important; border-radius: 0 !important;
             }
-
-            .input-label { 
-                font-size: 8pt !important; /* Dibesarkan */
-                margin-bottom: 0px !important; 
-                font-weight: 800 !important;
-                color: #222 !important;
-                white-space: nowrap;
-            }
-
-            .grid { 
-                display: grid !important; 
-                grid-template-columns: repeat(4, 1fr) !important; 
-                gap: 6px 12px !important; 
-            }
-            .lg\:col-span-2, .lg\:col-span-3, .lg\:col-span-4, .lg\:col-span-6, .lg\:col-span-12 {
-                grid-column: span 1 / span 1 !important;
-            }
-
-            /* Signature Blocks */
+            .input-label { font-size: 8pt !important; margin-bottom: 0px !important; font-weight: 800 !important; color: #222 !important; }
+            .grid { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 6px 12px !important; }
+            .lg\:col-span-2, .lg\:col-span-3, .lg\:col-span-4, .lg\:col-span-6, .lg\:col-span-12 { grid-column: span 1 / span 1 !important; }
             .sig-area { display: flex !important; justify-content: space-between; margin-top: 25px; }
             .sig-box { width: 45%; font-size: 8.5pt; }
             .sig-line { border-bottom: 1.5px solid black; height: 40px; margin-bottom: 5px; width: 90%; }
-
-            /* Header Print */
             #print-header { display: block !important; margin-bottom: 5px; }
-            .header-top { 
-                display: flex; 
-                justify-content: space-between; 
-                align-items: center; 
-                border-bottom: 2px solid black;
-                padding-bottom: 5px;
-            }
+            .header-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid black; padding-bottom: 5px; }
             .header-top img { height: 35px; }
             .header-top h1 { font-size: 11pt; font-weight: 900; margin:0; }
-            
-            .header-sub {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                margin-top: 5px;
-            }
-
-            .print-officer-info {
-                display: block !important;
-                font-size: 8.5pt; /* Dibesarkan */
-                font-weight: 800;
-                text-align: left;
-                line-height: 1.4;
-            }
-            
+            .header-sub { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 5px; }
+            .print-officer-info { display: block !important; font-size: 8.5pt; font-weight: 800; text-align: left; line-height: 1.4; }
             #print-timestamp { font-size: 8pt; text-align: right; font-weight: 700; }
         }
 
@@ -161,16 +103,16 @@
 
     <div id="loader">
         <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase">Mengoptimumkan v80...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase">Updating Rekod v81...</p>
     </div>
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-10 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[95%] max-w-md shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-20 mx-auto mb-6">
-            <h1 class="text-3xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v80</span></h1>
-            <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase">
-                Akses Sistem Pegawai
+            <h1 class="text-3xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v81</span></h1>
+            <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase tracking-widest">
+                Akses Sistem
             </button>
         </div>
     </section>
@@ -183,14 +125,14 @@
                 <div class="flex items-center gap-4">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-10">
                     <div>
-                        <h2 class="text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v80</span></h2>
+                        <h2 class="text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v81</span></h2>
                         <p id="realtime-clock" class="text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
                     <button onclick="resetForm()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold uppercase text-xs">Baru</button>
                     <button onclick="toggleHistory()" class="px-4 py-2 bg-amber-500 text-slate-900 rounded-xl font-bold uppercase text-xs">Database</button>
-                    <button onclick="printReport()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold uppercase text-xs flex items-center gap-2 shadow-md"><i data-lucide="printer" class="w-4 h-4"></i> Cetak Dokumen</button>
+                    <button onclick="printReport()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold uppercase text-xs flex items-center gap-2 shadow-md"><i data-lucide="printer" class="w-4 h-4"></i> Cetak A4</button>
                     <button onclick="toggleProfile()" class="ml-2 flex items-center gap-2 bg-slate-100 p-1 pr-3 rounded-full border">
                         <img id="navAvatar" src="" class="w-8 h-8 rounded-full border-2 border-white object-cover">
                         <span class="text-[10px] font-black uppercase" id="navName">Pegawai</span>
@@ -203,7 +145,7 @@
         <div id="print-header">
             <div class="header-top">
                 <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
-                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v80)</h1>
+                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v81)</h1>
                 <div></div>
             </div>
             <div class="header-sub">
@@ -300,7 +242,7 @@
                 </div>
 
                 <!-- 38-44 -->
-                <h3 class="print-section-title">D. Ringkasan Nilai & Pengesahan Dokumen</h3>
+                <h3 class="print-section-title">D. Ringkasan Nilai & Pengesahan</h3>
                 <div class="section-card border-l-[12px] border-indigo-600 print:border-l-0">
                     <h3 class="text-indigo-600 font-black text-xs mb-4 border-b-2 border-indigo-50 pb-2 uppercase no-print">C. Nilai & Rumusan</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
@@ -320,7 +262,7 @@
                     </div>
 
                     <div class="mt-8 no-print text-center">
-                        <button type="button" onclick="saveToFirebase()" class="px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition">Simpan Rekod v80</button>
+                        <button type="button" onclick="saveToFirebase()" class="px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v81</button>
                     </div>
                 </div>
 
@@ -350,8 +292,8 @@
     <!-- DB SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-[500px] h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase">Database <span class="version-box">v80</span></h2>
-            <button onclick="toggleHistory()"><i data-lucide="x"></i></button>
+            <h2 class="font-black text-xl uppercase tracking-tighter">REKOD DATABASE <span class="version-box">v81</span></h2>
+            <button onclick="toggleHistory()" class="p-2 bg-white rounded-full border shadow-sm"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
     </aside>
@@ -359,7 +301,7 @@
     <!-- PROFILE SIDEBAR -->
     <aside id="profileSidebar" class="fixed top-0 right-[-100%] w-full max-w-[400px] h-full bg-white z-[2500] shadow-2xl transition-all duration-500 p-8 no-print">
         <div class="flex justify-between items-center mb-8">
-            <h2 class="font-black text-xl uppercase">Profil Pegawai</h2>
+            <h2 class="font-black text-xl uppercase tracking-tighter">Profil Pegawai</h2>
             <button onclick="toggleProfile()"><i data-lucide="x"></i></button>
         </div>
         <div class="space-y-5">
@@ -437,27 +379,33 @@
         document.getElementById('mainForm').addEventListener('input', calcTotal);
 
         async function saveToFirebase() {
-            if(!currentUser || !userMeta.name) { alert("Lengkapkan profil!"); toggleProfile(); return; }
+            if(!currentUser || !userMeta.name) { alert("Sila isi profil anda!"); toggleProfile(); return; }
             document.getElementById('loader').style.display = 'flex';
             try {
                 const formData = new FormData(document.getElementById('mainForm'));
                 const data = Object.fromEntries(formData.entries());
                 Object.keys(data).forEach(k => { if(typeof data[k] === 'string') data[k] = data[k].toUpperCase(); });
+                
+                // Meta info for Database Sidebar
                 data.userId = currentUser.uid;
-                data.recordedBy = `${userMeta.name} (${userMeta.gred})`;
-                data.cawangan = userMeta.cawangan;
+                data.recordedBy = userMeta.name;
+                data.recordedGred = userMeta.gred;
+                data.recordedBranch = userMeta.cawangan;
                 data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
                 
                 const now = new Date();
+                const days = ["AHAD", "ISNIN", "SELASA", "RABU", "KHAMIS", "JUMAAT", "SABTU"];
                 let h = now.getHours();
                 const ampm = h >= 12 ? 'PM' : 'AM';
                 h = h % 12 || 12;
-                data.recordedTime = `${h}:${now.getMinutes().toString().padStart(2,'0')} ${ampm}`;
+                data.recordedDay = days[now.getDay()];
+                data.recordedTimeStr = `${h}:${now.getMinutes().toString().padStart(2,'0')} ${ampm}`;
 
                 const docId = document.getElementById('currentDocId').value;
                 if(docId) await db.collection("reports").doc(docId).set(data, {merge: true});
                 else await db.collection("reports").add(data);
-                alert("Rekod Berjaya!");
+                
+                alert("Berjaya Disimpan!");
                 resetForm();
             } catch (e) { alert(e.message); }
             finally { document.getElementById('loader').style.display = 'none'; }
@@ -465,23 +413,43 @@
 
         async function fetchHistory() {
             const listDiv = document.getElementById('historyList');
-            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs uppercase">Memuatkan...</p>';
-            const snapshot = await db.collection("reports").where("userId", "==", currentUser.uid).get();
-            let docs = []; snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
-            docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
-            listDiv.innerHTML = "";
-            docs.forEach(d => {
-                const card = document.createElement('div');
-                card.className = "bg-white p-5 rounded-2xl border-l-8 border-indigo-600 shadow-sm hover:shadow-md cursor-pointer transition";
-                card.onclick = () => {
-                    document.getElementById('currentDocId').value = d.id;
-                    Object.keys(d).forEach(k => { const i = document.querySelector(`[name="${k}"]`); if(i) i.value = d[k]; });
-                    calcTotal(); toggleHistory();
-                };
-                card.innerHTML = `<div class="flex justify-between items-center mb-1"><span class="text-[10px] font-black bg-indigo-50 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span><span class="text-indigo-600 font-black text-xs">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span></div><h4 class="font-black text-slate-800 uppercase text-[10px] truncate">${d.KATEGORI_KES||'KES'}</h4><p class="text-[9px] font-bold text-slate-400 mt-1 uppercase">${d.recordedBy} | ${d.recordedTime}</p>`;
-                listDiv.appendChild(card);
-            });
-            lucide.createIcons();
+            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs uppercase">Memproses Rekod...</p>';
+            
+            try {
+                const snapshot = await db.collection("reports").where("userId", "==", currentUser.uid).get();
+                let docs = []; snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+                docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
+                
+                listDiv.innerHTML = "";
+                if(docs.length === 0) { listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Rekod</p>'; return; }
+
+                docs.forEach(d => {
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-5 rounded-2xl border-l-8 border-indigo-600 shadow-sm hover:shadow-md cursor-pointer transition relative overflow-hidden";
+                    card.onclick = () => {
+                        document.getElementById('currentDocId').value = d.id;
+                        Object.keys(d).forEach(k => { const i = document.querySelector(`[name="${k}"]`); if(i) i.value = d[k]; });
+                        calcTotal(); toggleHistory();
+                    };
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-[10px] font-black bg-indigo-50 text-indigo-700 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span>
+                            <span class="text-emerald-600 font-black text-sm">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span>
+                        </div>
+                        <h4 class="font-black text-slate-800 uppercase text-xs truncate mb-2">${d.KATEGORI_KES||'KES'}</h4>
+                        <div class="space-y-1 border-t pt-2 mt-2">
+                            <p class="text-[9px] font-extrabold text-slate-600 uppercase flex items-center gap-1"><i data-lucide="user" class="w-3 h-3 text-indigo-400"></i> ${d.recordedBy || d.PENGUATKUASA} (${d.recordedGred || ''})</p>
+                            <p class="text-[9px] font-extrabold text-slate-600 uppercase flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3 text-indigo-400"></i> ${d.recordedBranch || '-'}</p>
+                            <div class="flex justify-between items-center text-[9px] font-bold text-indigo-500 italic pt-1">
+                                <span>${d.recordedDay || ''}</span>
+                                <span>${d.recordedTimeStr || ''}</span>
+                            </div>
+                        </div>
+                    `;
+                    listDiv.appendChild(card);
+                });
+                lucide.createIcons();
+            } catch (e) { listDiv.innerHTML = `<p class="text-red-500 text-[10px]">Ralat: ${e.message}</p>`; }
         }
 
         async function loadProfile(user) {
@@ -495,7 +463,6 @@
             document.getElementById('userGred').value = userMeta.gred;
             document.getElementById('userCawangan').value = userMeta.cawangan;
             
-            // Sync to Print Header Info
             document.getElementById('p_officer_name').innerText = "NAMA: " + (userMeta.name || "-");
             document.getElementById('p_officer_gred').innerText = "GRED: " + (userMeta.gred || "-");
             document.getElementById('p_officer_branch').innerText = "NEGERI/CAWANGAN: " + (userMeta.cawangan || "-");
@@ -507,6 +474,7 @@
             const n = document.getElementById('userName').value.toUpperCase();
             const g = document.getElementById('userGred').value.toUpperCase();
             const c = document.getElementById('userCawangan').value.toUpperCase();
+            if(!n || !g || !c) { alert("Isi semua maklumat!"); return; }
             await db.collection("users").doc(currentUser.uid).set({name:n, gred:g, cawangan:c}, {merge:true});
             location.reload();
         }
