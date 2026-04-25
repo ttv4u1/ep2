@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Penguatkuasa v12 | Full Screen Mode</title>
+    <title>e-Penguatkuasa v13 | Full Screen Mode</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,7 +19,9 @@
         body, html {
             height: 100%; margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #f1f5f9; color: #0f172a; font-size: 13px;
+            background: #f1f5f9; color: #0f172a; 
+            /* Dibesarkan dari 13px ke 15px */
+            font-size: 15px; 
         }
         .master-bg {
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -34,23 +36,68 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; margin-bottom: 1rem;
         }
         .input-label {
-            font-size: 10px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 4px; display: block;
+            /* Dibesarkan dari 10px ke 12px */
+            font-size: 12px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 4px; display: block;
         }
         .form-input-modern {
-            width: 100%; padding: 10px 12px; border-radius: 8px; border: 1.5px solid #e2e8f0;
-            background: #ffffff; font-weight: 700; font-size: 13px; transition: all 0.2s; color: #1e293b;
+            width: 100%; padding: 12px 14px; border-radius: 8px; border: 1.5px solid #e2e8f0;
+            background: #ffffff; font-weight: 700; 
+            /* Dibesarkan dari 13px ke 16px untuk mesra penglihatan */
+            font-size: 16px; transition: all 0.2s; color: #1e293b;
         }
         .form-input-modern:focus { border-color: #4f46e5; ring: 3px; ring-color: rgba(79, 70, 229, 0.1); outline: none; background: #fff; }
         .animal-item { background: #f8fafc; padding: 10px; border-radius: 10px; border: 1px solid #e2e8f0; }
         
-        /* Full Width Grid for Seizures */
         .grid-rampasan-auto { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
-            gap: 10px; 
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+            gap: 12px; 
         }
         
-        @media print { .no-print { display: none !important; } .section-card { border: 1px solid #000; box-shadow: none; break-inside: avoid; } }
+        /* FIX UNTUK PRINT - HANYA DATA BERTULIS SAHAJA */
+        @media print { 
+            .no-print { display: none !important; } 
+            body { background: white !important; font-size: 12pt; }
+            .section-card { 
+                border: none !important; 
+                box-shadow: none !important; 
+                padding: 10px 0 !important; 
+                margin-bottom: 20px !important;
+                break-inside: avoid;
+            }
+            .animal-item { 
+                background: transparent !important; 
+                border: none !important; 
+                padding: 2px 0 !important;
+            }
+            .form-input-modern { 
+                border: none !important; 
+                border-bottom: 1px solid #ccc !important; 
+                padding: 2px 0 !important;
+                background: transparent !important;
+                font-size: 12pt !important;
+            }
+            .input-label {
+                color: #000 !important;
+                font-size: 10pt !important;
+                margin-top: 5px;
+            }
+            #total_val {
+                color: black !important;
+                font-size: 24pt !important;
+            }
+            .bg-slate-900 { background: transparent !important; color: black !important; border: 1px solid #eee; }
+            .text-white { color: black !important; }
+            .text-indigo-400 { color: black !important; }
+            .master-bg { opacity: 0.02 !important; }
+            h3 { border-bottom: 2px solid black !important; color: black !important; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-input-modern { font-size: 14px; padding: 10px; }
+            .section-card { padding: 1rem; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -61,7 +108,7 @@
     <section id="landing-screen">
         <div class="p-8 text-center bg-white/10 backdrop-blur-xl rounded-[40px] border border-white/20 w-[90%] max-w-md">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-28 mx-auto mb-6">
-            <h1 class="text-3xl font-black text-white mb-2 tracking-tighter">e-Penguatkuasa v12</h1>
+            <h1 class="text-3xl font-black text-white mb-2 tracking-tighter">e-Penguatkuasa v13</h1>
             <p class="text-indigo-300 text-xs font-bold tracking-[0.3em] mb-10 uppercase">Sistem Bersepadu HQ & Cloud</p>
             <button onclick="loginGoogle()" class="w-full flex items-center justify-center gap-3 bg-white text-slate-900 font-black py-4 rounded-2xl hover:bg-indigo-50 transition active:scale-95 shadow-2xl">
                 <img src="https://www.google.com/favicon.ico" class="w-6 h-6"> LOG MASUK GOOGLE
@@ -77,12 +124,14 @@
                 <div class="flex items-center gap-4">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-12">
                     <div>
-                        <h2 class="text-lg font-black text-slate-800 leading-none uppercase tracking-tight">Laporan Kes Penguatkuasaan v12</h2>
+                        <h2 class="text-lg font-black text-slate-800 leading-none uppercase tracking-tight">Laporan Kes Penguatkuasaan v13</h2>
                         <span id="user-stats" class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">Penuh Satu Halaman • Cloud Synchronized</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button onclick="printReport()" class="p-2.5 bg-slate-100 rounded-xl hover:bg-slate-200 transition"><i data-lucide="printer" class="w-5 h-5"></i></button>
+                    <button onclick="printReport()" class="p-2.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition flex items-center gap-2 px-4 shadow-lg">
+                        <i data-lucide="printer" class="w-5 h-5"></i> <span class="font-bold text-xs uppercase">Cetak Laporan</span>
+                    </button>
                     <button onclick="toggleProfile()" class="flex items-center gap-3 bg-slate-900 p-1.5 pr-4 rounded-full text-white hover:bg-slate-800 transition">
                         <img id="navAvatar" src="https://ui-avatars.com/api/?name=User&background=random" class="w-8 h-8 rounded-full border border-white/20">
                         <span class="text-[11px] font-bold uppercase" id="navName">User</span>
@@ -97,7 +146,7 @@
                 
                 <!-- 1. MAKLUMAT ASAS -->
                 <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 flex items-center gap-2 border-b pb-2"><i data-lucide="info" class="w-4 h-4"></i> MAKLUMAT ASAS</h3>
+                    <h3 class="text-indigo-600 font-black text-sm mb-4 flex items-center gap-2 border-b-2 border-indigo-50 pb-2 uppercase"><i data-lucide="info" class="w-5 h-5"></i> Maklumat Asas</h3>
                     <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-4">
                         <div class="lg:col-span-1"><label class="input-label">Bil</label><input type="text" name="BIL" class="form-input-modern"></div>
                         <div class="lg:col-span-1"><label class="input-label">Tahun</label><input type="number" name="TAHUN" class="form-input-modern" value="2026"></div>
@@ -116,7 +165,7 @@
 
                 <!-- 2. KEJADIAN & LOKASI -->
                 <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 flex items-center gap-2 border-b pb-2"><i data-lucide="map-pin" class="w-4 h-4"></i> KEJADIAN & LOKASI</h3>
+                    <h3 class="text-indigo-600 font-black text-sm mb-4 flex items-center gap-2 border-b-2 border-indigo-50 pb-2 uppercase"><i data-lucide="map-pin" class="w-5 h-5"></i> Kejadian & Lokasi</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-4">
                         <div class="lg:col-span-2"><label class="input-label">Tarikh Kejadian</label><input type="date" name="TARIKH_KEJADIAN" class="form-input-modern"></div>
                         <div class="lg:col-span-2"><label class="input-label">Masa Kejadian</label><input type="time" name="MASA_KEJADIAN" class="form-input-modern"></div>
@@ -127,9 +176,9 @@
                     </div>
                 </div>
 
-                <!-- 3. RAMPASAN (FULL GRID) -->
+                <!-- 3. RAMPASAN -->
                 <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 flex items-center gap-2 border-b pb-2"><i data-lucide="box" class="w-4 h-4"></i> SENARAI RAMPASAN & PRODUK</h3>
+                    <h3 class="text-indigo-600 font-black text-sm mb-4 flex items-center gap-2 border-b-2 border-indigo-50 pb-2 uppercase"><i data-lucide="box" class="w-5 h-5"></i> Senarai Rampasan & Produk</h3>
                     
                     <div class="mb-6">
                         <label class="input-label">Jenis Rampasan (Keterangan Utama)</label>
@@ -137,10 +186,9 @@
                     </div>
 
                     <div class="space-y-8">
-                        <!-- Baris 1: Hidup & Karkas -->
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 mb-3 tracking-widest uppercase flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3"></i> Haiwan Hidup (Ekor)</p>
+                                <p class="text-[11px] font-black text-indigo-400 mb-3 tracking-widest uppercase flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Haiwan Hidup (Ekor)</p>
                                 <div class="grid-rampasan-auto">
                                     <div class="animal-item"><label class="input-label">Lembu</label><input type="number" name="LEMBU" class="form-input-modern" value="0"></div>
                                     <div class="animal-item"><label class="input-label">Kerbau</label><input type="number" name="KERBAU" class="form-input-modern" value="0"></div>
@@ -151,7 +199,7 @@
                                 </div>
                             </div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 mb-3 tracking-widest uppercase flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3"></i> Karkas / Daging (KG)</p>
+                                <p class="text-[11px] font-black text-indigo-400 mb-3 tracking-widest uppercase flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Karkas / Daging (KG)</p>
                                 <div class="grid-rampasan-auto">
                                     <div class="animal-item"><label class="input-label">K. Lembu</label><input type="number" name="KARKAS_LEMBU" class="form-input-modern" value="0"></div>
                                     <div class="animal-item"><label class="input-label">K. Kerbau</label><input type="number" name="KARKAS_KERBAU" class="form-input-modern" value="0"></div>
@@ -163,10 +211,9 @@
                             </div>
                         </div>
 
-                        <!-- Baris 2: Sejuk Beku & Kesayangan -->
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 mb-3 tracking-widest uppercase flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3"></i> Produk Sejuk Beku & Tin (KG/Unit)</p>
+                                <p class="text-[11px] font-black text-indigo-400 mb-3 tracking-widest uppercase flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Produk Sejuk Beku & Tin (KG/Unit)</p>
                                 <div class="grid-rampasan-auto">
                                     <div class="animal-item"><label class="input-label">SB Itik</label><input type="number" name="PRODUK_SEJUK_BEKU_ITIK" class="form-input-modern" value="0"></div>
                                     <div class="animal-item"><label class="input-label">SB Ayam</label><input type="number" name="PRODUK_SEJUK_BEKU_AYAM" class="form-input-modern" value="0"></div>
@@ -175,7 +222,7 @@
                                 </div>
                             </div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 mb-3 tracking-widest uppercase flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3"></i> Kesayangan & Lain-lain (Ekor/Unit)</p>
+                                <p class="text-[11px] font-black text-indigo-400 mb-3 tracking-widest uppercase flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Kesayangan & Lain-lain (Ekor/Unit)</p>
                                 <div class="grid-rampasan-auto">
                                     <div class="animal-item"><label class="input-label">Anjing</label><input type="number" name="ANJING" class="form-input-modern" value="0"></div>
                                     <div class="animal-item"><label class="input-label">Kucing</label><input type="number" name="KUCING" class="form-input-modern" value="0"></div>
@@ -190,8 +237,8 @@
                 </div>
 
                 <!-- 4. LOGISTIK & NILAI -->
-                <div class="section-card border-l-[6px] border-indigo-600">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 flex items-center gap-2 border-b pb-2"><i data-lucide="trending-up" class="w-4 h-4"></i> LOGISTIK & ANGGARAN NILAI</h3>
+                <div class="section-card border-l-[8px] border-indigo-600">
+                    <h3 class="text-indigo-600 font-black text-sm mb-4 flex items-center gap-2 border-b-2 border-indigo-50 pb-2 uppercase"><i data-lucide="trending-up" class="w-5 h-5"></i> Logistik & Anggaran Nilai</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         <div class="lg:col-span-1"><label class="input-label">Bil Kenderaan</label><input type="number" name="JUMLAH_RAMPASAN_KENDERAAN" class="form-input-modern" value="0"></div>
                         <div class="lg:col-span-2"><label class="input-label">Rampasan Pengangkut/Kontena</label><input type="text" name="RAMPASAN_PENGANGKUT_KONTENA" class="form-input-modern" placeholder="Cth: Lori 3 Tan"></div>
@@ -204,30 +251,30 @@
                     
                     <div class="mt-6 bg-slate-900 rounded-2xl p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
                         <div class="flex items-center gap-3">
-                            <div class="p-3 bg-indigo-500/20 rounded-xl"><i data-lucide="wallet" class="w-6 h-6 text-indigo-400"></i></div>
+                            <div class="p-4 bg-indigo-500/20 rounded-xl"><i data-lucide="wallet" class="w-8 h-8 text-indigo-400"></i></div>
                             <div>
-                                <p class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest leading-none mb-1">JUMLAH KESELURUHAN (RM)</p>
-                                <p class="text-[10px] text-slate-400 italic">Automatik berdasarkan anggaran nilai di atas</p>
+                                <p class="text-xs font-bold text-indigo-400 uppercase tracking-widest leading-none mb-1">JUMLAH KESELURUHAN (RM)</p>
+                                <p class="text-[11px] text-slate-400 italic">Jumlah Automatik</p>
                             </div>
                         </div>
-                        <input type="text" name="JUMLAH_NILAI_KESELURUHAN" id="total_val" readonly class="bg-transparent text-right font-black text-4xl outline-none text-indigo-400 w-full md:w-auto" value="RM 0.00">
+                        <input type="text" name="JUMLAH_NILAI_KESELURUHAN" id="total_val" readonly class="bg-transparent text-right font-black text-5xl outline-none text-indigo-400 w-full md:w-auto" value="RM 0.00">
                     </div>
                 </div>
 
                 <!-- 5. KESERAHAN & CATATAN -->
                 <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 flex items-center gap-2 border-b pb-2"><i data-lucide="clipboard-list" class="w-4 h-4"></i> KESERAHAN & CATATAN</h3>
+                    <h3 class="text-indigo-600 font-black text-sm mb-4 flex items-center gap-2 border-b-2 border-indigo-50 pb-2 uppercase"><i data-lucide="clipboard-list" class="w-5 h-5"></i> Keserahan & Catatan</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div><label class="input-label">Kes Serahan (Agensi/Cawangan)</label><input type="text" name="KES_SERAHAN" class="form-input-modern" placeholder="Cth: Serahan kepada JPV Negeri"></div>
-                        <div><label class="input-label">Catatan Tambahan</label><textarea name="CATATAN" class="form-input-modern h-12" placeholder="Nota tambahan berkenaan kes..."></textarea></div>
+                        <div><label class="input-label">Catatan Tambahan</label><textarea name="CATATAN" class="form-input-modern h-20" placeholder="Nota tambahan berkenaan kes..."></textarea></div>
                     </div>
                 </div>
 
-                <!-- BUTTONS -->
-                <div class="flex justify-end gap-3 pt-4 no-print pb-10">
-                    <button type="button" onclick="clearForm()" class="px-6 py-4 font-bold text-slate-500 text-xs hover:bg-slate-200 rounded-2xl transition">RESET BORANG</button>
-                    <button type="button" onclick="saveData()" class="px-10 py-4 bg-indigo-600 text-white rounded-2xl font-black text-xs shadow-xl shadow-indigo-200 hover:bg-indigo-700 active:scale-95 transition flex items-center gap-3">
-                        <i data-lucide="cloud-upload" class="w-5 h-5"></i> SIMPAN REKOD KE CLOUD
+                <!-- BUTTONS (Simpan Button Removed) -->
+                <div class="flex justify-center gap-4 pt-4 no-print pb-10">
+                    <button type="button" onclick="clearForm()" class="px-8 py-4 font-black text-slate-500 text-xs hover:bg-slate-200 rounded-2xl transition border-2 border-slate-200 uppercase tracking-widest">Reset Borang</button>
+                    <button type="button" onclick="printReport()" class="px-10 py-4 bg-indigo-600 text-white rounded-2xl font-black text-xs shadow-xl hover:bg-indigo-700 active:scale-95 transition flex items-center gap-3 uppercase tracking-widest">
+                        <i data-lucide="printer" class="w-5 h-5"></i> Cetak Laporan Sekarang
                     </button>
                 </div>
             </form>
@@ -238,19 +285,19 @@
     <aside id="profileSidebar" class="fixed top-0 right-[-100%] w-full max-w-[400px] h-full bg-white z-[1001] shadow-2xl transition-all duration-500 overflow-y-auto no-print">
         <div class="p-8">
             <div class="flex justify-between items-center mb-8">
-                <h2 class="font-black text-2xl text-slate-900 tracking-tighter">PROFIL PEGAWAI</h2>
+                <h2 class="font-black text-2xl text-slate-900 tracking-tighter uppercase">Profil Pegawai</h2>
                 <button onclick="toggleProfile()" class="p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition"><i data-lucide="x" class="w-6 h-6 text-slate-600"></i></button>
             </div>
             <div class="space-y-6">
                 <div class="text-center">
                     <img id="sideAvatar" src="https://ui-avatars.com/api/?name=P&background=6366f1&color=fff" class="w-32 h-32 mx-auto rounded-[40px] border-4 border-indigo-50 shadow-xl mb-6">
                     <div class="space-y-4">
-                        <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern"></div>
-                        <div><label class="input-label">Gred Jawatan</label><input type="text" id="userGred" class="form-input-modern" placeholder="Cth: G29 / G41"></div>
-                        <div><label class="input-label">Cawangan / Negeri</label><input type="text" id="userCawangan" class="form-input-modern" placeholder="Cth: Selangor"></div>
+                        <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern uppercase"></div>
+                        <div><label class="input-label">Gred Jawatan</label><input type="text" id="userGred" class="form-input-modern uppercase" placeholder="Cth: G29 / G41"></div>
+                        <div><label class="input-label">Cawangan / Negeri</label><input type="text" id="userCawangan" class="form-input-modern uppercase" placeholder="Cth: Selangor"></div>
                     </div>
-                    <button onclick="saveProfile()" class="w-full mt-8 bg-slate-900 text-white font-black py-4 rounded-2xl shadow-lg hover:bg-slate-800 transition flex justify-center items-center gap-2">
-                        <i data-lucide="save" class="w-5 h-5"></i> SIMPAN PROFIL
+                    <button onclick="saveProfile()" class="w-full mt-8 bg-slate-900 text-white font-black py-4 rounded-2xl shadow-lg hover:bg-slate-800 transition flex justify-center items-center gap-2 uppercase tracking-widest">
+                        <i data-lucide="save" class="w-5 h-5"></i> Simpan Profil
                     </button>
                 </div>
             </div>
@@ -258,7 +305,6 @@
     </aside>
 
     <script>
-        // FIREBASE CONFIG (Kekalkan config anda)
         const firebaseConfig = {
             apiKey: "AIzaSyD5rx8TQdkFLzmunEmVtwt56Y8Mlt9Zsvo",
             authDomain: "e-penguatkuasa-jpv.firebaseapp.com",
@@ -272,7 +318,6 @@
         const db = firebase.firestore();
         lucide.createIcons();
 
-        // AUTH & PROFILE LOGIC
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 document.getElementById('landing-screen').style.display = 'none';
@@ -328,34 +373,6 @@
             s.style.right = (s.style.right === '0px') ? '-100%' : '0px';
         }
 
-        // SAVE & CALCULATE LOGIC
-        async function saveData() {
-            const user = firebase.auth().currentUser;
-            if(!user) return;
-            const btn = event.currentTarget;
-            btn.disabled = true;
-            btn.innerHTML = "MENYIMPAN KE CLOUD...";
-
-            const form = document.getElementById('mainForm');
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            
-            data.uid = user.uid;
-            data.timestamp = firebase.firestore.FieldValue.serverTimestamp();
-
-            try {
-                await db.collection("kes_v12").add(data);
-                alert("Rekod Kes Berjaya Disimpan ke Database Cloud!");
-                clearForm();
-            } catch (e) { 
-                alert("Ralat Simpan Data: " + e.message); 
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = `<i data-lucide="cloud-upload" class="w-5 h-5"></i> SIMPAN REKOD KE CLOUD`;
-                lucide.createIcons();
-            }
-        }
-
         function calcTotal() {
             let sum = 0;
             document.querySelectorAll('.calc').forEach(i => sum += Number(i.value || 0));
@@ -364,10 +381,12 @@
         document.querySelectorAll('.calc').forEach(i => i.addEventListener('input', calcTotal));
 
         function clearForm() { 
-            document.getElementById('mainForm').reset(); 
-            document.getElementById('total_val').value = "RM 0.00"; 
-            loadProfile(firebase.auth().currentUser);
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            if(confirm('Reset semua data dalam borang?')) {
+                document.getElementById('mainForm').reset(); 
+                document.getElementById('total_val').value = "RM 0.00"; 
+                loadProfile(firebase.auth().currentUser);
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
         }
         
         function printReport() { window.print(); }
