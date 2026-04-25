@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Penguatkuasa v75 - Pro Edition</title>
+    <title>e-Penguatkuasa v76 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +34,7 @@
             75% { color: #0066ff; }
             100% { color: #ff00ff; }
         }
-        .version-v75 { font-weight: 900; animation: rainbowText 4s infinite linear; }
+        .version-v76 { font-weight: 900; animation: rainbowText 4s infinite linear; }
 
         .section-card {
             background: white; border-radius: 20px; padding: 2rem;
@@ -51,59 +51,89 @@
         .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
         .animal-grid-item { background: #f8fafc; padding: 10px; border-radius: 15px; border: 1px solid #e2e8f0; }
 
-        /* PRINT v75 - ONE PAGE A4 ENGINE */
+        /* PRINT OPTIMIZATION v76 - NO BOXES, ONLY TEXT */
         @media print {
-            @page { size: A4 portrait; margin: 0.3cm; }
+            @page { size: A4 portrait; margin: 0.5cm; }
             body { background: white !important; font-size: 8pt !important; color: black !important; }
             .no-print { display: none !important; }
-            .section-card { 
-                box-shadow: none !important; border: 1px solid #000 !important; 
-                padding: 6px !important; margin-bottom: 6px !important; border-radius: 8px !important;
-                break-inside: avoid;
-            }
-            .form-input-modern { 
-                border: none !important; border-bottom: 1px solid #ccc !important; 
-                padding: 1px !important; font-size: 8pt !important; background: transparent !important;
-            }
-            .input-label { font-size: 7pt !important; margin-bottom: 1px !important; }
-            .animal-grid-item { border: 1px solid #eee !important; padding: 4px !important; background: transparent !important; }
             
-            /* Force Grid layout into many columns to save vertical space */
-            .grid-cols-1, .grid-cols-2, .grid-cols-3, .grid-cols-6, .grid-cols-12 {
-                display: grid !important;
-                grid-template-columns: repeat(4, 1fr) !important;
-                gap: 5px !important;
+            /* Buang kotak & bayangan semasa print */
+            .section-card, .animal-grid-item, .bg-indigo-50, .bg-slate-900 { 
+                background: transparent !important; 
+                box-shadow: none !important; 
+                border: none !important; 
+                padding: 2px !important; 
+                margin-bottom: 4px !important; 
+                border-radius: 0 !important;
             }
-            .lg\:col-span-2, .lg\:col-span-3, .lg\:col-span-4, .lg\:col-span-6, .lg\:col-span-9, .lg\:col-span-12 {
+            
+            /* Garisan bawah nipis sahaja untuk data */
+            .form-input-modern { 
+                border: none !important; 
+                border-bottom: 0.5px solid #000 !important; 
+                background: transparent !important;
+                padding: 0 !important;
+                font-size: 8.5pt !important;
+                font-weight: 600 !important;
+                border-radius: 0 !important;
+            }
+
+            .input-label { 
+                font-size: 7.5pt !important; 
+                margin-bottom: 0 !important; 
+                color: #555 !important;
+                font-weight: bold !important;
+            }
+
+            /* Susunan grid A4 yang padat */
+            .grid { 
+                display: grid !important; 
+                grid-template-columns: repeat(4, 1fr) !important; 
+                gap: 8px !important; 
+            }
+            .lg\:col-span-2, .lg\:col-span-3, .lg\:col-span-4, .lg\:col-span-6, .lg\:col-span-12 {
                 grid-column: span 1 / span 1 !important;
             }
-            #print-header { display: flex !important; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px; }
-            #print-header img { height: 35px; }
-            #print-header h1 { font-size: 11pt; font-weight: 900; text-transform: uppercase; }
+
+            /* Header Print Bersih */
+            #print-header { 
+                display: flex !important; 
+                justify-content: space-between; 
+                align-items: center; 
+                border-bottom: 1px solid #000; 
+                margin-bottom: 10px; 
+                padding-bottom: 5px;
+            }
+            #print-header img { height: 30px; }
+            #print-header h1 { font-size: 10pt; font-weight: 900; }
+            
+            /* Pastikan Nilai 42 kelihatan sebagai teks biasa */
+            #total_val_web { font-size: 12pt !important; color: black !important; border-bottom: 2px solid #000 !important; }
         }
+
         #print-header { display: none; }
-        #loader { display:none; position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 9999; align-items: center; justify-content: center; flex-direction: column; }
+        #loader { display:none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 9999; align-items: center; justify-content: center; flex-direction: column; }
     </style>
 </head>
 <body class="antialiased">
 
     <div id="loader">
         <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase">Synchronizing <span class="version-v75">v75</span> Engine...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase tracking-widest">Memproses Helaian A4 v76...</p>
     </div>
 
-    <!-- Login -->
+    <!-- Screen Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-10 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[95%] max-w-md shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-20 mx-auto mb-6">
-            <h1 class="text-3xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-v75">v75</span></h1>
-            <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-10">
+            <h1 class="text-3xl font-black text-white mb-2 uppercase">e-Penguatkuasa <span class="version-v76">v76</span></h1>
+            <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8">
                 <img src="https://www.google.com/favicon.ico" class="w-6 h-6"> LOG MASUK PEGAWAI
             </button>
         </div>
     </section>
 
-    <!-- App -->
+    <!-- App Content -->
     <div id="app-content" class="hidden opacity-0 transition-opacity duration-700 min-h-screen">
         
         <header class="sticky top-0 z-40 bg-white border-b-2 border-slate-200 no-print shadow-md">
@@ -111,14 +141,14 @@
                 <div class="flex items-center gap-4">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-10">
                     <div>
-                        <h2 class="text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-v75">v75</span></h2>
+                        <h2 class="text-lg font-black text-slate-800 uppercase">Borang <span class="version-v76">v76</span></h2>
                         <p id="realtime-clock" class="text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="resetForm()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold uppercase text-xs">Baru</button>
-                    <button onclick="toggleHistory()" class="px-4 py-2 bg-amber-500 text-slate-900 rounded-xl font-bold uppercase text-xs">Database</button>
-                    <button onclick="printReport()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold uppercase text-xs flex items-center gap-2"><i data-lucide="printer" class="w-4 h-4"></i> Cetak A4</button>
+                    <button onclick="resetForm()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold uppercase text-xs shadow-md">Rekod Baru</button>
+                    <button onclick="toggleHistory()" class="px-4 py-2 bg-amber-500 text-slate-900 rounded-xl font-bold uppercase text-xs shadow-md">Rekod Database</button>
+                    <button onclick="printReport()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold uppercase text-xs flex items-center gap-2 shadow-md"><i data-lucide="printer" class="w-4 h-4"></i> Cetak A4</button>
                     <button onclick="toggleProfile()" class="ml-2 flex items-center gap-2 bg-slate-100 p-1 pr-3 rounded-full border">
                         <img id="navAvatar" src="" class="w-8 h-8 rounded-full border-2 border-white object-cover">
                         <span class="text-[10px] font-black uppercase" id="navName">Pegawai</span>
@@ -127,20 +157,22 @@
             </div>
         </header>
 
+        <!-- HEADER KHAS UNTUK PRINT -->
         <div id="print-header">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
-            <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v75)</h1>
+            <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v76)</h1>
+            <p id="print-timestamp" style="font-size: 7pt; font-weight: bold;"></p>
         </div>
 
         <main class="w-full px-6 py-8 mx-auto">
             <form id="mainForm">
                 <input type="hidden" id="currentDocId" value="">
 
-                <!-- 1-13 -->
+                <!-- 1-13: ASAS -->
                 <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 border-b-2 border-indigo-50 pb-2 uppercase">A. Pengurusan & Kejadian</h3>
+                    <h3 class="text-indigo-600 font-black text-xs mb-4 border-b-2 border-indigo-50 pb-2 uppercase no-print">A. Pengurusan & Kes</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-                        <div><label class="input-label">1. Bil</label><input type="text" name="BIL" class="form-input-modern"></div>
+                        <div><label class="input-label">1. Bil</label><input type="text" name="BIL" class="form-input-modern uppercase"></div>
                         <div><label class="input-label">2. Tahun</label><input type="number" name="TAHUN" id="f_tahun" class="form-input-modern"></div>
                         <div><label class="input-label">3. Bulan</label>
                             <select name="BULAN" id="f_bulan" class="form-input-modern">
@@ -162,10 +194,10 @@
                     </div>
                 </div>
 
-                <!-- 14-31 -->
+                <!-- 14-31: HAIWAN & KARKAS -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                     <div class="section-card !mb-0 border-t-4 border-blue-500">
-                        <h3 class="text-blue-700 font-black text-xs mb-3 uppercase">Hidup (Ekor)</h3>
+                        <h3 class="text-blue-700 font-black text-xs mb-3 uppercase no-print">Hidup (Ekor)</h3>
                         <div class="grid grid-cols-2 gap-2">
                             <div class="animal-grid-item"><label class="input-label">14. Lembu</label><input type="number" name="LEMBU" class="form-input-modern" value="0"></div>
                             <div class="animal-grid-item"><label class="input-label">15. Kerbau</label><input type="number" name="KERBAU" class="form-input-modern" value="0"></div>
@@ -176,7 +208,7 @@
                         </div>
                     </div>
                     <div class="section-card !mb-0 border-t-4 border-red-500">
-                        <h3 class="text-red-700 font-black text-xs mb-3 uppercase">Karkas (KG)</h3>
+                        <h3 class="text-red-700 font-black text-xs mb-3 uppercase no-print">Karkas (KG)</h3>
                         <div class="grid grid-cols-2 gap-2">
                             <div class="animal-grid-item"><label class="input-label">20. Karkas Lembu</label><input type="number" name="KARKAS_LEMBU" class="form-input-modern" value="0"></div>
                             <div class="animal-grid-item"><label class="input-label">21. Karkas Kerbau</label><input type="number" name="KARKAS_KERBAU" class="form-input-modern" value="0"></div>
@@ -187,7 +219,7 @@
                         </div>
                     </div>
                     <div class="section-card !mb-0 border-t-4 border-emerald-500">
-                        <h3 class="text-emerald-700 font-black text-xs mb-3 uppercase">SB & Lain</h3>
+                        <h3 class="text-emerald-700 font-black text-xs mb-3 uppercase no-print">SB & Lain</h3>
                         <div class="grid grid-cols-2 gap-2">
                             <div class="animal-grid-item"><label class="input-label">26. SB Itik</label><input type="number" name="PRODUK_SEJUK_BEKU_ITIK" class="form-input-modern" value="0"></div>
                             <div class="animal-grid-item"><label class="input-label">27. SB Ayam</label><input type="number" name="PRODUK_SEJUK_BEKU_AYAM" class="form-input-modern" value="0"></div>
@@ -199,9 +231,9 @@
                     </div>
                 </div>
 
-                <!-- 32-37 -->
+                <!-- 32-37: LOGISTIK -->
                 <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 border-b-2 border-indigo-50 pb-2 uppercase">B. Logistik & Lain-lain</h3>
+                    <h3 class="text-indigo-600 font-black text-xs mb-4 border-b-2 border-indigo-50 pb-2 uppercase no-print">B. Logistik</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
                         <div class="lg:col-span-2 animal-grid-item"><label class="input-label">32. Arnab</label><input type="number" name="ARNAB" class="form-input-modern" value="0"></div>
                         <div class="lg:col-span-2 animal-grid-item"><label class="input-label">33. Burung</label><input type="number" name="BURUNG" class="form-input-modern" value="0"></div>
@@ -212,14 +244,14 @@
                     </div>
                 </div>
 
-                <!-- 38-44 -->
+                <!-- 38-44: NILAI & RUMUSAN -->
                 <div class="section-card border-l-[12px] border-indigo-600 print:border-l-0">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 border-b-2 border-indigo-50 pb-2 uppercase">C. Nilai (RM) & Rumusan</h3>
+                    <h3 class="text-indigo-600 font-black text-xs mb-4 border-b-2 border-indigo-50 pb-2 uppercase no-print">C. Nilai & Rumusan</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                        <div class="bg-indigo-50 p-3 rounded-2xl print:bg-transparent print:border"><label class="input-label">38. Nilai Ekor/KG</label><input type="number" name="ANGGARAN_NILAI_EKOR_KG" class="calc form-input-modern" value="0"></div>
-                        <div class="bg-indigo-50 p-3 rounded-2xl print:bg-transparent print:border"><label class="input-label">39. Nilai Kenderaan</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc form-input-modern" value="0"></div>
-                        <div class="bg-indigo-50 p-3 rounded-2xl print:bg-transparent print:border"><label class="input-label">40. Nilai Kontena</label><input type="number" name="ANGGARAN_NILAI_PENGANGKUT_KONTENA" class="calc form-input-modern" value="0"></div>
-                        <div class="bg-indigo-50 p-3 rounded-2xl print:bg-transparent print:border"><label class="input-label">41. Nilai Lain</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc form-input-modern" value="0"></div>
+                        <div class="bg-indigo-50 p-3 rounded-2xl"><label class="input-label">38. Nilai Ekor/KG</label><input type="number" name="ANGGARAN_NILAI_EKOR_KG" class="calc form-input-modern" value="0"></div>
+                        <div class="bg-indigo-50 p-3 rounded-2xl"><label class="input-label">39. Nilai Kenderaan</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc form-input-modern" value="0"></div>
+                        <div class="bg-indigo-50 p-3 rounded-2xl"><label class="input-label">40. Nilai Kontena</label><input type="number" name="ANGGARAN_NILAI_PENGANGKUT_KONTENA" class="calc form-input-modern" value="0"></div>
+                        <div class="bg-indigo-50 p-3 rounded-2xl"><label class="input-label">41. Nilai Lain</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc form-input-modern" value="0"></div>
                     </div>
                     
                     <div class="bg-slate-900 rounded-3xl p-6 text-white flex flex-wrap justify-between items-center mb-6 no-print">
@@ -227,7 +259,7 @@
                             <span class="text-[10px] font-black uppercase text-indigo-400 block mb-1">42. Jumlah Nilai Keseluruhan</span>
                             <input type="text" id="total_val_web" readonly name="JUMLAH_NILAI_KESELURUHAN" class="bg-transparent text-left font-black text-4xl outline-none w-full" value="RM 0.00">
                         </div>
-                        <button type="button" onclick="saveToFirebase()" class="px-10 py-4 bg-indigo-500 text-white rounded-2xl font-black uppercase shadow-xl transition active:scale-95">SIMPAN REKOD v75</button>
+                        <button type="button" onclick="saveToFirebase()" class="px-10 py-4 bg-indigo-500 text-white rounded-2xl font-black uppercase shadow-xl transition">SIMPAN DATA v76</button>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -242,7 +274,7 @@
     <!-- DB SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-[500px] h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-v75">v75</span></h2>
+            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-v76">v76</span></h2>
             <button onclick="toggleHistory()"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
@@ -258,7 +290,7 @@
             <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern uppercase"></div>
             <div><label class="input-label">Gred Jabatan</label><input type="text" id="userGred" class="form-input-modern uppercase"></div>
             <div><label class="input-label">Negeri / Cawangan</label><input type="text" id="userCawangan" class="form-input-modern uppercase"></div>
-            <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl uppercase">Kemaskini Profil</button>
+            <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl uppercase">Simpan Profil</button>
             <button onclick="logout()" class="w-full text-red-500 font-bold text-xs uppercase mt-4">Log Keluar</button>
         </div>
     </aside>
@@ -286,7 +318,9 @@
             const ampm = h >= 12 ? 'PM' : 'AM';
             h = h % 12 || 12;
             const timeStr = `${h}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')} ${ampm}`;
-            document.getElementById('realtime-clock').innerText = `${days[now.getDay()]}, ${now.getDate()} APR 2026 | ${timeStr}`;
+            const fullStr = `${days[now.getDay()]}, ${now.getDate()} APR 2026 | ${timeStr}`;
+            document.getElementById('realtime-clock').innerText = fullStr;
+            document.getElementById('print-timestamp').innerText = "Dicetak pada: " + fullStr;
         }
         setInterval(updateClock, 1000);
 
@@ -327,8 +361,7 @@
         document.getElementById('mainForm').addEventListener('input', calcTotal);
 
         async function saveToFirebase() {
-            if(!currentUser) return;
-            if(!userMeta.name) { alert("Sila isi profil!"); toggleProfile(); return; }
+            if(!currentUser || !userMeta.name) { alert("Lengkapkan profil!"); toggleProfile(); return; }
             document.getElementById('loader').style.display = 'flex';
             try {
                 const formData = new FormData(document.getElementById('mainForm'));
@@ -348,7 +381,7 @@
                 const docId = document.getElementById('currentDocId').value;
                 if(docId) await db.collection("reports").doc(docId).set(data, {merge: true});
                 else await db.collection("reports").add(data);
-                alert("Berjaya!");
+                alert("Tersimpan!");
                 resetForm();
             } catch (e) { alert(e.message); }
             finally { document.getElementById('loader').style.display = 'none'; }
@@ -356,7 +389,7 @@
 
         async function fetchHistory() {
             const listDiv = document.getElementById('historyList');
-            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse uppercase text-xs">Mencari Rekod v75...</p>';
+            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs uppercase">Memuatkan...</p>';
             const snapshot = await db.collection("reports").where("userId", "==", currentUser.uid).get();
             let docs = []; snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
             docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
@@ -369,7 +402,7 @@
                     Object.keys(d).forEach(k => { const i = document.querySelector(`[name="${k}"]`); if(i) i.value = d[k]; });
                     calcTotal(); toggleHistory();
                 };
-                card.innerHTML = `<div class="flex justify-between items-center mb-2"><span class="text-[10px] font-black bg-indigo-50 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span><span class="text-emerald-600 font-black text-sm">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span></div><h4 class="font-black text-slate-800 uppercase text-xs truncate">${d.KATEGORI_KES||'KES'}</h4><div class="mt-2 text-[9px] font-bold text-slate-500 uppercase leading-tight"><p>${d.recordedBy}</p><p>${d.cawangan}</p><p class="text-indigo-400 mt-1 italic">${d.recordedTime || ''}</p></div>`;
+                card.innerHTML = `<div class="flex justify-between items-center mb-1"><span class="text-[10px] font-black bg-indigo-50 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span><span class="text-indigo-600 font-black text-xs">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span></div><h4 class="font-black text-slate-800 uppercase text-[10px] truncate">${d.KATEGORI_KES||'KES'}</h4><p class="text-[9px] font-bold text-slate-400 mt-1 uppercase">${d.recordedBy} | ${d.recordedTime}</p>`;
                 listDiv.appendChild(card);
             });
             lucide.createIcons();
@@ -379,7 +412,7 @@
             const doc = await db.collection("users").doc(user.uid).get();
             const d = doc.exists ? doc.data() : {};
             userMeta = { name: d.name||'', gred: d.gred||'', cawangan: d.cawangan||'' };
-            document.getElementById('navName').innerText = userMeta.name || 'PEGAWAI';
+            document.getElementById('navName').innerText = userMeta.name || 'SILA SET PROFIL';
             document.getElementById('navAvatar').src = user.photoURL || "https://ui-avatars.com/api/?background=4f46e5&color=fff&name="+(userMeta.name||'P');
             document.getElementById('userName').value = userMeta.name;
             document.getElementById('userGred').value = userMeta.gred;
@@ -395,7 +428,7 @@
             location.reload();
         }
 
-        function printReport() { calcTotal(); window.print(); }
+        function printReport() { window.print(); }
         function loginGoogle() { firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()); }
         function logout() { firebase.auth().signOut().then(() => location.reload()); }
     </script>
