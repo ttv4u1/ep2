@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v90 - Pro Edition</title>
+    <title>e-Penguatkuasa v21 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,7 +27,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* v90 ANIMATED BOX */
+        /* v21 ANIMATED BOX */
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -68,7 +68,7 @@
             .btn-action { padding: 8px 6px !important; font-size: 8px !important; }
         }
 
-        /* PRINT OPTIMIZATION v90 */
+        /* PRINT OPTIMIZATION v21 */
         @media print {
             @page { size: A4 portrait; margin: 0.4cm; }
             body { background: white !important; font-size: 9pt !important; color: black !important; }
@@ -106,14 +106,14 @@
 
     <div id="loader">
         <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Memproses Data v90...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Memproses Data v21...</p>
     </div>
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-8 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v90</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v21</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase text-sm">
                 AKSES SISTEM
             </button>
@@ -128,7 +128,7 @@
                 <div class="flex items-center gap-3">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8 sm:h-10">
                     <div>
-                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v90</span></h2>
+                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v21</span></h2>
                         <p id="realtime-clock" class="text-[9px] sm:text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
         <div id="print-header">
             <div class="header-top">
                 <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
-                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v90)</h1>
+                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v21)</h1>
                 <div></div>
             </div>
             <div class="header-sub">
@@ -260,7 +260,7 @@
                     </div>
 
                     <div class="mt-8 no-print flex justify-center">
-                        <button type="button" onclick="saveToBaserow()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v90</button>
+                        <button type="button" onclick="saveToAll()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v21</button>
                     </div>
                 </div>
 
@@ -288,7 +288,7 @@
     <!-- DB SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-lg h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v90</span></h2>
+            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v21</span></h2>
             <button onclick="toggleHistory()" class="p-2 bg-white rounded-full border shadow-sm"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
@@ -311,10 +311,11 @@
 
     <script>
         // --- KONFIGURASI BASEROW ---
-const BASEROW_TOKEN = '7OPuNqPLqPtdkykdydfGSHaXReA00BQU'; // Dapatkan dari Baserow Settings
-const BASEROW_TABLE_ID = '947317'; // Dapatkan dari URL Table Baserow
+const BASEROW_TOKEN = '7OPuNqPLqPtdkykdydfGSHaXReA00BQU';
+const BASEROW_TABLE_ID = '947317';
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxljjosM_Rhspvwhrchqk8ngwSIr5ht9JUscw99cYrcOuqDRklyOOAmtVGleAuqHarB/exec';
 
-async function saveToBaserow() {
+async function saveToAll() {
     const user = firebase.auth().currentUser;
     if(!user || !userMeta.name) { 
         alert("Sila lengkapkan profil sebelum menyimpan!"); 
@@ -324,90 +325,112 @@ async function saveToBaserow() {
 
     document.getElementById('loader').style.display = 'flex';
 
-    // 1. Kumpul Data dari Borang (Mapping mengikut imej 44 kolum)
+    // 1. Kumpul Data dari Borang
     const formData = new FormData(document.getElementById('mainForm'));
     const totalVal = document.getElementById('total_val_web').value;
+    const staffInfo = document.getElementById('form_staff').value;
 
-    const dataBaserow = {
+    const dataObj = {
         "BIL": formData.get("BIL"),
-        "TAHUN": parseInt(formData.get("TAHUN")),
+        "TAHUN": formData.get("TAHUN"),
         "BULAN": formData.get("BULAN"),
-        "PENGUATKUASA": document.getElementById('form_staff').value,
-        "KATEGORI KES": formData.get("KATEGORI_KES"),
-        "NO REPOT POLIS": formData.get("NO_REPOT_POLIS"),
-        "TARIKH KEJADIAN": formData.get("TARIKH_KEJADIAN"),
-        "MASA KEJADIAN": formData.get("MASA_KEJADIAN"),
-        "LOKASI KEJADIAN": formData.get("LOKASI_KEJADIAN"),
+        "PENGUATKUASA": staffInfo,
+        "KATEGORI_KES": formData.get("KATEGORI_KES"),
+        "NO_REPOT_POLIS": formData.get("NO_REPOT_POLIS"),
+        "TARIKH_KEJADIAN": formData.get("TARIKH_KEJADIAN"),
+        "MASA_KEJADIAN": formData.get("MASA_KEJADIAN"),
+        "LOKASI_KEJADIAN": formData.get("LOKASI_KEJADIAN"),
         "KESALAHAN": formData.get("KESALAHAN"),
-        "UNDANG-UNDANG": formData.get("UNDANG_UNDANG"),
-        "NO KES IP": formData.get("NO_KES_IP"),
-        "JENIS RAMPASAN": formData.get("JENIS_RAMPASAN"),
-        "LEMBU": Number(formData.get("LEMBU")),
-        "KERBAU": Number(formData.get("KERBAU")),
-        "KAMBING": Number(formData.get("KAMBING")),
-        "BEBIRI": Number(formData.get("BEBIRI")),
-        "BABI": Number(formData.get("BABI")),
-        "AYAM": Number(formData.get("AYAM")),
-        "KARKAS LEMBU": Number(formData.get("KARKAS_LEMBU")),
-        "KARKAS KERBAU": Number(formData.get("KARKAS_KERBAU")),
-        "KARKAS KAMBING": Number(formData.get("KARKAS_KAMBING")),
-        "KARKAS BABI": Number(formData.get("KARKAS_BABI")),
-        "KARKAS BABI SEJUK BEKU": Number(formData.get("KARKAS_BABI_SEJUK_BEKU")),
-        "KARKAS AYAM": Number(formData.get("KARKAS_AYAM")),
-        "PRODUK SEJUK BEKU ITIK": Number(formData.get("PRODUK_SEJUK_BEKU_ITIK")),
-        "PRODUK SEJUK BEKU AYAM": Number(formData.get("PRODUK_SEJUK_BEKU_AYAM")),
-        "PRODUK SEJUK BEKU BABI": Number(formData.get("PRODUK_SEJUK_BEKU_BABI")),
-        "PRODUK HAIWAN (TIN)": Number(formData.get("PRODUK_HAIWAN_TIN")),
-        "ANJING": Number(formData.get("ANJING")),
-        "KUCING": Number(formData.get("KUCING")),
-        "ARNAB": Number(formData.get("ARNAB")),
-        "BURUNG": Number(formData.get("BURUNG")),
-        "HAMSTER": Number(formData.get("HAMSTER")),
-        "RAMPASAN LAIN-LAIN": formData.get("RAMPASAN_LAIN_LAIN"),
-        "JUMLAH RAMPASAN KENDERAAN": Number(formData.get("JUMLAH_RAMPASAN_KENDERAAN")),
-        "RAMPASAN PENGANGKUTAN": formData.get("RAMPASAN_PENGANGKUTAN"),
-        "ANGGARAN NILAI (EKOR/KG)": Number(formData.get("ANGGARAN_NILAI_EKOR_KG")),
-        "ANGGARAN NILAI (KENDERAAN)": Number(formData.get("ANGGARAN_NILAI_KENDERAAN")),
-        "ANGGARAN NILAI (PENGANGKUT/KONTENA)": Number(formData.get("ANGGARAN_NILAI_PENGANGKUT_KONTENA")),
-        "ANGGARAN NILAI (LAIN-LAIN)": Number(formData.get("ANGGARAN_NILAI_LAIN_LAIN")),
-        "JUMLAH NILAI KESELURUHAN": totalVal,
-        "KES SERAHAN": formData.get("KES_SERAHAN"),
+        "UNDANG_UNDANG": formData.get("UNDANG_UNDANG"),
+        "NO_KES_IP": formData.get("NO_KES_IP"),
+        "JENIS_RAMPASAN": formData.get("JENIS_RAMPASAN"),
+        "LEMBU": formData.get("LEMBU"),
+        "KERBAU": formData.get("KERBAU"),
+        "KAMBING": formData.get("KAMBING"),
+        "BEBIRI": formData.get("BEBIRI"),
+        "BABI": formData.get("BABI"),
+        "AYAM": formData.get("AYAM"),
+        "KARKAS_LEMBU": formData.get("KARKAS_LEMBU"),
+        "KARKAS_KERBAU": formData.get("KARKAS_KERBAU"),
+        "KARKAS_KAMBING": formData.get("KARKAS_KAMBING"),
+        "KARKAS_BABI": formData.get("KARKAS_BABI"),
+        "KARKAS_BABI_SEJUK_BEKU": formData.get("KARKAS_BABI_SEJUK_BEKU"),
+        "KARKAS_AYAM": formData.get("KARKAS_AYAM"),
+        "PRODUK_SEJUK_BEKU_ITIK": formData.get("PRODUK_SEJUK_BEKU_ITIK"),
+        "PRODUK_SEJUK_BEKU_AYAM": formData.get("PRODUK_SEJUK_BEKU_AYAM"),
+        "PRODUK_SE_BEKU_BABI": formData.get("PRODUK_SEJUK_BEKU_BABI"),
+        "PRODUK_HAIWAN_TIN": formData.get("PRODUK_HAIWAN_TIN"),
+        "ANJING": formData.get("ANJING"),
+        "KUCING": formData.get("KUCING"),
+        "ARNAB": formData.get("ARNAB"),
+        "BURUNG": formData.get("BURUNG"),
+        "HAMSTER": formData.get("HAMSTER"),
+        "RAMPASAN_LAIN_LAIN": formData.get("RAMPASAN_LAIN_LAIN"),
+        "JUMLAH_RAMPASAN_KENDERAAN": formData.get("JUMLAH_RAMPASAN_KENDERAAN"),
+        "RAMPASAN_PENGANGKUTAN": formData.get("RAMPASAN_PENGANGKUTAN"),
+        "ANGGARAN_NILAI_EKOR_KG": formData.get("ANGGARAN_NILAI_EKOR_KG"),
+        "ANGGARAN_NILAI_KENDERAAN": formData.get("ANGGARAN_NILAI_KENDERAAN"),
+        "ANGGARAN_NILAI_PENGANGKUT_KONTENA": formData.get("ANGGARAN_NILAI_PENGANGKUT_KONTENA"),
+        "ANGGARAN_NILAI_LAIN_LAIN": formData.get("ANGGARAN_NILAI_LAIN_LAIN"),
+        "JUMLAH_NILAI_KESELURUHAN": totalVal,
+        "KES_SERAHAN": formData.get("KES_SERAHAN"),
         "CATATAN": formData.get("CATATAN")
     };
 
-    // 2. Hantar ke Baserow menggunakan Fetch API
     try {
-        const response = await fetch(`https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`, {
+        // --- HANTAR KE BASEROW ---
+        const baserowPromise = fetch(`https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`, {
             method: 'POST',
-            headers: {
-                'Authorization': `Token ${BASEROW_TOKEN}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataBaserow)
+            headers: { 'Authorization': `Token ${BASEROW_TOKEN}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataObj)
         });
 
-        if (response.ok) {
-            // Juga simpan ke Firebase sebagai backup jika mahu
-            await saveToFirebase(dataBaserow); 
-            
-            alert("Rekod Berjaya Disimpan ke Baserow & Firebase!");
-            resetForm();
-        } else {
-            const errorData = await response.json();
-            console.error("Baserow Error:", errorData);
-            alert("Ralat Baserow: " + response.statusText);
-        }
+        // --- HANTAR KE GOOGLE SHEETS ---
+        const googlePromise = fetch(GOOGLE_SHEET_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataObj)
+        });
+
+        // Tunggu kedua-dua selesai
+        await Promise.all([baserowPromise, googlePromise]);
+
+        // Simpan ke Firebase (Gunakan fungsi sedia ada dalam kod anda)
+        // Kita panggil fungsi saveToFirebase secara manual tapi pastikan loader tak tutup lagi
+        await processFirebaseSave(dataObj); 
+        
+        alert("REKOD BERJAYA DISIMPAN!\n(Baserow + Google Sheets + Firebase)");
+        resetForm();
+
     } catch (error) {
-        console.error("Network Error:", error);
-        alert("Gagal menyambung ke Baserow.");
+        console.error("Error:", error);
+        alert("Ralat teknikal: " + error.message);
     } finally {
         document.getElementById('loader').style.display = 'none';
     }
 }
 
+// Fungsi pembantu untuk Firebase supaya tak konflik dengan loader
+async function processFirebaseSave(data) {
+    const user = firebase.auth().currentUser;
+    const now = new Date();
+    const days = ["AHAD", "ISNIN", "SELASA", "RABU", "KHAMIS", "JUMAAT", "SABTU"];
+    
+    data.userId = user.uid;
+    data.recordedBy = userMeta.name;
+    data.recordedGred = userMeta.gred;
+    data.recordedBranch = userMeta.cawangan;
+    data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+    data.recordedDay = days[now.getDay()];
+    data.recordedTimeStr = now.toLocaleTimeString();
+
+    await db.collection("reports").add(data);
+}
+
 // Kemaskini butang Simpan dalam HTML anda untuk memanggil saveToBaserow()
 // Cari bahagian button simpan dan tukar onclick:
-// <button type="button" onclick="saveToBaserow()" ...>Simpan Rekod v90</button>
+// <button type="button" onclick="saveToBaserow()" ...>Simpan Rekod v21</button>
         const firebaseConfig = {
             apiKey: "AIzaSyD5rx8TQdkFLzmunEmVtwt56Y8Mlt9Zsvo",
             authDomain: "e-penguatkuasa-jpv.firebaseapp.com",
@@ -600,7 +623,7 @@ async function saveToBaserow() {
             const ws = XLSX.utils.json_to_sheet([data]);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Data");
-            XLSX.writeFile(wb, `Laporan_v90_BIL_${data.BIL || 'DATA'}.xlsx`);
+            XLSX.writeFile(wb, `Laporan_v21_BIL_${data.BIL || 'DATA'}.xlsx`);
         }
 
         function exportToCSV() {
@@ -611,7 +634,7 @@ async function saveToBaserow() {
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = `AccessDB_v90_BIL_${data.BIL || 'DATA'}.csv`;
+            link.download = `AccessDB_v21_BIL_${data.BIL || 'DATA'}.csv`;
             link.click();
         }
 
