@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v84 - Pro Edition</title>
+    <title>e-Penguatkuasa v85 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,7 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-    <!-- SheetJS for Excel -->
+    <!-- SheetJS -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
     <style>
@@ -27,7 +27,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* v84 ANIMATED BOX */
+        /* v85 ANIMATED BOX */
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -67,7 +67,7 @@
             .btn-action { padding: 8px 10px !important; font-size: 9px !important; }
         }
 
-        /* PRINT OPTIMIZATION v84 */
+        /* PRINT OPTIMIZATION v85 */
         @media print {
             @page { size: A4 portrait; margin: 0.4cm; }
             body { background: white !important; font-size: 9pt !important; color: black !important; }
@@ -105,14 +105,14 @@
 
     <div id="loader">
         <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Processing v84 Data...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Finalizing v85 Order...</p>
     </div>
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-8 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v84</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v85</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase text-sm">
                 LOG MASUK SISTEM
             </button>
@@ -127,7 +127,7 @@
                 <div class="flex items-center gap-3">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8 sm:h-10">
                     <div>
-                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v84</span></h2>
+                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v85</span></h2>
                         <p id="realtime-clock" class="text-[9px] sm:text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <button onclick="exportToExcel()" class="btn-action flex-1 sm:flex-none px-3 py-2 bg-emerald-600 text-white rounded-xl font-black uppercase text-[9px] shadow-sm">Excel</button>
                     <button onclick="exportToCSV()" class="btn-action flex-1 sm:flex-none px-3 py-2 bg-blue-600 text-white rounded-xl font-black uppercase text-[9px] shadow-sm">Access</button>
                     <button onclick="printReport()" class="btn-action flex-1 sm:flex-none px-3 py-2 bg-slate-900 text-white rounded-xl font-black uppercase text-[9px] shadow-sm">Cetak</button>
-                    <button onclick="toggleProfile()" class="ml-1 flex items-center gap-2 bg-slate-100 p-1 pr-2 rounded-full border">
+                    <button onclick="toggleProfile()" class="ml-1 flex items-center gap-1 bg-slate-100 p-1 pr-2 rounded-full border">
                         <img id="navAvatar" src="" class="w-6 h-6 rounded-full object-cover">
                     </button>
                 </div>
@@ -148,7 +148,7 @@
         <div id="print-header">
             <div class="header-top">
                 <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
-                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v84)</h1>
+                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v85)</h1>
                 <div></div>
             </div>
             <div class="header-sub">
@@ -191,7 +191,7 @@
                     </div>
                 </div>
 
-                <!-- Section B: Rampasan -->
+                <!-- Section B -->
                 <h3 class="print-section-title">B. Butiran Rampasan Utama</h3>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
                     <div class="section-card !mb-0 border-t-4 border-blue-500">
@@ -259,7 +259,7 @@
                     </div>
 
                     <div class="mt-8 no-print flex justify-center">
-                        <button type="button" onclick="saveToFirebase()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v84</button>
+                        <button type="button" onclick="saveToFirebase()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v85</button>
                     </div>
                 </div>
 
@@ -284,10 +284,10 @@
         </main>
     </div>
 
-    <!-- DB SIDEBAR -->
+    <!-- DATABASE SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-lg h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v84</span></h2>
+            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v85</span></h2>
             <button onclick="toggleHistory()" class="p-2 bg-white rounded-full border shadow-sm"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
@@ -324,6 +324,7 @@
         let currentUser = null;
         let userMeta = { name: '', gred: '', cawangan: '' };
 
+        // Real-time Clock
         function updateClock() {
             const now = new Date();
             const days = ["AHAD", "ISNIN", "SELASA", "RABU", "KHAMIS", "JUMAAT", "SABTU"];
@@ -376,7 +377,7 @@
         // --- DATABASE OPERATIONS ---
 
         async function saveToFirebase() {
-            if(!currentUser || !userMeta.name) { alert("Sila isi profil anda!"); toggleProfile(); return; }
+            if(!currentUser || !userMeta.name) { alert("Lengkapkan profil!"); toggleProfile(); return; }
             document.getElementById('loader').style.display = 'flex';
             try {
                 const formData = new FormData(document.getElementById('mainForm'));
@@ -400,7 +401,7 @@
                 const docId = document.getElementById('currentDocId').value;
                 if(docId) await db.collection("reports").doc(docId).set(data, {merge: true});
                 else await db.collection("reports").add(data);
-                alert("Rekod Berjaya Disimpan!");
+                alert("Rekod Berjaya!");
                 resetForm();
             } catch (e) { alert(e.message); }
             finally { document.getElementById('loader').style.display = 'none'; }
@@ -408,74 +409,118 @@
 
         async function fetchHistory() {
             const listDiv = document.getElementById('historyList');
-            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs uppercase">Processing Rekod Database...</p>';
+            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs">Processing Database...</p>';
             try {
                 const snapshot = await db.collection("reports").where("userId", "==", currentUser.uid).get();
                 let docs = []; snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
                 docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
                 
                 listDiv.innerHTML = "";
-                if(docs.length === 0) { listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Rekod Ditemui</p>'; return; }
+                if(docs.length === 0) { listDiv.innerHTML = '<p class="text-center py-10 text-xs">No Records Found</p>'; return; }
 
                 docs.forEach(d => {
                     const card = document.createElement('div');
-                    card.className = "bg-white p-4 rounded-2xl border-l-8 border-indigo-600 shadow-sm hover:shadow-md cursor-pointer transition relative overflow-hidden mb-3";
+                    card.className = "bg-white p-5 rounded-2xl border-l-8 border-indigo-600 shadow-sm hover:shadow-md cursor-pointer mb-3";
                     card.onclick = () => {
                         document.getElementById('currentDocId').value = d.id;
                         Object.keys(d).forEach(k => { const i = document.querySelector(`[name="${k}"]`); if(i) i.value = d[k]; });
                         calcTotal(); toggleHistory();
                     };
                     card.innerHTML = `
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-[10px] font-black bg-indigo-50 text-indigo-700 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span>
-                            <span class="text-emerald-600 font-black text-sm">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span>
+                        <div class="flex justify-between items-start mb-2 text-[10px]">
+                            <span class="font-black bg-indigo-50 text-indigo-700 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span>
+                            <span class="text-emerald-600 font-black">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span>
                         </div>
-                        <div class="space-y-1.5 text-[10px] font-bold text-slate-600 uppercase border-t pt-2">
+                        <div class="space-y-1 text-[10px] font-bold text-slate-600 uppercase border-t pt-2">
                             <p><span class="text-indigo-500">Kategori :</span> ${d.KATEGORI_KES || 'N/A'}</p>
-                            <p><span class="text-indigo-500">No Repot :</span> ${d.NO_REPOT_POLIS || '-'}</p>
+                            <p><span class="text-indigo-500">Repot Polis :</span> ${d.NO_REPOT_POLIS || '-'}</p>
                             <p><span class="text-indigo-500">Pegawai :</span> ${d.recordedBy || d.PENGUATKUASA}</p>
-                            <p><span class="text-indigo-500">Jenis Rampasan :</span> ${d.JENIS_RAMPASAN || '-'}</p>
-                            <div class="flex justify-between items-center text-indigo-400 italic pt-1 border-t border-slate-100">
-                                <span>${d.recordedDay || ''}</span>
-                                <span>${d.recordedTimeStr || ''}</span>
-                            </div>
+                            <p><span class="text-indigo-500">Masa :</span> ${d.recordedDay} | ${d.recordedTimeStr}</p>
                         </div>
                     `;
                     listDiv.appendChild(card);
                 });
                 lucide.createIcons();
-            } catch (e) { listDiv.innerHTML = `<p class="text-red-500 text-[10px]">Ralat: ${e.message}</p>`; }
+            } catch (e) { console.error(e); }
         }
 
-        // --- EXPORT FUNCTIONS ---
+        // --- EXPORT FUNCTIONS (SINKRONISASI 44 KOLUM MENGIKUT IMEJ) ---
+
+        function getMappedData() {
+            const formData = new FormData(document.getElementById('mainForm'));
+            const total = document.getElementById('total_val_web').value;
+            
+            // Turutan tepat mengikut gambar
+            return {
+                "BIL": formData.get("BIL"),
+                "TAHUN": formData.get("TAHUN"),
+                "BULAN": formData.get("BULAN"),
+                "PENGUATKUASA": formData.get("PENGUATKUASA"),
+                "KATEGORI KES": formData.get("KATEGORI_KES"),
+                "NO REPOT POLIS": formData.get("NO_REPOT_POLIS"),
+                "TARIKH KEJADIAN": formData.get("TARIKH_KEJADIAN"),
+                "MASA KEJADIAN": formData.get("MASA_KEJADIAN"),
+                "LOKASI KEJADIAN": formData.get("LOKASI_KEJADIAN"),
+                "KESALAHAN": formData.get("KESALAHAN"),
+                "UNDANG-UNDANG": formData.get("UNDANG_UNDANG"),
+                "NO KES IP": formData.get("NO_KES_IP"),
+                "JENIS RAMPASAN": formData.get("JENIS_RAMPASAN"),
+                "LEMBU": formData.get("LEMBU"),
+                "KERBAU": formData.get("KERBAU"),
+                "KAMBING": formData.get("KAMBING"),
+                "BEBIRI": formData.get("BEBIRI"),
+                "BABI": formData.get("BABI"),
+                "AYAM": formData.get("AYAM"),
+                "KARKAS LEMBU": formData.get("KARKAS_LEMBU"),
+                "KARKAS KERBAU": formData.get("KARKAS_KERBAU"),
+                "KARKAS KAMBING": formData.get("KARKAS_KAMBING"),
+                "KARKAS BABI": formData.get("KARKAS_BABI"),
+                "KARKAS BABI SEJUK BEKU": formData.get("KARKAS_BABI_SEJUK_BEKU"),
+                "KARKAS AYAM": formData.get("KARKAS_AYAM"),
+                "PRODUK SEJUK BEKU ITIK": formData.get("PRODUK_SEJUK_BEKU_ITIK"),
+                "PRODUK SEJUK BEKU AYAM": formData.get("PRODUK_SEJUK_BEKU_AYAM"),
+                "PRODUK SEJUK BEKU BABI": formData.get("PRODUK_SEJUK_BEKU_BABI"),
+                "PRODUK HAIWAN (TIN)": formData.get("PRODUK_HAIWAN_TIN"),
+                "ANJING": formData.get("ANJING"),
+                "KUCING": formData.get("KUCING"),
+                "ARNAB": formData.get("ARNAB"),
+                "BURUNG": formData.get("BURUNG"),
+                "HAMSTER": formData.get("HAMSTER"),
+                "RAMPASAN LAIN-LAIN": formData.get("RAMPASAN_LAIN_LAIN"),
+                "JUMLAH RAMPASAN KENDERAAN": formData.get("JUMLAH_RAMPASAN_KENDERAAN"),
+                "RAMPASAN PENGANGKUTAN": formData.get("RAMPASAN_PENGANGKUTAN"),
+                "ANGGARAN NILAI (EKOR/KG)": formData.get("ANGGARAN_NILAI_EKOR_KG"),
+                "ANGGARAN NILAI (KENDERAAN)": formData.get("ANGGARAN_NILAI_KENDERAAN"),
+                "ANGGARAN NILAI (PENGANGKUT/KONTENA)": formData.get("ANGGARAN_NILAI_PENGANGKUT_KONTENA"),
+                "ANGGARAN NILAI (LAIN-LAIN)": formData.get("ANGGARAN_NILAI_LAIN_LAIN"),
+                "JUMLAH NILAI KESELURUHAN": total,
+                "KES SERAHAN": formData.get("KES_SERAHAN"),
+                "CATATAN": formData.get("CATATAN")
+            };
+        }
 
         function exportToExcel() {
-            const formData = new FormData(document.getElementById('mainForm'));
-            const data = Object.fromEntries(formData.entries());
-            data.JUMLAH_NILAI_KESELURUHAN = document.getElementById('total_val_web').value;
-            
+            const data = getMappedData();
             const ws = XLSX.utils.json_to_sheet([data]);
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Laporan_Enforcement");
-            XLSX.writeFile(wb, `Laporan_v84_BIL_${data.BIL || 'DATA'}.xlsx`);
+            XLSX.utils.book_append_sheet(wb, ws, "Data_Laporan");
+            XLSX.writeFile(wb, `Laporan_v85_BIL_${data.BIL || 'DATA'}.xlsx`);
         }
 
         function exportToCSV() {
-            const formData = new FormData(document.getElementById('mainForm'));
-            const data = Object.fromEntries(formData.entries());
-            data.JUMLAH_NILAI_KESELURUHAN = document.getElementById('total_val_web').value;
-            data.Pegawai = userMeta.name;
-            data.Gred = userMeta.gred;
-            data.Cawangan = userMeta.cawangan;
-
+            const data = getMappedData();
             const headers = Object.keys(data).join(",");
-            const values = Object.values(data).map(v => `"${v}"`).join(",");
-            const csvContent = "data:text/csv;charset=utf-8," + headers + "\n" + values;
+            const values = Object.values(data).map(v => {
+                let val = v === null ? "" : String(v);
+                return `"${val.replace(/"/g, '""')}"`;
+            }).join(",");
             
-            const encodedUri = encodeURI(csvContent);
+            const csvContent = "\ufeff" + headers + "\n" + values; // added BOM for Excel compatibility
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `Data_Access_BIL_${data.BIL || 'REKOD'}.csv`);
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `Data_Access_BIL_${data.BIL || 'DATA'}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -502,7 +547,7 @@
             const n = document.getElementById('userName').value.toUpperCase();
             const g = document.getElementById('userGred').value.toUpperCase();
             const c = document.getElementById('userCawangan').value.toUpperCase();
-            if(!n || !g || !c) { alert("Lengkapkan maklumat profil!"); return; }
+            if(!n || !g || !c) { alert("Isi semua profil!"); return; }
             await db.collection("users").doc(currentUser.uid).set({name:n, gred:g, cawangan:c}, {merge:true});
             location.reload();
         }
