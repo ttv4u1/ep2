@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Penguatkuasa v33</title>
+    <title>e-Penguatkuasa v55 - Excel Pro</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,6 +14,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- SheetJS for Excel Export -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
     <style>
         body, html {
@@ -44,13 +47,11 @@
         
         .animal-grid-item { background: #f1f5f9; padding: 6px; border-radius: 8px; border: 1px solid #e2e8f0; }
 
-        /* CUSTOM MODAL */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
             display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px;
         }
 
-        /* PRINT OPTIMIZATION */
         @media print { 
             @page { size: A4 landscape; margin: 0.3cm; }
             body { background: white !important; }
@@ -67,11 +68,10 @@
 
     <img src="https://www.akm.gov.my/images/madani/JATA%20NEGARA%20AI-01.png" class="master-bg">
 
-    <!-- LANDING SCREEN -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-10 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[95%] max-w-md shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-24 mx-auto mb-6 drop-shadow-2xl">
-            <h1 class="text-3xl font-black text-white mb-2 tracking-tighter uppercase">e-Penguatkuasa v33</h1>
+            <h1 class="text-3xl font-black text-white mb-2 tracking-tighter uppercase">e-Penguatkuasa v55</h1>
             <p class="text-indigo-400 text-xs font-bold tracking-[0.4em] mb-10 uppercase">Official System</p>
             <button onclick="loginGoogle()" class="w-full flex items-center justify-center gap-4 bg-white text-slate-900 font-black py-4 rounded-2xl hover:bg-indigo-50 transition active:scale-95 shadow-2xl text-lg">
                 <img src="https://www.google.com/favicon.ico" class="w-6 h-6"> LOG MASUK
@@ -85,9 +85,12 @@
             <div class="w-full px-4 py-3 flex flex-wrap justify-between items-center gap-3">
                 <div class="flex items-center gap-3">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-10">
-                    <h2 class="text-lg md:text-xl font-black text-slate-800 uppercase tracking-tight">Sistem Laporan v33</h2>
+                    <h2 class="text-lg md:text-xl font-black text-slate-800 uppercase tracking-tight">Sistem Laporan v55</h2>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="exportToExcel()" class="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition text-xs font-bold uppercase shadow-md">
+                        <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> <span class="hidden sm:inline">Export Excel</span>
+                    </button>
                     <button onclick="openEmailModal()" class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-xs font-bold uppercase shadow-md">
                         <i data-lucide="mail" class="w-4 h-4"></i> <span class="hidden sm:inline">E-Mel</span>
                     </button>
@@ -102,7 +105,6 @@
             </div>
         </header>
 
-        <!-- PRINT HEADER -->
         <div class="print-only-header">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-12">
             <div class="text-center">
@@ -146,7 +148,6 @@
 
                 <!-- SECTION 3: RAMPASAN UTAMA -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-                    <!-- HAIWAN HIDUP -->
                     <div class="section-card !mb-0">
                         <h3 class="text-blue-700 font-black text-[10px] mb-3 border-b-2 border-blue-100 uppercase tracking-widest pb-1">Haiwan Hidup (Ekor)</h3>
                         <div class="grid grid-cols-2 gap-2">
@@ -158,7 +159,6 @@
                             <div class="animal-grid-item"><label class="input-label">Ayam</label><input type="number" name="AYAM" class="form-input-modern" value="0"></div>
                         </div>
                     </div>
-                    <!-- KARKAS -->
                     <div class="section-card !mb-0">
                         <h3 class="text-red-700 font-black text-[10px] mb-3 border-b-2 border-red-100 uppercase tracking-widest pb-1">Karkas / Daging (KG)</h3>
                         <div class="grid grid-cols-2 gap-2">
@@ -170,7 +170,6 @@
                             <div class="animal-grid-item"><label class="input-label">Karkas Ayam</label><input type="number" name="KARKAS_AYAM" class="form-input-modern" value="0"></div>
                         </div>
                     </div>
-                    <!-- PRODUK SEJUK BEKU -->
                     <div class="section-card !mb-0">
                         <h3 class="text-emerald-700 font-black text-[10px] mb-3 border-b-2 border-emerald-100 uppercase tracking-widest pb-1">Produk Sejuk Beku / Lain</h3>
                         <div class="grid grid-cols-2 gap-2">
@@ -216,7 +215,6 @@
                         <span class="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400">Jumlah Nilai Keseluruhan</span>
                         <input type="text" id="total_val_web" readonly class="bg-transparent text-right font-black text-2xl md:text-3xl outline-none text-white flex-1 min-w-[150px]" value="RM 0.00">
                     </div>
-                    <!-- Nilai untuk cetakan -->
                     <div class="hidden print:block mt-2">
                         <label class="input-label font-black">JUMLAH NILAI KESELURUHAN (RM):</label>
                         <input type="text" id="total_val" name="JUMLAH_NILAI_KESELURUHAN" class="form-input-modern !text-xl font-black border-none" readonly>
@@ -258,10 +256,13 @@
     <div id="emailModal" class="modal-overlay">
         <div class="bg-white rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl">
             <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
-                <h3 class="font-black uppercase tracking-widest">Compose Report Email</h3>
+                <h3 class="font-black uppercase tracking-widest">Hantar Laporan & Excel</h3>
                 <button onclick="closeEmailModal()"><i data-lucide="x" class="w-6 h-6"></i></button>
             </div>
             <div class="p-6 space-y-4">
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-3 text-[11px] text-amber-800 font-bold uppercase">
+                    Nota: Fail Excel akan dimuat turun secara automatik. Sila sertakan (attach) fail tersebut di dalam emel anda nanti.
+                </div>
                 <div>
                     <label class="input-label">E-mel Penerima</label>
                     <input type="email" id="emailTo" class="form-input-modern" placeholder="atasan@jpv.gov.my">
@@ -270,12 +271,8 @@
                     <label class="input-label">Subjek</label>
                     <input type="text" id="emailSubject" class="form-input-modern" value="LAPORAN KES PENGUATKUASAAN">
                 </div>
-                <div>
-                    <label class="input-label">Mesej Tambahan</label>
-                    <textarea id="emailBody" class="form-input-modern h-32 text-sm" placeholder="Sila semak ringkasan laporan ini..."></textarea>
-                </div>
                 <button onclick="sendEmailAction()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl flex items-center justify-center gap-2 hover:bg-indigo-700 shadow-xl transition uppercase">
-                    <i data-lucide="send" class="w-5 h-5"></i> HANTAR SEKARANG
+                    <i data-lucide="send" class="w-5 h-5"></i> JANA EXCEL & BUKA EMEL
                 </button>
             </div>
         </div>
@@ -295,7 +292,6 @@
         const db = firebase.firestore();
         lucide.createIcons();
 
-        // GAMBAR AVATAR BAHARU YANG DIBERIKAN
         const DEFAULT_AVATARS = {
             male: "https://github.com/ttv4u1/ttv4u1.github.io/raw/main/male.png",
             female: "https://github.com/ttv4u1/ttv4u1.github.io/raw/main/female.png"
@@ -377,26 +373,64 @@
         }
         document.querySelectorAll('.calc').forEach(i => i.addEventListener('input', calcTotal));
 
-        // EMAIL FUNCTIONS
+        // --- EXCEL LOGIC ---
+        function exportToExcel() {
+            calcTotal();
+            const form = document.getElementById('mainForm');
+            const formData = new FormData(form);
+            const data = {};
+            
+            // Convert FormData to JSON Object
+            formData.forEach((value, key) => {
+                data[key.replace(/_/g, ' ')] = value;
+            });
+
+            // Add calculated total
+            data["JUMLAH NILAI KESELURUHAN"] = document.getElementById('total_val').value;
+
+            // Prepare for Excel
+            const worksheet = XLSX.utils.json_to_sheet([data]);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Laporan Kes");
+
+            // Download file
+            const bil = data["BIL"] || "BARU";
+            const filename = `LAPORAN_KES_${bil}.xlsx`;
+            XLSX.writeFile(workbook, filename);
+        }
+
         function openEmailModal() {
             document.getElementById('emailModal').style.display = 'flex';
             const bil = document.getElementsByName('BIL')[0].value || 'BARU';
-            document.getElementById('emailSubject').value = `LAPORAN KES BIL: ${bil} - ${document.getElementById('form_staff').value}`;
+            document.getElementById('emailSubject').value = `LAPORAN KES PENGUATKUASAAN BIL: ${bil}`;
         }
         function closeEmailModal() { document.getElementById('emailModal').style.display = 'none'; }
 
         function sendEmailAction() {
             const to = document.getElementById('emailTo').value;
-            const sub = encodeURIComponent(document.getElementById('emailSubject').value);
-            const msg = encodeURIComponent(document.getElementById('emailBody').value);
-            const total = document.getElementById('total_val').value;
-            
             if(!to) return alert("Sila masukkan e-mel penerima");
 
-            // Build simplified summary for email body
-            let summary = `%0A%0ARingkasan Laporan:%0A-----------------------%0ANilai Keseluruhan: ${total}%0APegawai: ${document.getElementById('form_staff').value}%0A-----------------------`;
+            // 1. Download the Excel automatically first
+            exportToExcel();
+
+            // 2. Open Mail Client
+            const sub = encodeURIComponent(document.getElementById('emailSubject').value);
+            const bil = document.getElementsByName('BIL')[0].value || 'BARU';
+            const total = document.getElementById('total_val').value;
+            const staff = document.getElementById('form_staff').value;
             
-            window.location.href = `mailto:${to}?subject=${sub}&body=${msg}${summary}`;
+            const body = encodeURIComponent(
+                `Salam Sejahtera,\n\n` +
+                `Bersama-sama ini dilampirkan Laporan Kes Penguatkuasaan v55 untuk tindakan tuan.\n\n` +
+                `RINGKASAN KES:\n` +
+                `No. Bil: ${bil}\n` +
+                `Pegawai: ${staff}\n` +
+                `Jumlah Nilai: ${total}\n\n` +
+                `*Sila rujuk fail Excel yang telah dimuat turun untuk butiran penuh.\n\n` +
+                `Terima Kasih.`
+            );
+            
+            window.location.href = `mailto:${to}?subject=${sub}&body=${body}`;
             closeEmailModal();
         }
 
