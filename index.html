@@ -238,13 +238,14 @@
 
                 <!-- NILAI & LOGISTIK -->
                 <div class="section-card border-l-[6px] border-indigo-600">
-                    <h3 class="text-indigo-600 font-black text-xs mb-4 flex items-center gap-2 border-b pb-2 uppercase tracking-widest"><i data-lucide="dollar-sign" class="w-4 h-4"></i> Logistik & Anggaran Nilai</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+                    <h3 class="text-indigo-600 font-black text-xs mb-4 flex items-center gap-2 border-b pb-2 uppercase tracking-widest"><i data-lucide="truck" class="w-4 h-4"></i> Logistik & Anggaran Nilai</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                         <div><label class="input-label">Bil Kenderaan</label><input type="number" name="JUMLAH_RAMPASAN_KENDERAAN" class="form-input-modern" value="0"></div>
-                        <div><label class="input-label">Nilai Ekor/KG (RM)</label><input type="number" name="VAL_EKOR_KG" class="calc form-input-modern" value="0"></div>
-                        <div><label class="input-label">Nilai Kenderaan (RM)</label><input type="number" name="VAL_KENDERAAN" class="calc form-input-modern" value="0"></div>
-                        <div><label class="input-label">Nilai Pengangkut (RM)</label><input type="number" name="VAL_PENGANGKUT" class="calc form-input-modern" value="0"></div>
-                        <div><label class="input-label">Nilai Lain-Lain (RM)</label><input type="number" name="VAL_LAIN" class="calc form-input-modern" value="0"></div>
+                        <div><label class="input-label">Bil Pengangkut/Kontena</label><input type="number" name="RAMPASAN_PENGANGKUT" class="form-input-modern" value="0"></div>
+                        <div><label class="input-label">Anggaran Nilai (Ekor/KG)</label><input type="number" name="VAL_EKOR_KG" class="calc form-input-modern" value="0"></div>
+                        <div><label class="input-label">Anggaran Nilai (Kenderaan)</label><input type="number" name="VAL_KENDERAAN" class="calc form-input-modern" value="0"></div>
+                        <div><label class="input-label">Anggaran Nilai (Pengangkut/Kontena)</label><input type="number" name="VAL_PENGANGKUT" class="calc form-input-modern" value="0"></div>
+                        <div><label class="input-label">Anggaran Nilai (Lain-Lain)</label><input type="number" name="VAL_LAIN" class="calc form-input-modern" value="0"></div>
                     </div>
                     <div class="bg-slate-900 rounded-2xl p-6 text-white flex flex-col md:flex-row justify-between items-center shadow-xl">
                         <div>
@@ -359,7 +360,6 @@
                 app.classList.remove('hidden');
                 setTimeout(() => app.classList.add('opacity-100'), 50);
                 
-                // Mesti guna await untuk pastikan profil load sebelum sistem lain jalan
                 await loadProfile(user);
                 syncData(user.uid);
             } else {
@@ -377,23 +377,18 @@
             if(confirm('Log keluar sistem?')) firebase.auth().signOut().then(() => location.reload());
         }
 
-        // PROFILE FUNCTIONS - FIXED FOR CLOUD PERSISTENCE
+        // FIX: PROFILE FUNCTIONS
         async function loadProfile(user) {
             let profileData = {};
-            
             try {
-                // Cuba tarik dari Firestore dulu
                 const doc = await db.collection("users").doc(user.uid).get();
                 if (doc.exists) {
                     profileData = doc.data();
-                    // Update LocalStorage juga sebagai backup offline
                     localStorage.setItem('epenguatkuasa_user_v60', JSON.stringify(profileData));
                 } else {
-                    // Jika tiada di Firestore, baru cari di LocalStorage
                     profileData = JSON.parse(localStorage.getItem('epenguatkuasa_user_v60') || '{}');
                 }
             } catch (err) {
-                console.error("Error loading profile:", err);
                 profileData = JSON.parse(localStorage.getItem('epenguatkuasa_user_v60') || '{}');
             }
 
@@ -418,6 +413,7 @@
             if(!user) return alert("Sila log masuk semula.");
 
             const btn = document.getElementById('btnSaveProfile');
+            const originalText = btn.innerHTML;
             btn.innerHTML = "MENYIMPAN...";
             btn.disabled = true;
 
@@ -430,30 +426,28 @@
             };
 
             try {
-                // Simpan ke Firestore (Cloud)
                 await db.collection("users").doc(user.uid).set(data, { merge: true });
-                
-                // Simpan ke LocalStorage
                 localStorage.setItem('epenguatkuasa_user_v60', JSON.stringify(data));
                 
-                // Update UI terus
+                // Update UI Components
                 updateFormStaff(data.name, data.gred, data.cawangan);
                 document.getElementById('navName').innerText = data.name;
                 document.getElementById('navAvatar').src = data.avatar;
                 
-                alert("Profil Cloud berjaya dikemaskini!");
+                alert("Profil berjaya dikemaskini!");
                 toggleProfile();
             } catch (err) {
                 alert("Gagal simpan profil: " + err.message);
             } finally {
-                btn.innerHTML = `<i data-lucide="save" class="w-5 h-5"></i> KEMASKINI PROFIL`;
+                btn.innerHTML = originalText;
                 btn.disabled = false;
                 lucide.createIcons();
             }
         }
 
         function updateFormStaff(n, g, c) {
-            document.getElementById('form_staff').value = `${n} ${g ? '('+g+')' : ''} ${c ? '/ ' + c : ''}`.trim();
+            const display = `${n} ${g ? '('+g+')' : ''} ${c ? '/ ' + c : ''}`.trim();
+            document.getElementById('form_staff').value = display;
         }
 
         function handleAvatarUpload(input) {
@@ -540,7 +534,7 @@
         }
 
         async function deleteRecord(id) {
-            if(confirm('Hapus rekod permanen?')) await db.collection("kes_v60").doc(id).delete();
+            if(confirm('Hapus rekod secara kekal?')) await db.collection("kes_v60").doc(id).delete();
         }
 
         // CALCULATION
@@ -554,7 +548,11 @@
         // UTILS
         function toggleProfile() {
             const s = document.getElementById('profileSidebar');
-            s.style.right = (s.style.right === '0px' || s.style.right === '0%') ? '-100%' : '0px';
+            if (s.style.right === '0px' || s.style.right === '0%') {
+                s.style.right = '-100%';
+            } else {
+                s.style.right = '0px';
+            }
         }
 
         async function clearForm() {
