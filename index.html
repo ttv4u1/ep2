@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Penguatkuasa v17.0.1 | Professional Edition</title>
+    <title>e-Penguatkuasa v18 | Edisi Profesional</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,63 +21,59 @@
             height: 100%; margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #f8fafc; color: #0f172a; 
-            font-size: 16px; /* Saiz tulisan dibesarkan */
+            font-size: 18px; /* Tulisan lebih besar */
         }
         .master-bg {
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 35%; opacity: 0.04; z-index: -1; pointer-events: none;
+            width: 30%; opacity: 0.04; z-index: -1; pointer-events: none;
         }
         .section-card {
-            background: white; border-radius: 12px; padding: 1.25rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; margin-bottom: 0.75rem;
+            background: white; border-radius: 12px; padding: 1rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; margin-bottom: 0.5rem;
         }
         .input-label {
-            font-size: 12px; font-weight: 800; text-transform: uppercase; color: #334155; 
-            margin-bottom: 2px; display: block; letter-spacing: 0.05em;
+            font-size: 13px; font-weight: 800; text-transform: uppercase; color: #475569; 
+            margin-bottom: 1px; display: block; letter-spacing: 0.02em;
         }
         .form-input-modern {
-            width: 100%; padding: 8px 12px; border-radius: 6px; border: 2px solid #cbd5e1;
-            background: #ffffff; font-weight: 700; font-size: 16px; transition: all 0.2s; color: #1e293b;
+            width: 100%; padding: 6px 10px; border-radius: 6px; border: 2px solid #cbd5e1;
+            background: #ffffff; font-weight: 700; font-size: 18px; transition: all 0.2s; color: #1e293b;
         }
-        .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
-        .animal-item { background: #f1f5f9; padding: 8px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .form-input-modern:focus { border-color: #4f46e5; outline: none; }
+        .animal-item { background: #f8fafc; padding: 6px; border-radius: 6px; border: 1px solid #e2e8f0; }
 
         .avatar-preset {
-            width: 55px; height: 55px; border-radius: 12px; cursor: pointer; border: 3px solid transparent; transition: all 0.2s;
+            width: 60px; height: 60px; border-radius: 10px; cursor: pointer; border: 3px solid transparent; transition: all 0.2s;
+            background: #f1f5f9; padding: 5px;
         }
-        .avatar-preset:hover { transform: translateY(-3px); }
         .avatar-preset.active { border-color: #4f46e5; background: #eef2ff; }
 
-        /* PRINT OPTIMIZATION - FORCE ONE PAGE A4 */
+        /* PRINT OPTIMIZATION - COMPACT A4 SINGLE PAGE */
         @media print { 
-            @page { size: A4 portrait; margin: 0.5cm; }
-            body { background: white !important; font-size: 10pt !important; -webkit-print-color-adjust: exact; }
+            @page { size: A4 portrait; margin: 0.3cm; }
+            body { background: white !important; font-size: 10pt !important; }
             .no-print { display: none !important; } 
             .section-card { 
                 border: 1px solid #000 !important; 
-                padding: 8px !important; 
-                margin-bottom: 6px !important; 
+                padding: 5px !important; 
+                margin-bottom: 4px !important; 
                 box-shadow: none !important;
                 border-radius: 0 !important;
             }
             .form-input-modern { 
                 border: none !important; 
-                border-bottom: 1px solid #ccc !important; 
+                border-bottom: 1px solid #000 !important; 
                 padding: 0 !important; 
-                font-size: 10pt !important; 
+                font-size: 11pt !important; 
+                font-weight: bold !important;
                 min-height: auto !important;
             }
-            .animal-item { 
-                background: none !important; 
-                border: 1px solid #ddd !important; 
-                padding: 4px !important;
-            }
-            .input-label { font-size: 8pt !important; color: #444 !important; }
-            .master-bg { display: block !important; opacity: 0.05 !important; width: 250px !important; }
-            h3 { font-size: 10pt !important; margin-bottom: 4px !important; }
-            #total_val { color: black !important; font-size: 18pt !important; }
-            .bg-slate-900 { background: #f1f5f9 !important; border: 1px solid #000 !important; color: black !important; }
-            .text-indigo-400, .text-indigo-600 { color: black !important; }
+            .input-label { font-size: 8pt !important; font-weight: 900 !important; color: #000 !important; }
+            .animal-item { background: none !important; border: 0.5px solid #ccc !important; padding: 2px !important; }
+            #total_val { color: black !important; font-size: 20pt !important; }
+            .bg-slate-900 { background: #eee !important; color: black !important; border: 1px solid #000 !important; }
+            .master-bg { width: 150px !important; top: 10% !important; right: 10% !important; left: auto !important; transform: none !important; }
+            h3 { font-size: 9pt !important; margin: 0 !important; padding: 0 !important; }
         }
     </style>
 </head>
@@ -86,53 +82,48 @@
     <img src="https://www.akm.gov.my/images/madani/JATA%20NEGARA%20AI-01.png" class="master-bg">
 
     <!-- LANDING SCREEN -->
-    <section id="landing-screen" class="fixed inset-0 z-[2000] flex items-center justify-center bg-[#020617]">
-        <div class="p-10 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[90%] max-w-md shadow-2xl">
-            <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-32 mx-auto mb-8 drop-shadow-2xl">
-            <h1 class="text-4xl font-black text-white mb-2 tracking-tighter">e-Penguatkuasa</h1>
-            <p class="text-indigo-400 text-sm font-bold tracking-[0.3em] mb-12 uppercase">Versi 17.0.1 Build 2026</p>
-            <button onclick="loginGoogle()" class="w-full flex items-center justify-center gap-4 bg-indigo-600 text-white font-black py-4 rounded-2xl hover:bg-indigo-500 transition active:scale-95 shadow-xl text-lg">
-                <img src="https://www.google.com/favicon.ico" class="w-6 h-6 bg-white rounded-full p-1"> LOG MASUK SISTEM
+    <section id="landing-screen" class="fixed inset-0 z-[2000] flex items-center justify-center bg-slate-950">
+        <div class="p-10 text-center bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 w-[90%] max-w-md">
+            <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-28 mx-auto mb-6">
+            <h1 class="text-3xl font-black text-white mb-1">e-Penguatkuasa</h1>
+            <p class="text-indigo-400 text-xs font-bold tracking-[0.3em] mb-10 uppercase">v18 Build 2026</p>
+            <button onclick="loginGoogle()" class="w-full flex items-center justify-center gap-4 bg-white text-slate-950 font-black py-4 rounded-2xl hover:bg-indigo-50 transition shadow-2xl text-lg">
+                <img src="https://www.google.com/favicon.ico" class="w-6 h-6"> LOG MASUK GOOGLE
             </button>
         </div>
     </section>
 
     <!-- MAIN APP -->
-    <div id="app-content" class="hidden opacity-0 transition-opacity duration-700 min-h-screen pb-10">
+    <div id="app-content" class="hidden opacity-0 transition-opacity duration-700 min-h-screen">
         
-        <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b-2 border-slate-200 no-print shadow-sm">
+        <header class="sticky top-0 z-40 bg-white border-b-2 border-slate-200 no-print shadow-sm">
             <div class="w-full px-6 py-3 flex justify-between items-center">
                 <div class="flex items-center gap-4">
-                    <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-12">
+                    <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-10">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-800 uppercase leading-none tracking-tight">Laporan Kes Penguatkuasaan <span class="text-indigo-600">v17</span></h2>
-                        <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest">Sistem Laporan Bersepadu Jabatan Perkhidmatan Veterinar</span>
+                        <h2 class="text-xl font-black text-slate-800 uppercase leading-none tracking-tight">Laporan Penguatkuasaan v18</h2>
+                        <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-widest">Enforcement Integrated System</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="hidden md:flex gap-2 mr-4">
-                        <button onclick="exportData('xlsx')" class="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition font-bold text-sm shadow-sm"><i data-lucide="file-spreadsheet" class="w-4 h-4"></i> EXCEL</button>
-                    </div>
-                    <button onclick="printReport()" class="flex items-center gap-2 px-6 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-black uppercase shadow-lg">
-                        <i data-lucide="printer" class="w-5 h-5"></i> CETAK (A4)
+                    <button onclick="printReport()" class="flex items-center gap-2 px-6 py-2 bg-slate-900 text-white rounded-xl hover:bg-black transition text-sm font-black uppercase shadow-lg">
+                        <i data-lucide="printer" class="w-5 h-5"></i> CETAK A4
                     </button>
-                    <div class="h-8 w-[2px] bg-slate-200 mx-2"></div>
-                    <button onclick="toggleProfile()" class="flex items-center gap-3 bg-white p-1 pr-4 rounded-full border-2 border-slate-200 hover:border-indigo-400 transition">
-                        <img id="navAvatar" src="" class="w-10 h-10 rounded-full object-cover shadow-sm bg-slate-100">
-                        <span class="text-xs font-black uppercase tracking-tight" id="navName">Pegawai</span>
+                    <button onclick="toggleProfile()" class="flex items-center gap-3 bg-slate-100 p-1.5 pr-4 rounded-full hover:bg-indigo-50 border border-slate-200 transition">
+                        <img id="navAvatar" src="" class="w-9 h-9 rounded-full object-cover bg-white shadow-inner">
+                        <span class="text-xs font-black uppercase" id="navName">Pegawai</span>
                     </button>
                     <button onclick="logout()" class="p-2 text-red-500 hover:bg-red-50 rounded-xl transition"><i data-lucide="log-out" class="w-5 h-5"></i></button>
                 </div>
             </div>
         </header>
 
-        <main class="max-w-[1400px] mx-auto px-4 py-6">
+        <main class="w-full px-4 py-4 max-w-[1600px] mx-auto">
             <form id="mainForm">
                 
-                <!-- MAKLUMAT ASAS -->
                 <div class="section-card">
-                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                        <div><label class="input-label">No. Bil</label><input type="text" name="BIL" class="form-input-modern" placeholder="001/2026"></div>
+                    <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+                        <div><label class="input-label">No. Bil</label><input type="text" name="BIL" class="form-input-modern"></div>
                         <div><label class="input-label">Tahun</label><input type="number" name="TAHUN" class="form-input-modern" value="2026"></div>
                         <div><label class="input-label">Bulan</label>
                             <select name="BULAN" class="form-input-modern">
@@ -141,30 +132,27 @@
                                 <option>SEPTEMBER</option><option>OKTOBER</option><option>NOVEMBER</option><option>DISEMBER</option>
                             </select>
                         </div>
-                        <div><label class="input-label">Kategori Kes</label><input type="text" name="KATEGORI_KES" class="form-input-modern"></div>
-                        <div class="col-span-2"><label class="input-label">Pegawai Pelapor</label><input type="text" name="PENGUATKUASA" id="form_staff" class="form-input-modern bg-slate-50" readonly></div>
+                        <div class="col-span-1"><label class="input-label">Kategori</label><input type="text" name="KATEGORI_KES" class="form-input-modern"></div>
+                        <div class="col-span-2"><label class="input-label">Nama Pegawai</label><input type="text" name="PENGUATKUASA" id="form_staff" class="form-input-modern bg-indigo-50/30" readonly></div>
                     </div>
                 </div>
 
-                <!-- MAKLUMAT KEJADIAN -->
                 <div class="section-card">
-                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-4">
-                        <div class="lg:col-span-3"><label class="input-label">No. Repot Polis / Dokumen</label><input type="text" name="NO_REPOT_POLIS" class="form-input-modern"></div>
-                        <div class="lg:col-span-2"><label class="input-label">Tarikh</label><input type="date" name="TARIKH_KEJADIAN" class="form-input-modern"></div>
-                        <div class="lg:col-span-2"><label class="input-label">Masa</label><input type="time" name="MASA_KEJADIAN" class="form-input-modern"></div>
-                        <div class="lg:col-span-5"><label class="input-label">Lokasi Kejadian (Alamat Penuh)</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern"></div>
-                        
-                        <div class="lg:col-span-4"><label class="input-label">Jenis Kesalahan</label><input type="text" name="KESALAHAN" class="form-input-modern"></div>
-                        <div class="lg:col-span-5"><label class="input-label">Seksyen / Akta Undang-Undang</label><input type="text" name="UNDANG_UNDANG" class="form-input-modern" placeholder="Akta Binatang 1953"></div>
-                        <div class="lg:col-span-3"><label class="input-label">No. Kertas Siasatan (IP)</label><input type="text" name="NO_KES_IP" class="form-input-modern"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                        <div class="md:col-span-3"><label class="input-label">No. Repot</label><input type="text" name="NO_REPOT_POLIS" class="form-input-modern"></div>
+                        <div class="md:col-span-2"><label class="input-label">Tarikh</label><input type="date" name="TARIKH_KEJADIAN" class="form-input-modern"></div>
+                        <div class="md:col-span-2"><label class="input-label">Masa</label><input type="time" name="MASA_KEJADIAN" class="form-input-modern"></div>
+                        <div class="md:col-span-5"><label class="input-label">Lokasi</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern"></div>
+                        <div class="md:col-span-4"><label class="input-label">Kesalahan</label><input type="text" name="KESALAHAN" class="form-input-modern"></div>
+                        <div class="md:col-span-5"><label class="input-label">Undang-Undang</label><input type="text" name="UNDANG_UNDANG" class="form-input-modern"></div>
+                        <div class="md:col-span-3"><label class="input-label">No. IP</label><input type="text" name="NO_KES_IP" class="form-input-modern"></div>
                     </div>
                 </div>
 
-                <!-- RAMPASAN -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
                     <div class="section-card !mb-0">
-                        <h3 class="text-indigo-700 font-black text-xs mb-3 flex items-center gap-2 border-b pb-2"><i data-lucide="dog" class="w-4 h-4"></i> HAIWAN HIDUP (EKOR)</h3>
-                        <div class="grid grid-cols-3 gap-3">
+                        <h3 class="text-indigo-700 font-black text-xs mb-2 border-b pb-1">HAIWAN HIDUP (EKOR)</h3>
+                        <div class="grid grid-cols-3 gap-2">
                             <div class="animal-item"><label class="input-label">Lembu</label><input type="number" name="LEMBU" class="form-input-modern" value="0"></div>
                             <div class="animal-item"><label class="input-label">Kerbau</label><input type="number" name="KERBAU" class="form-input-modern" value="0"></div>
                             <div class="animal-item"><label class="input-label">Kambing</label><input type="number" name="KAMBING" class="form-input-modern" value="0"></div>
@@ -174,42 +162,34 @@
                         </div>
                     </div>
                     <div class="section-card !mb-0">
-                        <h3 class="text-indigo-700 font-black text-xs mb-3 flex items-center gap-2 border-b pb-2"><i data-lucide="package" class="w-4 h-4"></i> KARKAS / PRODUK (KG)</h3>
-                        <div class="grid grid-cols-3 gap-3">
-                            <div class="animal-item"><label class="input-label">K. Lembu</label><input type="number" name="KARKAS_LEMBU" class="form-input-modern" value="0"></div>
-                            <div class="animal-item"><label class="input-label">K. Kerbau</label><input type="number" name="KARKAS_KERBAU" class="form-input-modern" value="0"></div>
-                            <div class="animal-item"><label class="input-label">K. Kambing</label><input type="number" name="KARKAS_KAMBING" class="form-input-modern" value="0"></div>
-                            <div class="animal-item"><label class="input-label">K. Babi</label><input type="number" name="KARKAS_BABI" class="form-input-modern" value="0"></div>
+                        <h3 class="text-indigo-700 font-black text-xs mb-2 border-b pb-1">DAGING / PRODUK (KG)</h3>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="animal-item"><label class="input-label">D. Lembu</label><input type="number" name="KARKAS_LEMBU" class="form-input-modern" value="0"></div>
+                            <div class="animal-item"><label class="input-label">D. Kerbau</label><input type="number" name="KARKAS_KERBAU" class="form-input-modern" value="0"></div>
+                            <div class="animal-item"><label class="input-label">D. Kambing</label><input type="number" name="KARKAS_KAMBING" class="form-input-modern" value="0"></div>
+                            <div class="animal-item"><label class="input-label">D. Babi</label><input type="number" name="KARKAS_BABI" class="form-input-modern" value="0"></div>
                             <div class="animal-item"><label class="input-label">Babi (Frozen)</label><input type="number" name="KARKAS_BABI_SEJUK_BEKU" class="form-input-modern" value="0"></div>
-                            <div class="animal-item"><label class="input-label">K. Ayam</label><input type="number" name="KARKAS_AYAM" class="form-input-modern" value="0"></div>
+                            <div class="animal-item"><label class="input-label">D. Ayam</label><input type="number" name="KARKAS_AYAM" class="form-input-modern" value="0"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- LOGISTIK & NILAIAN -->
-                <div class="section-card border-l-8 border-indigo-600">
-                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-4">
-                        <div class="lg:col-span-2">
-                            <label class="input-label">Butiran Rampasan Lain</label>
-                            <input type="text" name="JENIS_RAMPASAN" class="form-input-modern" placeholder="Cth: 1 Unit Lori Inokom (WWW 1234)">
-                        </div>
+                <div class="section-card">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                        <div class="md:col-span-2"><label class="input-label">Rampasan Lain</label><input type="text" name="JENIS_RAMPASAN" class="form-input-modern" placeholder="Cth: 1 Lori"></div>
                         <div><label class="input-label">Bil. Kenderaan</label><input type="number" name="JUMLAH_RAMPASAN_KENDERAAN" class="form-input-modern" value="0"></div>
-                        <div><label class="input-label">Model Pengangkut</label><input type="text" name="RAMPASAN_PENGANGKUT" class="form-input-modern" placeholder="Lori/Kontena"></div>
+                        <div><label class="input-label">Model Pengangkut</label><input type="text" name="RAMPASAN_PENGANGKUT" class="form-input-modern"></div>
                     </div>
-
-                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100"><label class="input-label text-indigo-700">Nilai Haiwan/Daging</label><input type="number" name="ANGGARAN_NILAI_EKOR_KG" class="calc form-input-modern" value="0" step="0.01"></div>
-                        <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100"><label class="input-label text-indigo-700">Nilai Kenderaan</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc form-input-modern" value="0" step="0.01"></div>
-                        <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100"><label class="input-label text-indigo-700">Nilai Pengangkut</label><input type="number" name="ANGGARAN_NILAI_PENGANGKUT_KONTENA" class="calc form-input-modern" value="0" step="0.01"></div>
-                        <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100"><label class="input-label text-indigo-700">Nilai Lain-lain</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc form-input-modern" value="0" step="0.01"></div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+                        <div class="bg-indigo-50/50 p-2 rounded-lg border border-indigo-100"><label class="input-label">Nilai Haiwan (RM)</label><input type="number" name="ANGGARAN_NILAI_EKOR_KG" class="calc form-input-modern border-indigo-200" value="0"></div>
+                        <div class="bg-indigo-50/50 p-2 rounded-lg border border-indigo-100"><label class="input-label">Nilai Kenderaan (RM)</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc form-input-modern border-indigo-200" value="0"></div>
+                        <div class="bg-indigo-50/50 p-2 rounded-lg border border-indigo-100"><label class="input-label">Nilai Logistik (RM)</label><input type="number" name="ANGGARAN_NILAI_PENGANGKUT_KONTENA" class="calc form-input-modern border-indigo-200" value="0"></div>
+                        <div class="bg-indigo-50/50 p-2 rounded-lg border border-indigo-100"><label class="input-label">Lain-lain (RM)</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc form-input-modern border-indigo-200" value="0"></div>
                     </div>
                     
-                    <div class="mt-6 bg-slate-900 rounded-2xl p-6 text-white flex justify-between items-center shadow-xl">
-                        <div>
-                            <span class="text-xs font-black uppercase tracking-widest text-indigo-300 block mb-1">JUMLAH KESELURUHAN (ESTIMATED VALUE)</span>
-                            <p class="text-[10px] text-slate-400 uppercase font-bold no-print">Auto-calculated based on all value inputs</p>
-                        </div>
-                        <input type="text" name="JUMLAH_NILAI_KESELURUHAN" id="total_val" readonly class="bg-transparent text-right font-black text-5xl outline-none text-white w-1/2" value="RM 0.00">
+                    <div class="mt-4 bg-slate-900 rounded-xl p-4 text-white flex justify-between items-center shadow-lg">
+                        <span class="text-sm font-black uppercase tracking-wider text-indigo-300">JUMLAH NILAI KESELURUHAN (RM)</span>
+                        <input type="text" id="total_val" name="JUMLAH_NILAI_KESELURUHAN" readonly class="bg-transparent text-right font-black text-3xl outline-none text-white w-1/2" value="RM 0.00">
                     </div>
                 </div>
             </form>
@@ -219,40 +199,34 @@
     <!-- PROFILE SIDEBAR -->
     <aside id="profileSidebar" class="fixed top-0 right-[-100%] w-full max-w-[450px] h-full bg-white z-[1001] shadow-2xl transition-all duration-500 overflow-y-auto no-print">
         <div class="p-8">
-            <div class="flex justify-between items-center mb-10">
-                <h2 class="font-black text-2xl text-slate-900 uppercase tracking-tight">Tetapan Profil Pegawai</h2>
-                <button onclick="toggleProfile()" class="p-2 bg-slate-100 rounded-xl hover:bg-slate-200 transition"><i data-lucide="x" class="w-6 h-6 text-slate-600"></i></button>
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="font-black text-2xl text-slate-900 uppercase">Profil Penguatkuasa</h2>
+                <button onclick="toggleProfile()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x" class="w-6 h-6"></i></button>
             </div>
             
-            <div class="text-center mb-8">
-                <div class="relative inline-block group">
-                    <img id="sideAvatar" src="" class="w-36 h-36 mx-auto rounded-[30px] border-4 border-indigo-50 shadow-2xl object-cover bg-slate-100">
-                    <label for="uploadImg" class="absolute -bottom-2 -right-2 p-3 bg-indigo-600 rounded-2xl text-white cursor-pointer hover:bg-indigo-700 shadow-lg transition-transform hover:scale-110">
-                        <i data-lucide="camera" class="w-6 h-6"></i>
-                        <input type="file" id="uploadImg" class="hidden" accept="image/*" onchange="previewImage(this)">
-                    </label>
-                </div>
+            <div class="text-center mb-6">
+                <img id="sideAvatar" src="" class="w-32 h-32 mx-auto rounded-2xl border-4 border-indigo-50 shadow-xl object-cover bg-slate-100 mb-4">
+                <label for="uploadImg" class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-bold cursor-pointer hover:bg-indigo-700">TUKAR GAMBAR</label>
+                <input type="file" id="uploadImg" class="hidden" accept="image/*" onchange="previewImage(this)">
             </div>
 
-            <!-- ENFORCEMENT AVATAR SELECTION -->
-            <div class="mb-8 p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                <label class="input-label mb-4 text-center">Pilih Ikon Penguatkuasa</label>
-                <div class="flex flex-wrap justify-center gap-4" id="avatarPicker"></div>
+            <div class="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                <label class="input-label mb-3 text-center">Ikon Penguatkuasa Pilihan</label>
+                <div class="flex flex-wrap justify-center gap-3" id="avatarPicker"></div>
             </div>
 
-            <div class="space-y-6">
-                <div><label class="input-label">Nama Penuh Pegawai</label><input type="text" id="userName" class="form-input-modern uppercase py-4"></div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div><label class="input-label">Gred Jawatan</label><input type="text" id="userGred" class="form-input-modern uppercase py-4" placeholder="G29 / G32"></div>
-                    <div><label class="input-label">Cawangan / Negeri</label><input type="text" id="userCawangan" class="form-input-modern uppercase py-4"></div>
+            <div class="space-y-4">
+                <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern uppercase"></div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div><label class="input-label">Gred</label><input type="text" id="userGred" class="form-input-modern uppercase" placeholder="G29"></div>
+                    <div><label class="input-label">Unit/Cawangan</label><input type="text" id="userCawangan" class="form-input-modern uppercase"></div>
                 </div>
-                <button onclick="saveProfile()" class="w-full mt-8 bg-slate-900 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-black transition uppercase text-sm tracking-widest">Simpan Data Pegawai</button>
+                <button onclick="saveProfile()" class="w-full mt-6 bg-slate-900 text-white font-black py-4 rounded-xl shadow-xl hover:bg-black transition uppercase text-sm">Kemaskini Profil</button>
             </div>
         </div>
     </aside>
 
     <script>
-        // API Key is for demo purpose as requested in your structure
         const firebaseConfig = {
             apiKey: "AIzaSyD5rx8TQdkFLzmunEmVtwt56Y8Mlt9Zsvo",
             authDomain: "e-penguatkuasa-jpv.firebaseapp.com",
@@ -267,15 +241,13 @@
         lucide.createIcons();
 
         let currentAvatarUrl = "";
-        
-        // Custom Enforcement Themed Avatars
         const presets = [
-            "https://api.dicebear.com/7.x/avataaars/svg?seed=Officer1&eyebrows=defaultNatural&mouth=smile&top=shortHair&clothing=shirtCrewNeck&clothingColor=262e33",
-            "https://api.dicebear.com/7.x/avataaars/svg?seed=Officer2&top=shavedSides&clothing=graphicShirt&clothingColor=3c4444",
-            "https://api.dicebear.com/7.x/avataaars/svg?seed=Officer3&top=longHair&clothing=shirtVNeck&clothingColor=262e33",
-            "https://api.dicebear.com/7.x/avataaars/svg?seed=Officer4&top=shortCurly&clothing=hoodie&clothingColor=545454",
-            "https://api.dicebear.com/7.x/bottts/svg?seed=Security&colors=blue",
-            "https://cdn-icons-png.flaticon.com/512/1022/1022330.png" // Police/Officer Icon
+            "https://cdn-icons-png.flaticon.com/512/1022/1022330.png", // Officer Icon
+            "https://cdn-icons-png.flaticon.com/512/2919/2919630.png", // Police/Enforcement
+            "https://cdn-icons-png.flaticon.com/512/2304/2304226.png", // Male Officer
+            "https://cdn-icons-png.flaticon.com/512/2304/2304241.png", // Female Officer
+            "https://cdn-icons-png.flaticon.com/512/2042/2042918.png", // Badge Icon
+            "https://cdn-icons-png.flaticon.com/512/1946/1946429.png"  // User Solid
         ];
 
         function initAvatarPicker() {
@@ -284,7 +256,7 @@
             presets.forEach(url => {
                 const img = document.createElement('img');
                 img.src = url;
-                img.className = 'avatar-preset bg-white shadow-sm border-2';
+                img.className = 'avatar-preset';
                 img.onclick = () => selectPreset(url, img);
                 container.appendChild(img);
             });
@@ -311,7 +283,7 @@
         });
 
         function loginGoogle() { firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()); }
-        function logout() { if(confirm('Log keluar dari sistem?')) firebase.auth().signOut().then(() => location.reload()); }
+        function logout() { if(confirm('Log keluar?')) firebase.auth().signOut().then(() => location.reload()); }
 
         async function loadProfile(user) {
             const doc = await db.collection("users").doc(user.uid).get();
@@ -319,7 +291,7 @@
             const name = data.name || user.displayName || 'PEGAWAI';
             const gred = data.gred || '';
             const cawangan = data.cawangan || '';
-            currentAvatarUrl = data.avatar || `https://ui-avatars.com/api/?name=${name}&background=4f46e5&color=fff&bold=true`;
+            currentAvatarUrl = data.avatar || presets[0];
 
             document.getElementById('navName').innerText = name;
             document.getElementById('navAvatar').src = currentAvatarUrl;
@@ -343,15 +315,12 @@
 
         async function saveProfile() {
             const user = firebase.auth().currentUser;
-            const profileData = {
+            await db.collection("users").doc(user.uid).set({
                 name: document.getElementById('userName').value,
                 gred: document.getElementById('userGred').value,
                 cawangan: document.getElementById('userCawangan').value,
-                avatar: currentAvatarUrl,
-                lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
-            };
-            await db.collection("users").doc(user.uid).set(profileData, { merge: true });
-            alert("Profil dikemaskini!");
+                avatar: currentAvatarUrl
+            }, { merge: true });
             location.reload();
         }
 
@@ -368,21 +337,8 @@
         document.querySelectorAll('.calc').forEach(i => i.addEventListener('input', calcTotal));
 
         function printReport() { 
-            calcTotal(); 
+            calcTotal();
             window.print(); 
-        }
-
-        function exportData(type) {
-            const form = document.getElementById('mainForm');
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => data[key] = value);
-            data['JUMLAH_NILAI_KESELURUHAN'] = document.getElementById('total_val').value;
-
-            const worksheet = XLSX.utils.json_to_sheet([data]);
-            const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "LaporanKesV17");
-            XLSX.writeFile(workbook, `Laporan_V17_${data.BIL || 'Kecemasan'}.xlsx`);
         }
     </script>
 </body>
