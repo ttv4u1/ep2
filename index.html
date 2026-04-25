@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Penguatkuasa v78 - Pro Edition</title>
+    <title>e-Penguatkuasa v79 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +34,7 @@
             75% { color: #0066ff; }
             100% { color: #ff00ff; }
         }
-        .version-v78 { font-weight: 900; animation: rainbowText 4s infinite linear; }
+        .version-v79 { font-weight: 900; animation: rainbowText 4s infinite linear; }
 
         .section-card {
             background: white; border-radius: 20px; padding: 2rem;
@@ -51,10 +51,10 @@
         .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
         .animal-grid-item { background: #f8fafc; padding: 10px; border-radius: 15px; border: 1px solid #e2e8f0; }
 
-        /* PRINT OPTIMIZATION v78 */
+        /* PRINT OPTIMIZATION v79 */
         @media print {
-            @page { size: A4 portrait; margin: 0.4cm; }
-            body { background: white !important; font-size: 8pt !important; color: black !important; }
+            @page { size: A4 portrait; margin: 0.3cm; }
+            body { background: white !important; font-size: 7.5pt !important; color: black !important; }
             .no-print { display: none !important; }
             
             .section-card, .animal-grid-item, .bg-indigo-50, .bg-slate-900 { 
@@ -62,40 +62,42 @@
                 box-shadow: none !important; 
                 border: none !important; 
                 padding: 0 !important; 
-                margin-bottom: 8px !important; 
+                margin-bottom: 5px !important; 
             }
 
             .print-section-title {
                 display: block !important;
-                font-size: 8.5pt;
+                font-size: 8pt;
                 font-weight: 900;
                 border-bottom: 1px solid black;
-                margin-top: 8px;
-                margin-bottom: 5px;
+                margin-top: 6px;
+                margin-bottom: 3px;
+                text-transform: uppercase;
             }
             
             .form-input-modern { 
                 border: none !important; 
                 border-bottom: 0.5px solid #000 !important; 
                 background: transparent !important;
-                padding: 1px 0 !important;
-                font-size: 8.5pt !important;
+                padding: 0px !important;
+                font-size: 8pt !important;
                 font-weight: 700 !important;
                 border-radius: 0 !important;
-                min-height: 1.2em;
+                height: auto !important;
             }
 
             .input-label { 
-                font-size: 7pt !important; 
-                margin-bottom: 0 !important; 
+                font-size: 6.5pt !important; 
+                margin-bottom: 0px !important; 
                 font-weight: 800 !important;
                 color: black !important;
+                white-space: nowrap;
             }
 
             .grid { 
                 display: grid !important; 
                 grid-template-columns: repeat(4, 1fr) !important; 
-                gap: 8px 12px !important; 
+                gap: 5px 15px !important; 
             }
             .lg\:col-span-2, .lg\:col-span-3, .lg\:col-span-4, .lg\:col-span-6, .lg\:col-span-12 {
                 grid-column: span 1 / span 1 !important;
@@ -105,30 +107,42 @@
             .sig-area { 
                 display: flex !important; 
                 justify-content: space-between; 
-                margin-top: 25px; 
-                padding-top: 10px;
+                margin-top: 20px; 
             }
             .sig-box { width: 45%; font-size: 7.5pt; }
-            .sig-line { border-bottom: 1px solid black; height: 40px; margin-bottom: 5px; width: 80%; }
+            .sig-line { border-bottom: 1px solid black; height: 35px; margin-bottom: 4px; width: 85%; }
 
+            /* Header Print - Officer Info Left, Time Right */
             #print-header { 
                 display: block !important; 
-                border-bottom: 2px solid black; 
-                margin-bottom: 8px; 
-                padding-bottom: 5px;
+                margin-bottom: 5px; 
             }
-            .header-top { display: flex; justify-content: space-between; align-items: center; }
-            .header-top img { height: 35px; }
-            .header-top h1 { font-size: 11pt; font-weight: 900; }
+            .header-top { 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                border-bottom: 1.5px solid black;
+                padding-bottom: 4px;
+            }
+            .header-top img { height: 30px; }
+            .header-top h1 { font-size: 10pt; font-weight: 900; margin:0; }
             
+            .header-sub {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-top: 4px;
+            }
+
             .print-officer-info {
                 display: block !important;
-                margin-top: 5px;
-                font-size: 7.5pt;
-                font-weight: 700;
+                font-size: 7pt;
+                font-weight: 800;
                 text-align: left;
-                line-height: 1.2;
+                line-height: 1.3;
             }
+            
+            #print-timestamp { font-size: 6.5pt; text-align: right; font-weight: 600; }
         }
 
         .print-section-title, #print-header, .sig-area, .print-officer-info { display: none; }
@@ -139,15 +153,15 @@
 
     <div id="loader">
         <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase">Synchronizing v78...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase">Synchronizing v79...</p>
     </div>
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-10 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[95%] max-w-md shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-20 mx-auto mb-6">
-            <h1 class="text-3xl font-black text-white mb-2 uppercase">e-Penguatkuasa <span class="version-v78">v78</span></h1>
-            <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase">
+            <h1 class="text-3xl font-black text-white mb-2 uppercase">e-Penguatkuasa <span class="version-v79">v79</span></h1>
+            <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase tracking-widest">
                 Akses Sistem
             </button>
         </div>
@@ -161,14 +175,14 @@
                 <div class="flex items-center gap-4">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-10">
                     <div>
-                        <h2 class="text-lg font-black text-slate-800 uppercase">Borang <span class="version-v78">v78</span></h2>
+                        <h2 class="text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-v79">v79</span></h2>
                         <p id="realtime-clock" class="text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
                     <button onclick="resetForm()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold uppercase text-xs">Baru</button>
                     <button onclick="toggleHistory()" class="px-4 py-2 bg-amber-500 text-slate-900 rounded-xl font-bold uppercase text-xs">Database</button>
-                    <button onclick="printReport()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold uppercase text-xs flex items-center gap-2"><i data-lucide="printer" class="w-4 h-4"></i> Cetak A4</button>
+                    <button onclick="printReport()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold uppercase text-xs flex items-center gap-2 shadow-md"><i data-lucide="printer" class="w-4 h-4"></i> Cetak A4</button>
                     <button onclick="toggleProfile()" class="ml-2 flex items-center gap-2 bg-slate-100 p-1 pr-3 rounded-full border">
                         <img id="navAvatar" src="" class="w-8 h-8 rounded-full border-2 border-white object-cover">
                         <span class="text-[10px] font-black uppercase" id="navName">Pegawai</span>
@@ -181,14 +195,17 @@
         <div id="print-header">
             <div class="header-top">
                 <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
-                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v78)</h1>
-                <p id="print-timestamp" style="font-size: 7pt; font-weight: bold;"></p>
+                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v79)</h1>
+                <div></div>
             </div>
-            <!-- Butiran Pegawai (Kiri Header - Print Only) -->
-            <div class="print-officer-info">
-                <p id="p_officer_name">NAMA: -</p>
-                <p id="p_officer_gred">GRED: -</p>
-                <p id="p_officer_branch">NEGERI/CAWANGAN: -</p>
+            <div class="header-sub">
+                <!-- Butiran Pegawai (Bawah Garisan Sebelah Kiri - Print Only) -->
+                <div class="print-officer-info">
+                    <span id="p_officer_name">NAMA: -</span><br>
+                    <span id="p_officer_gred">GRED: -</span><br>
+                    <span id="p_officer_branch">NEGERI/CAWANGAN: -</span>
+                </div>
+                <div id="print-timestamp"></div>
             </div>
         </div>
 
@@ -296,7 +313,7 @@
                     </div>
 
                     <div class="mt-8 no-print text-center">
-                        <button type="button" onclick="saveToFirebase()" class="px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition">Simpan Rekod v78</button>
+                        <button type="button" onclick="saveToFirebase()" class="px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition">Simpan Rekod v79</button>
                     </div>
                 </div>
 
@@ -310,7 +327,7 @@
                         <p>TARIKH : _________________________________</p>
                     </div>
                     <div class="sig-box" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end;">
-                        <div style="text-align: left; width: 80%;">
+                        <div style="text-align: left; width: 85%;">
                             <p style="font-weight: 800;">DISAHKAN OLEH (KETUA):</p>
                             <div class="sig-line" style="width: 100%;"></div>
                             <p>NAMA : __________________________________</p>
@@ -326,7 +343,7 @@
     <!-- DB SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-[500px] h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase">Database <span class="version-v78">v78</span></h2>
+            <h2 class="font-black text-xl uppercase">Database <span class="version-v79">v79</span></h2>
             <button onclick="toggleHistory()"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
@@ -465,7 +482,6 @@
             const d = doc.exists ? doc.data() : {};
             userMeta = { name: d.name||'', gred: d.gred||'', cawangan: d.cawangan||'' };
             
-            // Sync to Header & Form
             document.getElementById('navName').innerText = userMeta.name || 'SILA SET PROFIL';
             document.getElementById('navAvatar').src = user.photoURL || "https://ui-avatars.com/api/?background=4f46e5&color=fff&name="+(userMeta.name||'P');
             document.getElementById('userName').value = userMeta.name;
