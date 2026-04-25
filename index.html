@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Penguatkuasa v90 - Pro Edition</title>
+    <title>e-Penguatkuasa v2 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,28 +22,27 @@
         body, html {
             height: 100%; margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #f8fafc; color: #0f172a; 
+            background: #f1f5f9; color: #0f172a; 
             font-size: 16px;
         }
         .section-card {
             background: white; border-radius: 20px; padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; margin-bottom: 2rem;
         }
         .input-label {
-            font-size: 12px; font-weight: 800; text-transform: uppercase; color: #64748b; 
-            margin-bottom: 6px; display: block; letter-spacing: 0.025em;
+            font-size: 13px; font-weight: 800; text-transform: uppercase; color: #334155; 
+            margin-bottom: 8px; display: block; letter-spacing: 0.05em;
         }
         .form-input-modern {
-            width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #e2e8f0;
+            width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #cbd5e1;
             background: #ffffff; font-weight: 700; font-size: 16px; transition: all 0.2s; color: #1e293b;
         }
         .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
-        .animal-grid-item { background: #f1f5f9; padding: 10px; border-radius: 15px; border: 1px solid #e2e8f0; }
+        .animal-grid-item { background: #f8fafc; padding: 10px; border-radius: 15px; border: 1px solid #e2e8f0; }
 
         @media print { 
             .no-print { display: none !important; } 
-            .section-card { border: 1px solid #000 !important; box-shadow: none !important; padding: 10px !important; }
-            body { background: white !important; }
+            .section-card { border: 1px solid #ccc !important; box-shadow: none !important; padding: 15px !important; }
         }
         #loader { display:none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 9999; align-items: center; justify-content: center; flex-direction: column; }
     </style>
@@ -52,45 +51,36 @@
 
     <div id="loader">
         <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase">Sila Tunggu...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase">Memproses Data...</p>
     </div>
 
     <!-- Login Screen -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-10 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[95%] max-w-md shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-24 mx-auto mb-6">
-            <h1 class="text-3xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa v90</h1>
-            <button onclick="loginGoogle()" class="w-full mt-8 flex items-center justify-center gap-4 bg-white text-slate-900 font-black py-4 rounded-2xl hover:bg-indigo-50 transition active:scale-95 shadow-2xl">
-                <img src="https://www.google.com/favicon.ico" class="w-6 h-6"> LOG MASUK SISTEM
+            <h1 class="text-3xl font-black text-white mb-2 uppercase">e-Penguatkuasa v2</h1>
+            <button onclick="loginGoogle()" class="w-full mt-8 bg-white text-slate-900 font-black py-4 rounded-2xl hover:bg-indigo-50 shadow-2xl flex items-center justify-center gap-3">
+                <img src="https://www.google.com/favicon.ico" class="w-6 h-6"> LOG MASUK
             </button>
         </div>
     </section>
 
-    <!-- App Content -->
     <div id="app-content" class="hidden opacity-0 transition-opacity duration-700 min-h-screen">
         
-        <header class="sticky top-0 z-40 bg-white border-b border-slate-200 no-print shadow-sm">
-            <div class="w-full px-6 py-3 flex flex-wrap justify-between items-center gap-4">
+        <header class="sticky top-0 z-40 bg-white border-b-2 border-slate-200 no-print shadow-md">
+            <div class="w-full px-6 py-4 flex flex-wrap justify-between items-center gap-4">
                 <div class="flex items-center gap-4">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-10">
-                    <h2 class="text-lg font-black text-slate-800 uppercase">Laporan Kes v90</h2>
+                    <h2 class="text-lg font-black text-slate-800 uppercase">Borang Laporan v2</h2>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="resetForm()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold uppercase text-xs shadow-md hover:bg-indigo-700 flex items-center gap-2">
-                        <i data-lucide="plus"></i> Baru
-                    </button>
-                    <button onclick="toggleHistory()" class="px-4 py-2 bg-amber-500 text-white rounded-xl font-bold uppercase text-xs shadow-md hover:bg-amber-600 flex items-center gap-2">
-                        <i data-lucide="database"></i> Rekod Lepas
-                    </button>
-                    <button onclick="exportToExcel()" class="px-4 py-2 bg-emerald-600 text-white rounded-xl font-bold uppercase text-xs shadow-md hover:bg-emerald-700 flex items-center gap-2">
-                        <i data-lucide="file-spreadsheet"></i> Excel
-                    </button>
-                    <button onclick="printReport()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold uppercase text-xs shadow-md hover:bg-black flex items-center gap-2">
-                        <i data-lucide="printer"></i> Cetak
-                    </button>
-                    <button onclick="toggleProfile()" class="ml-4 flex items-center gap-2 bg-slate-100 p-1 pr-3 rounded-full border">
-                        <img id="navAvatar" src="" class="w-8 h-8 rounded-full border border-white object-cover">
-                        <span class="text-[10px] font-black uppercase" id="navName">User</span>
+                    <button onclick="resetForm()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold uppercase text-xs shadow-md hover:bg-indigo-700">Baru</button>
+                    <button onclick="toggleHistory()" class="px-4 py-2 bg-amber-500 text-white rounded-xl font-bold uppercase text-xs shadow-md hover:bg-amber-600">Database Rekod</button>
+                    <button onclick="exportToExcel()" class="px-4 py-2 bg-emerald-600 text-white rounded-xl font-bold uppercase text-xs shadow-md hover:bg-emerald-700">Excel</button>
+                    <button onclick="printReport()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold uppercase text-xs shadow-md hover:bg-black">Cetak</button>
+                    <button onclick="toggleProfile()" class="ml-2 flex items-center gap-2 bg-slate-100 p-1 pr-3 rounded-full border">
+                        <img id="navAvatar" src="" class="w-8 h-8 rounded-full border-2 border-white object-cover">
+                        <span class="text-[10px] font-black uppercase" id="navName">Pegawai</span>
                     </button>
                 </div>
             </div>
@@ -102,7 +92,7 @@
 
                 <!-- 1-13: MAKLUMAT ASAS -->
                 <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-xs mb-6 border-b pb-2 uppercase tracking-widest">A. Maklumat Pengurusan & Kejadian</h3>
+                    <h3 class="text-indigo-600 font-black text-xs mb-6 border-b-2 border-indigo-50 pb-2 uppercase tracking-widest">A. Maklumat Pengurusan</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
                         <div><label class="input-label">1. Bil</label><input type="text" name="BIL" class="form-input-modern"></div>
                         <div><label class="input-label">2. Tahun</label><input type="number" name="TAHUN" id="f_tahun" class="form-input-modern"></div>
@@ -119,14 +109,14 @@
                         <div class="lg:col-span-2"><label class="input-label">7. Tarikh Kejadian</label><input type="date" name="TARIKH_KEJADIAN" class="form-input-modern"></div>
                         <div class="lg:col-span-2"><label class="input-label">8. Masa Kejadian</label><input type="time" name="MASA_KEJADIAN" class="form-input-modern"></div>
                         <div class="lg:col-span-4"><label class="input-label">9. Lokasi Kejadian</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern uppercase"></div>
-                        <div class="lg:col-span-3"><label class="input-label">10. Kesalahan</label><input type="text" name="KESALAHAN" class="form-input-modern uppercase"></div>
-                        <div class="lg:col-span-4"><label class="input-label">11. Undang-Undang</label><input type="text" name="UNDANG_UNDANG" class="form-input-modern uppercase"></div>
-                        <div class="lg:col-span-2"><label class="input-label">12. No Kes IP</label><input type="text" name="NO_KES_IP" class="form-input-modern uppercase"></div>
+                        <div class="lg:col-span-4"><label class="input-label">10. Kesalahan</label><input type="text" name="KESALAHAN" class="form-input-modern uppercase"></div>
+                        <div class="lg:col-span-5"><label class="input-label">11. Undang-Undang</label><input type="text" name="UNDANG_UNDANG" class="form-input-modern uppercase"></div>
+                        <div class="lg:col-span-3"><label class="input-label">12. No Kes IP</label><input type="text" name="NO_KES_IP" class="form-input-modern uppercase"></div>
                         <div class="lg:col-span-3"><label class="input-label">13. Jenis Rampasan</label><input type="text" name="JENIS_RAMPASAN" class="form-input-modern uppercase"></div>
                     </div>
                 </div>
 
-                <!-- 14-35: RAMPASAN -->
+                <!-- 14-31: DATA HAIWAN / KARKAS -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                     <div class="section-card !mb-0 border-t-4 border-blue-500">
                         <h3 class="text-blue-700 font-black text-xs mb-4 uppercase">Haiwan Hidup (Ekor)</h3>
@@ -156,29 +146,29 @@
                             <div class="animal-grid-item"><label class="input-label">26. SB Itik</label><input type="number" name="PRODUK_SEJUK_BEKU_ITIK" class="form-input-modern" value="0"></div>
                             <div class="animal-grid-item"><label class="input-label">27. SB Ayam</label><input type="number" name="PRODUK_SEJUK_BEKU_AYAM" class="form-input-modern" value="0"></div>
                             <div class="animal-grid-item"><label class="input-label">28. SB Babi</label><input type="number" name="PRODUK_SEJUK_BEKU_BABI" class="form-input-modern" value="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">29. Prod Haiwan (Tin)</label><input type="number" name="PRODUK_HAIWAN_TIN" class="form-input-modern" value="0"></div>
+                            <div class="animal-grid-item"><label class="input-label">29. Prod Tin</label><input type="number" name="PRODUK_HAIWAN_TIN" class="form-input-modern" value="0"></div>
                             <div class="animal-grid-item"><label class="input-label">30. Anjing</label><input type="number" name="ANJING" class="form-input-modern" value="0"></div>
                             <div class="animal-grid-item"><label class="input-label">31. Kucing</label><input type="number" name="KUCING" class="form-input-modern" value="0"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 32-37: LAIN-LAIN -->
+                <!-- 32-37: TAMBAHAN & KENDERAAN -->
                 <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-xs mb-6 border-b pb-2 uppercase tracking-widest">B. Maklumat Tambahan & Kenderaan</h3>
+                    <h3 class="text-indigo-600 font-black text-xs mb-6 border-b-2 border-indigo-50 pb-2 uppercase tracking-widest">B. Maklumat Logistik</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
                         <div class="lg:col-span-2 animal-grid-item"><label class="input-label">32. Arnab</label><input type="number" name="ARNAB" class="form-input-modern" value="0"></div>
                         <div class="lg:col-span-2 animal-grid-item"><label class="input-label">33. Burung</label><input type="number" name="BURUNG" class="form-input-modern" value="0"></div>
                         <div class="lg:col-span-2 animal-grid-item"><label class="input-label">34. Hamster</label><input type="number" name="HAMSTER" class="form-input-modern" value="0"></div>
                         <div class="lg:col-span-6"><label class="input-label">35. Rampasan Lain-Lain</label><input type="text" name="RAMPASAN_LAIN_LAIN" class="form-input-modern uppercase"></div>
                         <div class="lg:col-span-3"><label class="input-label">36. Jumlah Kenderaan</label><input type="number" name="JUMLAH_RAMPASAN_KENDERAAN" class="form-input-modern" value="0"></div>
-                        <div class="lg:col-span-9"><label class="input-label">37. Rampasan Pengangkutan</label><input type="text" name="RAMPASAN_PENGANGKUTAN" class="form-input-modern uppercase" placeholder="No. Pendaftaran / No. Kontena"></div>
+                        <div class="lg:col-span-9"><label class="input-label">37. Rampasan Pengangkutan</label><input type="text" name="RAMPASAN_PENGANGKUTAN" class="form-input-modern uppercase" placeholder="No. Plat Kenderaan / No. Kontena"></div>
                     </div>
                 </div>
 
                 <!-- 38-44: NILAI & RUMUSAN -->
                 <div class="section-card border-l-[12px] border-indigo-600">
-                    <h3 class="text-indigo-600 font-black text-xs mb-6 border-b pb-2 uppercase tracking-widest">C. Anggaran Nilai (RM) & Rumusan</h3>
+                    <h3 class="text-indigo-600 font-black text-xs mb-6 border-b-2 border-indigo-50 pb-2 uppercase tracking-widest">C. Anggaran Nilai (RM)</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                         <div class="bg-indigo-50 p-4 rounded-2xl"><label class="input-label">38. Nilai (Ekor/KG)</label><input type="number" name="ANGGARAN_NILAI_EKOR_KG" class="calc form-input-modern" value="0"></div>
                         <div class="bg-indigo-50 p-4 rounded-2xl"><label class="input-label">39. Nilai (Kenderaan)</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc form-input-modern" value="0"></div>
@@ -189,10 +179,10 @@
                     <div class="bg-slate-900 rounded-3xl p-6 text-white flex flex-wrap justify-between items-center mb-6 no-print">
                         <div>
                             <span class="text-[10px] font-black uppercase text-indigo-400 block mb-1">42. Jumlah Nilai Keseluruhan</span>
-                            <input type="text" id="total_val_web" readonly class="bg-transparent text-left font-black text-4xl outline-none w-full" value="RM 0.00">
+                            <input type="text" id="total_val_web" readonly name="JUMLAH_NILAI_KESELURUHAN" class="bg-transparent text-left font-black text-4xl outline-none w-full" value="RM 0.00">
                         </div>
-                        <button type="button" onclick="saveToFirebase()" class="px-8 py-4 bg-indigo-500 text-white rounded-2xl font-black uppercase hover:bg-indigo-400 transition shadow-xl flex items-center gap-2">
-                            <i data-lucide="save"></i> Simpan Data
+                        <button type="button" onclick="saveToFirebase()" class="px-8 py-4 bg-indigo-500 text-white rounded-2xl font-black uppercase hover:bg-indigo-400 shadow-xl">
+                            Simpan Rekod
                         </button>
                     </div>
 
@@ -205,15 +195,16 @@
         </main>
     </div>
 
-    <!-- SIDEBARS -->
+    <!-- HISTORY SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-[450px] h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-8">
         <div class="flex justify-between items-center mb-8">
-            <h2 class="font-black text-xl uppercase">Database Rekod</h2>
+            <h2 class="font-black text-xl uppercase">Rekod Yang Telah Disimpan</h2>
             <button onclick="toggleHistory()"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-3"></div>
     </aside>
 
+    <!-- PROFILE SIDEBAR -->
     <aside id="profileSidebar" class="fixed top-0 right-[-100%] w-full max-w-[400px] h-full bg-white z-[2500] shadow-2xl transition-all duration-500 p-8">
         <div class="flex justify-between items-center mb-8">
             <h2 class="font-black text-xl uppercase">Profil Pegawai</h2>
@@ -221,9 +212,9 @@
         </div>
         <div class="space-y-4">
             <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern uppercase"></div>
-            <div><label class="input-label">Gred Jawatan</label><input type="text" id="userGred" class="form-input-modern uppercase"></div>
+            <div><label class="input-label">Gred Jabatan</label><input type="text" id="userGred" class="form-input-modern uppercase" placeholder="Cth: G29 / G41"></div>
             <div><label class="input-label">Cawangan</label><input type="text" id="userCawangan" class="form-input-modern uppercase"></div>
-            <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-xl uppercase">Kemaskini</button>
+            <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-xl uppercase">Simpan Profil</button>
             <button onclick="logout()" class="w-full text-red-500 font-bold text-xs uppercase mt-4">Log Keluar</button>
         </div>
     </aside>
@@ -288,13 +279,11 @@
             try {
                 const formData = new FormData(document.getElementById('mainForm'));
                 const data = Object.fromEntries(formData.entries());
+                Object.keys(data).forEach(k => { if(typeof data[k] === 'string') data[k] = data[k].toUpperCase(); });
                 
-                Object.keys(data).forEach(key => { if(typeof data[key] === 'string') data[key] = data[key].toUpperCase(); });
-
                 data.userId = currentUser.uid;
                 data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
-                data.JUMLAH_NILAI_KESELURUHAN = document.getElementById('total_val_web').value;
-
+                
                 const docId = document.getElementById('currentDocId').value;
                 if(docId) {
                     await db.collection("reports").doc(docId).set(data, {merge: true});
@@ -304,32 +293,38 @@
                     alert("Rekod Baru Disimpan!");
                 }
                 resetForm();
-            } catch (e) {
-                alert("Ralat: " + e.message);
-            } finally {
-                document.getElementById('loader').style.display = 'none';
-            }
+            } catch (e) { alert("Ralat: " + e.message); }
+            finally { document.getElementById('loader').style.display = 'none'; }
         }
 
         async function fetchHistory() {
             const listDiv = document.getElementById('historyList');
-            listDiv.innerHTML = '<p class="text-center py-10 animate-pulse">Memuatkan...</p>';
+            listDiv.innerHTML = '<p class="text-center py-10 animate-pulse uppercase text-xs font-bold">Memuatkan Rekod...</p>';
+            
             try {
+                // Gunakan query ringkas tanpa orderBy untuk mengelak ralat Index
                 const snapshot = await db.collection("reports")
                     .where("userId", "==", currentUser.uid)
-                    .orderBy("updatedAt", "desc")
-                    .limit(20)
                     .get();
 
-                listDiv.innerHTML = "";
-                if(snapshot.empty) { listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Rekod</p>'; return; }
+                let docs = [];
+                snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+                
+                // Susun data secara manual (Terbaru di atas)
+                docs.sort((a, b) => {
+                    const timeA = a.updatedAt?.seconds || 0;
+                    const timeB = b.updatedAt?.seconds || 0;
+                    return timeB - timeA;
+                });
 
-                snapshot.forEach(doc => {
-                    const d = doc.data();
+                listDiv.innerHTML = "";
+                if(docs.length === 0) { listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Data Ditemui</p>'; return; }
+
+                docs.forEach(d => {
                     const card = document.createElement('div');
                     card.className = "bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-500 cursor-pointer transition";
                     card.onclick = () => {
-                        document.getElementById('currentDocId').value = doc.id;
+                        document.getElementById('currentDocId').value = d.id;
                         Object.keys(d).forEach(key => {
                             const input = document.querySelector(`[name="${key}"]`);
                             if (input) input.value = d[key];
@@ -339,40 +334,15 @@
                     };
                     card.innerHTML = `
                         <div class="flex justify-between items-center mb-1">
-                            <span class="text-[9px] font-black bg-slate-100 px-2 py-1 rounded">BIL: ${d.BIL || '00'}</span>
-                            <span class="text-indigo-600 font-black text-xs">${d.JUMLAH_NILAI_KESELURUHAN}</span>
+                            <span class="text-[9px] font-black bg-slate-100 px-2 py-1 rounded">BIL: ${d.BIL || '-'}</span>
+                            <span class="text-indigo-600 font-black text-xs">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0.00'}</span>
                         </div>
-                        <h4 class="font-black text-slate-800 uppercase text-[11px] truncate">${d.KATEGORI_KES || 'Kategori'}</h4>
-                        <p class="text-[9px] text-slate-500 uppercase">${d.TARIKH_KEJADIAN} | ${d.LOKASI_KEJADIAN}</p>
+                        <h4 class="font-black text-slate-800 uppercase text-[11px] truncate">${d.KATEGORI_KES || 'Tiada Kategori'}</h4>
+                        <p class="text-[9px] text-slate-500 uppercase">${d.TARIKH_KEJADIAN || ''} | ${d.LOKASI_KEJADIAN || ''}</p>
                     `;
                     listDiv.appendChild(card);
                 });
-            } catch (e) {
-                listDiv.innerHTML = `<p class="text-red-500 text-[10px]">Index Diperlukan. Sila klik link dalam ralat konsol sebelum ini.</p>`;
-            }
-        }
-
-        function exportToExcel() {
-            const fd = new FormData(document.getElementById('mainForm'));
-            const turutan = [
-                "BIL", "TAHUN", "BULAN", "PENGUATKUASA", "KATEGORI_KES", "NO_REPOT_POLIS", "TARIKH_KEJADIAN",
-                "MASA_KEJADIAN", "LOKASI_KEJADIAN", "KESALAHAN", "UNDANG_UNDANG", "NO_KES_IP", "JENIS_RAMPASAN",
-                "LEMBU", "KERBAU", "KAMBING", "BEBIRI", "BABI", "AYAM", "KARKAS_LEMBU", "KARKAS_KERBAU",
-                "KARKAS_KAMBING", "KARKAS_BABI", "KARKAS_BABI_SEJUK_BEKU", "KARKAS_AYAM", "PRODUK_SEJUK_BEKU_ITIK",
-                "PRODUK_SEJUK_BEKU_AYAM", "PRODUK_SEJUK_BEKU_BABI", "PRODUK_HAIWAN_TIN", "ANJING", "KUCING",
-                "ARNAB", "BURUNG", "HAMSTER", "RAMPASAN_LAIN_LAIN", "JUMLAH_RAMPASAN_KENDERAAN", "RAMPASAN_PENGANGKUTAN",
-                "ANGGARAN_NILAI_EKOR_KG", "ANGGARAN_NILAI_KENDERAAN", "ANGGARAN_NILAI_PENGANGKUT_KONTENA",
-                "ANGGARAN_NILAI_LAIN_LAIN", "JUMLAH_NILAI_KESELURUHAN", "KES_SERAHAN", "CATATAN"
-            ];
-            const dataRow = {};
-            turutan.forEach(key => {
-                if(key === "JUMLAH_NILAI_KESELURUHAN") dataRow[key] = document.getElementById('total_val_web').value;
-                else dataRow[key] = fd.get(key) || "0";
-            });
-            const ws = XLSX.utils.json_to_sheet([dataRow]);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Laporan");
-            XLSX.writeFile(wb, `Laporan_v90_${fd.get("BIL")}.xlsx`);
+            } catch (e) { listDiv.innerHTML = `<p class="text-red-500 text-[10px]">Ralat: ${e.message}</p>`; }
         }
 
         async function loadProfile(user) {
@@ -395,6 +365,26 @@
             }, { merge: true });
             alert("Profil Dikemaskini!");
             location.reload();
+        }
+
+        function exportToExcel() {
+            const fd = new FormData(document.getElementById('mainForm'));
+            const turutan = [
+                "BIL", "TAHUN", "BULAN", "PENGUATKUASA", "KATEGORI_KES", "NO_REPOT_POLIS", "TARIKH_KEJADIAN",
+                "MASA_KEJADIAN", "LOKASI_KEJADIAN", "KESALAHAN", "UNDANG_UNDANG", "NO_KES_IP", "JENIS_RAMPASAN",
+                "LEMBU", "KERBAU", "KAMBING", "BEBIRI", "BABI", "AYAM", "KARKAS_LEMBU", "KARKAS_KERBAU",
+                "KARKAS_KAMBING", "KARKAS_BABI", "KARKAS_BABI_SEJUK_BEKU", "KARKAS_AYAM", "PRODUK_SEJUK_BEKU_ITIK",
+                "PRODUK_SEJUK_BEKU_AYAM", "PRODUK_SEJUK_BEKU_BABI", "PRODUK_HAIWAN_TIN", "ANJING", "KUCING",
+                "ARNAB", "BURUNG", "HAMSTER", "RAMPASAN_LAIN_LAIN", "JUMLAH_RAMPASAN_KENDERAAN", "RAMPASAN_PENGANGKUTAN",
+                "ANGGARAN_NILAI_EKOR_KG", "ANGGARAN_NILAI_KENDERAAN", "ANGGARAN_NILAI_PENGANGKUT_KONTENA",
+                "ANGGARAN_NILAI_LAIN_LAIN", "JUMLAH_NILAI_KESELURUHAN", "KES_SERAHAN", "CATATAN"
+            ];
+            const row = {};
+            turutan.forEach(k => row[k] = fd.get(k) || "");
+            const ws = XLSX.utils.json_to_sheet([row]);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Laporan");
+            XLSX.writeFile(wb, `Laporan_v2_${fd.get("BIL")}.xlsx`);
         }
 
         function printReport() { window.print(); }
