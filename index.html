@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>e-Penguatkuasa v71 - Pro Edition</title>
+    <title>e-Penguatkuasa v72 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,7 +23,7 @@
             height: 100%; margin: 0;
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: #f1f5f9; color: #0f172a; 
-            font-size: 18px; /* Ditingkatkan untuk User-Friendly */
+            font-size: 18px;
         }
         .section-card {
             background: white; border-radius: 20px; padding: 2rem;
@@ -38,10 +38,8 @@
             background: #ffffff; font-weight: 700; font-size: 18px; transition: all 0.2s; color: #1e293b;
         }
         .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
-        
         .animal-grid-item { background: #f8fafc; padding: 12px; border-radius: 15px; border: 1px solid #e2e8f0; }
 
-        /* PRINT OPTIMIZATION */
         @media print { 
             @page { size: A4 portrait; margin: 0.5cm; }
             body { background: white !important; font-size: 10pt !important; }
@@ -51,15 +49,23 @@
             .print-header { display: flex !important; align-items: center; justify-content: center; gap: 15px; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 10px; }
         }
         .print-header { display: none; }
+        
+        /* Loading Overlay */
+        #loader { display:none; position: fixed; inset: 0; background: rgba(255,255,255,0.8); z-index: 9999; align-items: center; justify-content: center; }
     </style>
 </head>
 <body class="antialiased">
+
+    <div id="loader" class="flex flex-col gap-4">
+        <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+        <p class="font-bold text-indigo-600 animate-pulse">MEMPROSES DATA...</p>
+    </div>
 
     <!-- Screen Landing (Login) -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-10 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[95%] max-w-md shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-24 mx-auto mb-6">
-            <h1 class="text-3xl font-black text-white mb-2 tracking-tighter uppercase">e-Penguatkuasa v71</h1>
+            <h1 class="text-3xl font-black text-white mb-2 tracking-tighter uppercase">e-Penguatkuasa v72</h1>
             <p class="text-indigo-400 text-xs font-bold tracking-[0.4em] mb-10 uppercase">System Intelligence</p>
             <button onclick="loginGoogle()" class="w-full flex items-center justify-center gap-4 bg-white text-slate-900 font-black py-4 rounded-2xl hover:bg-indigo-50 transition active:scale-95 shadow-2xl text-lg">
                 <img src="https://www.google.com/favicon.ico" class="w-6 h-6"> LOG MASUK SISTEM
@@ -75,16 +81,22 @@
                 <div class="flex items-center gap-4">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-14">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-800 uppercase leading-none">Borang Laporan v71</h2>
-                        <span class="text-xs font-bold text-emerald-600 uppercase">Auto-Save Aktif</span>
+                        <h2 class="text-2xl font-black text-slate-800 uppercase leading-none">Borang Laporan v72</h2>
+                        <span id="doc-status" class="text-xs font-bold text-emerald-600 uppercase italic">Rekod Baru</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button onclick="exportToExcel()" class="flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-xl font-bold uppercase text-sm shadow-lg hover:bg-emerald-700">
-                        <i data-lucide="file-spreadsheet" class="w-5 h-5"></i> Export Excel
+                    <button onclick="createNewReport()" class="flex items-center gap-2 px-5 py-3 bg-indigo-600 text-white rounded-xl font-bold uppercase text-sm shadow-lg hover:bg-indigo-700">
+                        <i data-lucide="plus-circle" class="w-5 h-5"></i> Rekod Baru
                     </button>
-                    <button onclick="printReport()" class="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl font-bold uppercase text-sm shadow-lg hover:bg-black">
-                        <i data-lucide="printer" class="w-5 h-5"></i> Cetak A4
+                    <button onclick="toggleHistory()" class="flex items-center gap-2 px-5 py-3 bg-amber-500 text-white rounded-xl font-bold uppercase text-sm shadow-lg hover:bg-amber-600 text-slate-900">
+                        <i data-lucide="database" class="w-5 h-5"></i> Rekod Lepas
+                    </button>
+                    <button onclick="exportToExcel()" class="flex items-center gap-2 px-5 py-3 bg-emerald-600 text-white rounded-xl font-bold uppercase text-sm shadow-lg hover:bg-emerald-700">
+                        <i data-lucide="file-spreadsheet" class="w-5 h-5"></i> Excel
+                    </button>
+                    <button onclick="printReport()" class="flex items-center gap-2 px-5 py-3 bg-slate-900 text-white rounded-xl font-bold uppercase text-sm shadow-lg hover:bg-black">
+                        <i data-lucide="printer" class="w-5 h-5"></i> Cetak
                     </button>
                     <button onclick="toggleProfile()" class="flex items-center gap-3 bg-slate-100 p-2 pr-5 rounded-full border border-slate-200">
                         <img id="navAvatar" src="" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm">
@@ -97,22 +109,23 @@
         <div class="print-header">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16">
             <div class="text-center">
-                <h1 class="text-xl font-black uppercase">LAPORAN KES PENGUATKUASAAN (v71)</h1>
+                <h1 class="text-xl font-black uppercase">LAPORAN KES PENGUATKUASAAN (v72)</h1>
                 <p class="text-xs font-bold uppercase">Jabatan Perkhidmatan Veterinar Malaysia</p>
             </div>
         </div>
 
         <main class="w-full px-6 py-8 mx-auto max-w-full">
             <form id="mainForm">
+                <input type="hidden" id="currentDocId" value="">
                 
                 <!-- MAKLUMAT ASAS -->
                 <div class="section-card">
                     <h3 class="text-indigo-600 font-black text-sm mb-6 border-b-2 border-indigo-50 pb-2 uppercase tracking-widest">A. Maklumat Pengurusan & Kes</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
                         <div><label class="input-label">Bil</label><input type="text" name="BIL" class="form-input-modern" placeholder="Cth: 01"></div>
-                        <div><label class="input-label">Tahun</label><input type="number" name="TAHUN" value="2026" class="form-input-modern text-center"></div>
+                        <div><label class="input-label">Tahun</label><input type="number" name="TAHUN" id="f_tahun" class="form-input-modern text-center"></div>
                         <div class="lg:col-span-2"><label class="input-label">Bulan</label>
-                            <select name="BULAN" class="form-input-modern">
+                            <select name="BULAN" id="f_bulan" class="form-input-modern">
                                 <option>JANUARI</option><option>FEBRUARI</option><option>MAC</option><option>APRIL</option>
                                 <option>MEI</option><option>JUN</option><option>JULAI</option><option>OGOS</option>
                                 <option>SEPTEMBER</option><option>OKTOBER</option><option>NOVEMBER</option><option>DISEMBER</option>
@@ -130,7 +143,7 @@
                 <div class="section-card">
                     <h3 class="text-indigo-600 font-black text-sm mb-6 border-b-2 border-indigo-50 pb-2 uppercase tracking-widest">B. Butiran Kejadian & Kesalahan</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
-                        <div class="lg:col-span-3"><label class="input-label">Tarikh Kejadian</label><input type="date" name="TARIKH_KEJADIAN" class="form-input-modern"></div>
+                        <div class="lg:col-span-3"><label class="input-label">Tarikh Kejadian</label><input type="date" name="TARIKH_KEJADIAN" id="f_tarikh" class="form-input-modern"></div>
                         <div class="lg:col-span-3"><label class="input-label">Masa Kejadian</label><input type="time" name="MASA_KEJADIAN" class="form-input-modern"></div>
                         <div class="lg:col-span-6"><label class="input-label">Lokasi Kejadian</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern" placeholder="Alamat penuh lokasi"></div>
                         
@@ -139,7 +152,7 @@
                     </div>
                 </div>
 
-                <!-- RAMPASAN UTAMA -->
+                <!-- RAMPASAN UTAMA (GRID) -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
                     <!-- Haiwan Hidup -->
                     <div class="section-card !mb-0 border-t-8 border-blue-500">
@@ -179,22 +192,6 @@
                     </div>
                 </div>
 
-                <!-- RAMPASAN TAMBAHAN & LOGISTIK -->
-                <div class="section-card">
-                    <h3 class="text-indigo-600 font-black text-sm mb-6 border-b-2 border-indigo-50 pb-2 uppercase tracking-widest">C. Maklumat Rampasan Tambahan & Logistik</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
-                        <div class="lg:col-span-2 animal-grid-item"><label class="input-label">Arnab</label><input type="number" name="ARNAB" class="form-input-modern" value="0"></div>
-                        <div class="lg:col-span-2 animal-grid-item"><label class="input-label">Burung</label><input type="number" name="BURUNG" class="form-input-modern" value="0"></div>
-                        <div class="lg:col-span-2 animal-grid-item"><label class="input-label">Hamster</label><input type="number" name="HAMSTER" class="form-input-modern" value="0"></div>
-                        
-                        <div class="lg:col-span-3"><label class="input-label">Jenis Rampasan (Umum)</label><input type="text" name="JENIS_RAMPASAN" class="form-input-modern" placeholder="Cth: Daging/Hidup"></div>
-                        <div class="lg:col-span-3"><label class="input-label">Rampasan Lain-lain</label><input type="text" name="RAMPASAN_LAIN_LAIN" class="form-input-modern"></div>
-                        
-                        <div class="lg:col-span-3"><label class="input-label">Jumlah Kenderaan</label><input type="number" name="JUMLAH_RAMPASAN_KENDERAAN" class="form-input-modern" value="0"></div>
-                        <div class="lg:col-span-9"><label class="input-label">Butiran Pengangkutan / Kontena</label><input type="text" name="RAMPASAN_PENGANGKUTAN" class="form-input-modern" placeholder="No. Pendaftaran Kenderaan / No. Kontena"></div>
-                    </div>
-                </div>
-
                 <!-- NILAI & RUMUSAN -->
                 <div class="section-card border-l-[12px] border-indigo-600">
                     <h3 class="text-indigo-600 font-black text-sm mb-6 border-b-2 border-indigo-50 pb-2 uppercase tracking-widest">D. Anggaran Nilai (RM) & Rumusan</h3>
@@ -205,19 +202,15 @@
                         <div class="bg-indigo-50 p-5 rounded-2xl"><label class="input-label">Nilai (Lain-lain)</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc form-input-modern" value="0"></div>
                     </div>
                     
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                        <div class="lg:col-span-4"><label class="input-label">Kes Serahan</label><input type="text" name="KES_SERAHAN" class="form-input-modern" placeholder="Cth: KPD / Pegawai Penyiasat"></div>
-                        <div class="lg:col-span-8"><label class="input-label">Catatan Tambahan</label><input type="text" name="CATATAN" class="form-input-modern" placeholder="Maklumat tambahan jika ada"></div>
-                    </div>
-
                     <div class="mt-10 bg-slate-900 rounded-3xl p-8 text-white flex flex-wrap justify-between items-center no-print shadow-2xl">
                         <div>
                             <span class="text-sm font-black uppercase text-indigo-400 block mb-2 tracking-widest">Jumlah Nilai Keseluruhan</span>
                             <input type="text" id="total_val_web" readonly class="bg-transparent text-left font-black text-5xl outline-none w-full" value="RM 0.00">
                         </div>
-                        <div class="text-right">
-                            <p class="text-xs text-slate-400 uppercase font-bold italic mb-1">System Auto-Save Timestamp:</p>
-                            <p id="save-timer" class="text-sm font-mono text-emerald-400">--:--:--</p>
+                        <div class="flex gap-4">
+                            <button type="button" onclick="saveToFirebase()" class="px-10 py-5 bg-indigo-500 text-white rounded-2xl font-black text-xl shadow-xl hover:bg-indigo-400 active:scale-95 transition uppercase">
+                                <i data-lucide="save" class="inline w-6 h-6 mr-2"></i> Simpan Rekod
+                            </button>
                         </div>
                     </div>
 
@@ -240,21 +233,27 @@
                 <h2 class="font-black text-2xl text-slate-900 uppercase tracking-tight">Profil Pegawai</h2>
                 <button onclick="toggleProfile()" class="p-3 bg-slate-100 rounded-full hover:bg-red-50 hover:text-red-600 transition"><i data-lucide="x" class="w-8 h-8"></i></button>
             </div>
-            <div class="text-center mb-10 bg-slate-50 p-8 rounded-[40px] border-2 border-dashed border-slate-300">
-                <img id="sideAvatar" src="" class="w-40 h-40 mx-auto rounded-full border-4 border-white shadow-2xl object-cover mb-6">
-                <div class="flex justify-center gap-3 mb-6">
-                    <button onclick="setAvatar('male')" class="px-6 py-2 bg-blue-600 text-white text-xs font-black rounded-full uppercase shadow-md">Lelaki</button>
-                    <button onclick="setAvatar('female')" class="px-6 py-2 bg-pink-600 text-white text-xs font-black rounded-full uppercase shadow-md">Wanita</button>
-                </div>
-                <input type="file" id="uploadImg" class="hidden" accept="image/*" onchange="previewImage(this)">
-                <button onclick="document.getElementById('uploadImg').click()" class="text-sm font-black text-indigo-600 underline">MUATNAIK FOTO SENDIRI</button>
-            </div>
             <div class="space-y-6">
                 <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern uppercase"></div>
-                <div><label class="input-label">Gred Jawatan</label><input type="text" id="userGred" class="form-input-modern uppercase" placeholder="Cth: G29 / G41"></div>
-                <div><label class="input-label">Cawangan / Negeri</label><input type="text" id="userCawangan" class="form-input-modern uppercase"></div>
-                <button onclick="saveProfile()" class="w-full mt-10 bg-indigo-600 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-indigo-700 transition uppercase tracking-widest text-lg">Simpan & Kemaskini</button>
-                <button onclick="logout()" class="w-full text-red-500 font-bold py-2 text-sm uppercase mt-6">Log Keluar Akaun</button>
+                <div><label class="input-label">Gred Jawatan</label><input type="text" id="userGred" class="form-input-modern uppercase"></div>
+                <div><label class="input-label">Cawangan</label><input type="text" id="userCawangan" class="form-input-modern uppercase"></div>
+                <button onclick="saveProfile()" class="w-full mt-10 bg-indigo-600 text-white font-black py-5 rounded-2xl uppercase tracking-widest text-lg">Simpan Profil</button>
+                <button onclick="logout()" class="w-full text-red-500 font-bold py-2 text-sm uppercase mt-6">Log Keluar</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- HISTORY SIDEBAR -->
+    <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-[500px] h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="font-black text-2xl text-slate-900 uppercase tracking-tight">Database Rekod</h2>
+                <button onclick="toggleHistory()" class="p-3 bg-white rounded-full border shadow-sm hover:text-red-600 transition"><i data-lucide="x" class="w-8 h-8"></i></button>
+            </div>
+            
+            <div id="historyList" class="space-y-4">
+                <!-- Data will be injected here -->
+                <p class="text-center text-slate-400 animate-pulse">Memuatkan rekod...</p>
             </div>
         </div>
     </aside>
@@ -273,66 +272,145 @@
         const db = firebase.firestore();
         lucide.createIcons();
 
-        const DEFAULT_AVATARS = {
-            male: "https://github.com/ttv4u1/ttv4u1.github.io/raw/main/male.png",
-            female: "https://github.com/ttv4u1/ttv4u1.github.io/raw/main/female.png"
-        };
-        let currentAvatarUrl = DEFAULT_AVATARS.male;
+        let currentUser = null;
 
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
+                currentUser = user;
                 document.getElementById('landing-screen').style.display = 'none';
                 document.getElementById('app-content').classList.remove('hidden');
-                setTimeout(() => {
-                    document.getElementById('app-content').classList.add('opacity-100');
-                    loadFromLocalStorage(); 
-                }, 50);
+                setTimeout(() => { document.getElementById('app-content').classList.add('opacity-100'); }, 50);
                 loadProfile(user);
+                resetForm(); // Set default values for new entry
             } else {
                 document.getElementById('landing-screen').style.display = 'flex';
                 document.getElementById('app-content').classList.add('hidden');
             }
         });
 
-        const mainForm = document.getElementById('mainForm');
-        mainForm.addEventListener('input', () => {
-            calcTotal();
-            saveToLocalStorage();
-        });
-
-        function saveToLocalStorage() {
-            const formData = new FormData(mainForm);
-            const data = Object.fromEntries(formData.entries());
-            localStorage.setItem('epenguatkuasa_v71_draft', JSON.stringify(data));
-            document.getElementById('save-timer').innerText = new Date().toLocaleTimeString();
+        // Toggle Functions
+        function toggleProfile() { const s = document.getElementById('profileSidebar'); s.style.right = (s.style.right === '0px') ? '-100%' : '0px'; }
+        function toggleHistory() { 
+            const s = document.getElementById('historySidebar'); 
+            const isOpen = s.style.left === '0px';
+            s.style.left = isOpen ? '-100%' : '0px'; 
+            if(!isOpen) fetchHistory();
         }
 
-        function loadFromLocalStorage() {
-            const saved = localStorage.getItem('epenguatkuasa_v71_draft');
-            if (saved) {
-                const data = JSON.parse(saved);
-                Object.keys(data).forEach(key => {
-                    const input = mainForm.querySelector(`[name="${key}"]`);
-                    if (input) input.value = data[key];
-                });
-                calcTotal();
+        // Form Management
+        function resetForm() {
+            document.getElementById('mainForm').reset();
+            document.getElementById('currentDocId').value = "";
+            document.getElementById('doc-status').innerText = "Rekod Baru";
+            document.getElementById('doc-status').className = "text-xs font-bold text-emerald-600 uppercase italic";
+            
+            // Set Default Dates
+            const now = new Date();
+            document.getElementById('f_tahun').value = now.getFullYear();
+            const months = ["JANUARI","FEBRUARI","MAC","APRIL","MEI","JUN","JULAI","OGOS","SEPTEMBER","OKTOBER","NOVEMBER","DISEMBER"];
+            document.getElementById('f_bulan').value = months[now.getMonth()];
+            document.getElementById('f_tarikh').valueAsDate = now;
+            
+            calcTotal();
+        }
+
+        function createNewReport() {
+            if(confirm("Buka borang baru? Sila pastikan data semasa telah disimpan.")) {
+                resetForm();
             }
         }
 
-        function loginGoogle() { firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()); }
-        function logout() { if(confirm('Log keluar? Data draf anda akan kekal di peranti ini.')) firebase.auth().signOut().then(() => location.reload()); }
+        // CRUD Firebase
+        async function saveToFirebase() {
+            if(!currentUser) return;
+            const loader = document.getElementById('loader');
+            loader.style.display = 'flex';
 
+            try {
+                const formData = new FormData(document.getElementById('mainForm'));
+                const data = Object.fromEntries(formData.entries());
+                data.userId = currentUser.uid;
+                data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+                data.totalValue = document.getElementById('print_total').innerText;
+
+                const docId = document.getElementById('currentDocId').value;
+
+                if(docId) {
+                    await db.collection("reports").doc(docId).set(data, {merge: true});
+                } else {
+                    const newDoc = await db.collection("reports").add(data);
+                    document.getElementById('currentDocId').value = newDoc.id;
+                }
+
+                alert("Rekod Berjaya Disimpan ke Database!");
+                document.getElementById('doc-status').innerText = "Rekod Disimpan (ID: " + (docId || 'New') + ")";
+            } catch (e) {
+                console.error(e);
+                alert("Ralat simpanan!");
+            } finally {
+                loader.style.display = 'none';
+            }
+        }
+
+        async function fetchHistory() {
+            const listDiv = document.getElementById('historyList');
+            listDiv.innerHTML = '<p class="text-center py-10">Mencari data...</p>';
+
+            const snapshot = await db.collection("reports")
+                .where("userId", "==", currentUser.uid)
+                .orderBy("updatedAt", "desc")
+                .limit(20)
+                .get();
+
+            if(snapshot.empty) {
+                listDiv.innerHTML = '<p class="text-center py-10 text-slate-400 uppercase font-bold">Tiada Rekod Dijumpai</p>';
+                return;
+            }
+
+            listDiv.innerHTML = "";
+            snapshot.forEach(doc => {
+                const d = doc.data();
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 cursor-pointer transition";
+                card.onclick = () => loadSpecificReport(doc.id, d);
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-black bg-slate-100 px-2 py-1 rounded text-slate-500">${doc.id.substring(0,8)}</span>
+                        <span class="text-emerald-600 font-black text-sm">${d.totalValue || 'RM 0.00'}</span>
+                    </div>
+                    <h4 class="font-black text-slate-800 uppercase text-sm">${d.BIL || 'N/A'}. ${d.KATEGORI_KES || 'TIADA KATEGORI'}</h4>
+                    <p class="text-xs text-slate-500 font-bold mt-1">${d.TARIKH_KEJADIAN} | ${d.LOKASI_KEJADIAN || 'Tiada Lokasi'}</p>
+                `;
+                listDiv.appendChild(card);
+            });
+        }
+
+        function loadSpecificReport(id, data) {
+            resetForm();
+            document.getElementById('currentDocId').value = id;
+            document.getElementById('doc-status').innerText = "Melihat Rekod: " + id.substring(0,8);
+            document.getElementById('doc-status').className = "text-xs font-bold text-amber-600 uppercase italic";
+
+            for (const key in data) {
+                const input = document.querySelector(`[name="${key}"]`);
+                if (input) input.value = data[key];
+            }
+            
+            calcTotal();
+            toggleHistory();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Profile Management
         async function loadProfile(user) {
             const doc = await db.collection("users").doc(user.uid).get();
             let data = doc.exists ? doc.data() : {};
             const name = data.name || user.displayName || 'PEGAWAI';
             const gred = data.gred || '';
             const cawangan = data.cawangan || '';
-            currentAvatarUrl = data.avatar || currentAvatarUrl;
             
             document.getElementById('navName').innerText = name;
-            document.getElementById('navAvatar').src = currentAvatarUrl;
-            document.getElementById('sideAvatar').src = currentAvatarUrl;
+            document.getElementById('navAvatar').src = user.photoURL || "https://ui-avatars.com/api/?name=" + name;
             document.getElementById('userName').value = name;
             document.getElementById('userGred').value = gred;
             document.getElementById('userCawangan').value = cawangan;
@@ -340,24 +418,16 @@
         }
 
         async function saveProfile() {
-            const user = firebase.auth().currentUser;
-            await db.collection("users").doc(user.uid).set({
+            await db.collection("users").doc(currentUser.uid).set({
                 name: document.getElementById('userName').value.toUpperCase(),
                 gred: document.getElementById('userGred').value.toUpperCase(),
-                cawangan: document.getElementById('userCawangan').value.toUpperCase(),
-                avatar: currentAvatarUrl
+                cawangan: document.getElementById('userCawangan').value.toUpperCase()
             }, { merge: true });
-            alert("Profil Berjaya Dikemaskini!");
+            alert("Profil Dikemaskini!");
             location.reload();
         }
 
-        function setAvatar(t) { currentAvatarUrl = DEFAULT_AVATARS[t]; document.getElementById('sideAvatar').src = currentAvatarUrl; }
-        function previewImage(i) { if(i.files && i.files[0]) { const r = new FileReader(); r.onload = (e) => { currentAvatarUrl = e.target.result; document.getElementById('sideAvatar').src = e.target.result; }; r.readAsDataURL(i.files[0]); } }
-        function toggleProfile() { 
-            const s = document.getElementById('profileSidebar'); 
-            s.style.right = (s.style.right === '0px') ? '-100%' : '0px'; 
-        }
-        
+        // Calculation & Utilities
         function calcTotal() {
             let sum = 0;
             document.querySelectorAll('.calc').forEach(i => sum += Number(i.value || 0));
@@ -366,69 +436,21 @@
             document.getElementById('print_total').innerText = formatted;
         }
 
+        document.getElementById('mainForm').addEventListener('input', calcTotal);
+
         function exportToExcel() {
-            calcTotal();
-            const fd = new FormData(mainForm);
-            // SINKRONISASI 44 KOLUM MENGIKUT MASTER IMAGE
-            const excelData = {
-                "BIL": fd.get("BIL"),
-                "TAHUN": fd.get("TAHUN"),
-                "BULAN": fd.get("BULAN"),
-                "PENGUATKUASA": fd.get("PENGUATKUASA"),
-                "KATEGORI KES": fd.get("KATEGORI_KES"),
-                "NO REPOT POLIS": fd.get("NO_REPOT_POLIS"),
-                "TARIKH KEJADIAN": fd.get("TARIKH_KEJADIAN"),
-                "MASA KEJADIAN": fd.get("MASA_KEJADIAN"),
-                "LOKASI KEJADIAN": fd.get("LOKASI_KEJADIAN"),
-                "KESALAHAN": fd.get("KESALAHAN"),
-                "UNDANG-UNDANG": fd.get("UNDANG_UNDANG"),
-                "NO KES IP": fd.get("NO_KES_IP"),
-                "JENIS RAMPASAN": fd.get("JENIS_RAMPASAN"),
-                "LEMBU": fd.get("LEMBU"),
-                "KERBAU": fd.get("KERBAU"),
-                "KAMBING": fd.get("KAMBING"),
-                "BEBIRI": fd.get("BEBIRI"),
-                "BABI": fd.get("BABI"),
-                "AYAM": fd.get("AYAM"),
-                "KARKAS LEMBU": fd.get("KARKAS_LEMBU"),
-                "KARKAS KERBAU": fd.get("KARKAS_KERBAU"),
-                "KARKAS KAMBING": fd.get("KARKAS_KAMBING"),
-                "KARKAS BABI": fd.get("KARKAS_BABI"),
-                "KARKAS BABI SEJUK BEKU": fd.get("KARKAS_BABI_SEJUK_BEKU"),
-                "KARKAS AYAM": fd.get("KARKAS_AYAM"),
-                "PRODUK SEJUK BEKU ITIK": fd.get("PRODUK_SEJUK_BEKU_ITIK"),
-                "PRODUK SEJUK BEKU AYAM": fd.get("PRODUK_SEJUK_BEKU_AYAM"),
-                "PRODUK SEJUK BEKU BABI": fd.get("PRODUK_SEJUK_BEKU_BABI"),
-                "PRODUK HAIWAN (TIN)": fd.get("PRODUK_HAIWAN_TIN"),
-                "ANJING": fd.get("ANJING"),
-                "KUCING": fd.get("KUCING"),
-                "ARNAB": fd.get("ARNAB"),
-                "BURUNG": fd.get("BURUNG"),
-                "HAMSTER": fd.get("HAMSTER"),
-                "RAMPASAN LAIN-LAIN": fd.get("RAMPASAN_LAIN_LAIN"),
-                "JUMLAH RAMPASAN KENDERAAN": fd.get("JUMLAH_RAMPASAN_KENDERAAN"),
-                "RAMPASAN PENGANGKUTAN": fd.get("RAMPASAN_PENGANGKUTAN"),
-                "ANGGARAN NILAI (EKOR/KG)": fd.get("ANGGARAN_NILAI_EKOR_KG"),
-                "ANGGARAN NILAI (KENDERAAN)": fd.get("ANGGARAN_NILAI_KENDERAAN"),
-                "ANGGARAN NILAI (PENGANGKUT/KONTENA)": fd.get("ANGGARAN_NILAI_PENGANGKUT_KONTENA"),
-                "ANGGARAN NILAI (LAIN-LAIN)": fd.get("ANGGARAN_NILAI_LAIN_LAIN"),
-                "JUMLAH NILAI KESELURUHAN": document.getElementById('print_total').innerText,
-                "KES SERAHAN": fd.get("KES_SERAHAN"),
-                "CATATAN": fd.get("CATATAN")
-            };
-
-            const ws = XLSX.utils.json_to_sheet([excelData]);
+            const fd = new FormData(document.getElementById('mainForm'));
+            const data = [Object.fromEntries(fd.entries())];
+            const ws = XLSX.utils.json_to_sheet(data);
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "LaporanKes");
-            XLSX.writeFile(wb, `Laporan_Kes_v71_${fd.get("BIL") || 'DRAF'}.xlsx`);
+            XLSX.utils.book_append_sheet(wb, ws, "Laporan");
+            XLSX.writeFile(wb, `Laporan_v72_${fd.get("BIL") || 'DRAF'}.xlsx`);
         }
 
-        function printReport() { 
-            calcTotal(); 
-            window.print(); 
-        }
+        function printReport() { window.print(); }
+        function loginGoogle() { firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()); }
+        function logout() { firebase.auth().signOut().then(() => location.reload()); }
+
     </script>
 </body>
 </html>
-
---- END OF FILE ---
