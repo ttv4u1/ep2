@@ -223,14 +223,29 @@
 
         // --- AUTH & INITIALIZATION ---
         firebase.auth().onAuthStateChanged(async user => {
-            if (user) {
-                document.getElementById('landing-screen').style.display = 'none';
-                document.getElementById('app-content').classList.remove('hidden');
-                if(user.email === 'ttv4u1@gmail.com') userRole = 'ADMIN';
-                await loadProfile(user);
-                listenToBroadcast();
-            } else { document.getElementById('landing-screen').style.display = 'flex'; }
-        });
+    if (user) {
+        document.getElementById('landing-screen').style.display = 'none';
+        document.getElementById('app-content').classList.remove('hidden');
+
+        // --- TAMBAH SENARAI SUPER ADMIN DI SINI ---
+        const superAdmins = [
+            'ttv4u1@gmail.com', 
+            'roland@dvs.gov.my', 
+            'superadmin@domain.com'
+        ];
+
+        // Semak jika email user ada dalam senarai superAdmins
+        if (superAdmins.includes(user.email)) {
+            userRole = 'ADMIN';
+        }
+        // ------------------------------------------
+
+        await loadProfile(user);
+        listenToBroadcast();
+    } else { 
+        document.getElementById('landing-screen').style.display = 'flex'; 
+    }
+});
 
         async function loginGoogle() { const provider = new firebase.auth.GoogleAuthProvider(); await firebase.auth().signInWithPopup(provider); }
 
