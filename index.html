@@ -197,15 +197,26 @@
         let isVerified = true;
 
         firebase.auth().onAuthStateChanged(async user => {
-            if (user) {
-                document.getElementById('landing-screen').style.display = 'none';
-                document.getElementById('app-content').classList.remove('hidden');
-                const superAdmins = ['ttv4u1@gmail.com', 'roland@dvs.gov.my', 'superadmin@domain.com'];
-                if (superAdmins.includes(user.email)) userRole = 'ADMIN';
-                await loadProfile(user);
-                listenToBroadcast();
-            } else { document.getElementById('landing-screen').style.display = 'flex'; }
-        });
+    if (user) {
+        document.getElementById('landing-screen').style.display = 'none';
+        document.getElementById('app-content').classList.remove('hidden');
+
+        const superAdmins = ['ttv4u1@gmail.com', 'roland@dvs.gov.my', 'superadmin@domain.com'];
+        
+        // 1. Tentukan role dulu
+        if (superAdmins.includes(user.email)) {
+            userRole = 'ADMIN';
+        }
+
+        await loadProfile(user);
+        listenToBroadcast();
+        
+        // 2. BARU panggil history supaya dia tahu kita ni Admin
+        fetchHistory(); 
+    } else {
+        document.getElementById('landing-screen').style.display = 'flex';
+    }
+});
 
         async function loginGoogle() { const p = new firebase.auth.GoogleAuthProvider(); await firebase.auth().signInWithPopup(p); }
 
@@ -358,6 +369,7 @@ async function deleteRecord(id, col) {
 }
 
         async function fetchHistory() {
+            console.log("Role semasa memanggil history:", userRole);
             const list = document.getElementById('historyList');
             list.innerHTML = '<p class="text-center p-10 animate-pulse text-[10px] font-bold">DATABASE GLOBAL DIPANGGIL...</p>';
             try {
@@ -388,6 +400,42 @@ async function deleteRecord(id, col) {
                         document.getElementById('btnSubmit').innerText = `UPDATE ${src} #${d.BIL}`;
                         document.querySelectorAll('.calc-qty, .calc-rm').forEach(i => i.dispatchEvent(new Event('input', {bubbles:true})));
                         toggleHistory();
+                        // ... di dalam snapR.forEach dan snapE.forEach ...
+
+const buildItem = (doc, src) => {
+    const d = doc.data();
+    const card = document.createElement('div');
+    card.className = "bg-slate-50 p-4 rounded-2xl border mb-2 cursor-pointer active:scale-95 transition-all group";
+    
+    // Logik butang delete
+    const deleteBtn = userRole === 'ADMIN' ? 
+        `<button onclick="event.stopPropagation(); deleteRecord('${doc.id}', '${src === 'EXCEL' ? 'kes_penguatkuasaan' : 'reports'}')" class="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>` : '';
+
+    card.onclick = () => {
+        // ... fungsi click anda yang sedia ada ...
+    };
+
+    card.innerHTML = `
+        <div class="flex justify-between items-start w-full">
+            <div class="flex-1">
+                <p class="text-[9px] font-black text-indigo-600">#${d.BIL || '-'}</p>
+                <h4 class="font-bold text-[10px] uppercase leading-tight group-hover:text-indigo-600">${d.KESALAHAN || d['KATEGORI KES'] || 'KES'}</h4>
+                <p class="text-[8px] font-black uppercase text-slate-400 mt-1">${src} | ${d.PENGUATKUASA || 'STAF'}</p>
+            </div>
+            <div class="flex flex-col items-end gap-2">
+                <p class="font-black text-xs text-emerald-600">${d.JUMLAH_NILAI_KESELURUHAN || d['JUMLAH NILAI KESELURUHAN'] || 'RM 0'}</p>
+                ${deleteBtn}
+            </div>
+        </div>`;
+    list.appendChild(card);
+};
+
+// ... selepas snapR dan snapE selesai loop ...
+snapR.forEach(d => buildItem(d, 'LIVE'));
+snapE.forEach(d => buildItem(d, 'EXCEL'));
+
+// PENTING: Tambah baris ini di paling bawah fetchHistory (sebelum tutup catch)
+lucide.createIcons();
                     };
                     // Tambah ini sebelum card.innerHTML
                     const deleteBtn = userRole === 'ADMIN' ? 
