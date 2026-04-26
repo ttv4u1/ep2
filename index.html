@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v2.2 - Pro Edition</title>
+    <title>e-Penguatkuasa v2.3 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,12 +26,10 @@
             font-size: 16px;
             -webkit-tap-highlight-color: transparent;
         }
-        
         @keyframes goldShimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
-
         .premium-gold-btn {
             background: linear-gradient(45deg, #b45309, #f59e0b, #fbbf24, #f59e0b, #b45309);
             background-size: 200% auto;
@@ -40,6 +38,11 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(251, 191, 36, 0.5);
             animation: goldShimmer 4s linear infinite;
+        }
+        .premium-gold-btn:hover {
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.6);
+            transform: translateY(-2px);
+            color: #000;
         }
 
         .version-box {
@@ -55,7 +58,9 @@
             vertical-align: middle;
             box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
             border: 1px solid rgba(251, 191, 36, 0.6);
+            text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.3);
             text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .section-card {
@@ -66,27 +71,52 @@
 
         .form-input-modern {
             width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #cbd5e1;
-            background: #ffffff; font-weight: 700; font-size: 15px; transition: all 0.2s; color: #1e293b;
+            background: #ffffff; font-weight: 700; font-size: 16px; transition: all 0.2s; color: #1e293b;
         }
-        .form-input-modern::placeholder { color: #94a3b8; font-weight: 400; font-style: italic; font-size: 13px; }
+        .form-input-modern::placeholder { color: #94a3b8; font-weight: 400; font-style: italic; font-size: 14px; }
         .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
 
         .input-label {
-            font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; 
+            font-size: 12px; font-weight: 800; text-transform: uppercase; color: #64748b; 
             margin-bottom: 6px; display: block; letter-spacing: 0.05em;
         }
 
         .animal-grid-item { background: #f8fafc; padding: 10px; border-radius: 16px; border: 1px solid #e2e8f0; }
 
-        @media print {
-            @page { size: A4 portrait; margin: 0.4cm; }
-            .no-print { display: none !important; }
-            .section-card { border: none !important; box-shadow: none !important; padding: 0 !important; margin-bottom: 10px !important; }
-            .print-section-title { display: block !important; border-bottom: 2px solid black; margin-top: 10px; font-weight: 900; }
-            .form-input-modern { border: none !important; border-bottom: 1px solid #000 !important; border-radius: 0 !important; padding: 2px 0 !important; }
+        @media (max-width: 640px) {
+            .section-card { padding: 1rem; border-radius: 16px; margin-bottom: 1rem; }
+            header { padding: 0.75rem 0.5rem !important; }
+            .btn-action { padding: 8px 6px !important; font-size: 8px !important; }
         }
 
-        .print-section-title, #print-header, .sig-area { display: none; }
+        @media print {
+            @page { size: A4 portrait; margin: 0.4cm; }
+            body { background: white !important; font-size: 9pt !important; color: black !important; }
+            .no-print { display: none !important; }
+            .section-card, .animal-grid-item, .bg-indigo-50, .bg-slate-900 { 
+                background: transparent !important; box-shadow: none !important; border: none !important; padding: 0 !important; margin-bottom: 6px !important; 
+            }
+            .print-section-title {
+                display: block !important; font-size: 9.5pt; font-weight: 900; border-bottom: 1.5px solid black; margin-top: 8px; margin-bottom: 4px; text-transform: uppercase;
+            }
+            .form-input-modern { 
+                border: none !important; border-bottom: 1px solid #000 !important; background: transparent !important;
+                padding: 1px 0 !important; font-size: 10pt !important; font-weight: 700 !important; border-radius: 0 !important;
+            }
+            .input-label { font-size: 8pt !important; margin-bottom: 0px !important; font-weight: 800 !important; color: #222 !important; }
+            .grid { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 6px 12px !important; }
+            .sig-area { display: flex !important; justify-content: space-between; margin-top: 20px; }
+            .sig-box { width: 45%; font-size: 8pt; }
+            .sig-line { border-bottom: 1px solid black; height: 35px; margin-bottom: 4px; width: 90%; }
+            #print-header { display: block !important; margin-bottom: 5px; }
+            .header-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid black; padding-bottom: 5px; }
+            .header-top img { height: 35px; }
+            .header-top h1 { font-size: 11pt; font-weight: 900; margin:0; }
+            .print-officer-info { display: block !important; font-size: 8.5pt; font-weight: 800; text-align: left; line-height: 1.4; }
+            #print-timestamp { font-size: 8pt; text-align: right; font-weight: 700; }
+        }
+
+        .print-section-title, #print-header, .sig-area, .print-officer-info { display: none; }
         #loader { display:none; position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 9999; align-items: center; justify-content: center; flex-direction: column; }
     </style>
 </head>
@@ -94,14 +124,14 @@
 
     <div id="loader">
         <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Memproses Data v2.2...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Memproses Data v2.3...</p>
     </div>
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-8 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v2.2</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v2.3</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase text-sm">
                 AKSES SISTEM
             </button>
@@ -116,21 +146,39 @@
                 <div class="flex items-center gap-3">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8 sm:h-10">
                     <div>
-                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v2.2</span></h2>
+                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v2.3</span></h2>
                         <p id="realtime-clock" class="text-[9px] sm:text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
                 <div class="flex flex-wrap items-center gap-1 sm:gap-2 justify-between w-full sm:w-auto">
-                    <button onclick="resetForm()" class="px-3 py-2 bg-indigo-600 text-white rounded-xl font-black text-[10px] uppercase">Baru</button>
-                    <button onclick="toggleHistory()" class="px-3 py-2 bg-amber-500 text-slate-900 rounded-xl font-black text-[10px] uppercase">Rekod</button>
-                    <button onclick="exportToExcel()" class="px-3 py-2 bg-emerald-600 text-white rounded-xl font-black text-[10px] uppercase">Excel</button>
-                    <button onclick="printReport()" class="px-3 py-2 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase">Cetak</button>
+                    <button onclick="resetForm()" class="btn-action px-3 py-2 bg-indigo-600 text-white rounded-xl font-black uppercase shadow-sm">Baru</button>
+                    <button onclick="toggleHistory()" class="btn-action px-3 py-2 bg-amber-500 text-slate-900 rounded-xl font-black uppercase shadow-sm">Rekod</button>
+                    <button onclick="exportToExcel()" class="btn-action px-3 py-2 bg-emerald-600 text-white rounded-xl font-black uppercase shadow-sm">Excel</button>
+                    <button onclick="exportToCSV()" class="btn-action px-3 py-2 bg-blue-600 text-white rounded-xl font-black uppercase shadow-sm">Access</button>
+                    <button onclick="printReport()" class="btn-action px-3 py-2 bg-slate-900 text-white rounded-xl font-black uppercase shadow-sm">Cetak</button>
                     <button onclick="toggleProfile()" class="ml-1 p-1 bg-slate-100 rounded-full border">
                         <img id="navAvatar" src="" class="w-6 h-6 rounded-full object-cover">
                     </button>
                 </div>
             </div>
         </header>
+
+        <!-- PRINT HEADER -->
+        <div id="print-header">
+            <div class="header-top">
+                <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
+                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v2.3)</h1>
+                <div></div>
+            </div>
+            <div class="header-sub">
+                <div class="print-officer-info">
+                    <span id="p_officer_name">NAMA: -</span><br>
+                    <span id="p_officer_gred">GRED: -</span><br>
+                    <span id="p_officer_branch">NEGERI/CAWANGAN: -</span>
+                </div>
+                <div id="print-timestamp"></div>
+            </div>
+        </div>
 
         <main class="w-full px-4 sm:px-6 py-6 mx-auto max-w-7xl">
             <form id="mainForm">
@@ -140,7 +188,7 @@
                 <h3 class="print-section-title">A. Maklumat Pengurusan & Kejadian</h3>
                 <div class="section-card">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
-                        <div><label class="input-label">1. Bil</label><input type="text" name="BIL" class="form-input-modern uppercase" placeholder="Contoh: 001/2026"></div>
+                        <div><label class="input-label">1. Bil</label><input type="text" name="BIL" class="form-input-modern uppercase" placeholder="CONTOH: 001/2026"></div>
                         <div><label class="input-label">2. Tahun</label><input type="number" name="TAHUN" id="f_tahun" class="form-input-modern" placeholder="2026"></div>
                         <div><label class="input-label">3. Bulan</label>
                             <select name="BULAN" id="f_bulan" class="form-input-modern">
@@ -149,50 +197,50 @@
                                 <option>SEPTEMBER</option><option>OKTOBER</option><option>NOVEMBER</option><option>DISEMBER</option>
                             </select>
                         </div>
-                        <div class="sm:col-span-2 lg:col-span-3"><label class="input-label">4. Pegawai Penguatkuasa</label><input type="text" id="form_staff" name="PENGUATKUASA" class="form-input-modern bg-slate-50 uppercase" readonly></div>
-                        <div class="sm:col-span-1 lg:col-span-2"><label class="input-label">5. Kategori Kes</label><input type="text" name="KATEGORI_KES" class="form-input-modern uppercase" placeholder="Cth: PENYELUDUPAN / KEBAJIKAN"></div>
-                        <div class="sm:col-span-1 lg:col-span-2"><label class="input-label">6. No Repot Polis</label><input type="text" name="NO_REPOT_POLIS" class="form-input-modern uppercase" placeholder="Cth: K.LUMPUR/001234/26"></div>
+                        <div class="sm:col-span-2 lg:col-span-3"><label class="input-label">4. Pegawai Penguatkuasa</label><input type="text" id="form_staff" name="PENGUATKUASA" class="form-input-modern bg-slate-50 uppercase" readonly placeholder="NAMA PEGAWAI (AUTOMATIK)"></div>
+                        <div class="sm:col-span-1 lg:col-span-2"><label class="input-label">5. Kategori Kes</label><input type="text" name="KATEGORI_KES" class="form-input-modern uppercase" placeholder="CONTOH: IMPORT HARAM / KEBAJIKAN"></div>
+                        <div class="sm:col-span-1 lg:col-span-2"><label class="input-label">6. No Repot Polis</label><input type="text" name="NO_REPOT_POLIS" class="form-input-modern uppercase" placeholder="CONTOH: RPT/IPD/1234/26"></div>
                         <div class="sm:col-span-1 lg:col-span-2"><label class="input-label">7. Tarikh Kejadian</label><input type="date" name="TARIKH_KEJADIAN" class="form-input-modern"></div>
                         <div class="sm:col-span-1 lg:col-span-2"><label class="input-label">8. Masa Kejadian</label><input type="time" name="MASA_KEJADIAN" class="form-input-modern"></div>
-                        <div class="sm:col-span-2 lg:col-span-4"><label class="input-label">9. Lokasi Kejadian</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern uppercase" placeholder="Cth: NO. 12, JALAN MERDEKA, 50480 KUALA LUMPUR"></div>
-                        <div class="sm:col-span-2 lg:col-span-4"><label class="input-label">10. Kesalahan</label><input type="text" name="KESALAHAN" class="form-input-modern uppercase" placeholder="Cth: MEMINDAHKAN HAIWAN TANPA PERMIT SAH"></div>
-                        <div class="sm:col-span-2 lg:col-span-5"><label class="input-label">11. Undang-Undang</label><input type="text" name="UNDANG_UNDANG" class="form-input-modern uppercase" placeholder="Cth: SEKSYEN 36(1) AKTA BINATANG 1953"></div>
-                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">12. No Kes IP</label><input type="text" name="NO_KES_IP" class="form-input-modern uppercase" placeholder="Cth: IP/HQ/2026/001"></div>
-                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">13. Jenis Rampasan</label><input type="text" name="JENIS_RAMPASAN" class="form-input-modern uppercase" placeholder="Cth: HAIWAN HIDUP / KARKAS"></div>
+                        <div class="sm:col-span-2 lg:col-span-4"><label class="input-label">9. Lokasi Kejadian</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern uppercase" placeholder="CONTOH: JALAN BUKIT AMAN, KUALA LUMPUR"></div>
+                        <div class="sm:col-span-2 lg:col-span-4"><label class="input-label">10. Kesalahan</label><input type="text" name="KESALAHAN" class="form-input-modern uppercase" placeholder="CONTOH: MEMBAWA TERNAKAN TANPA PERMIT"></div>
+                        <div class="sm:col-span-2 lg:col-span-5"><label class="input-label">11. Undang-Undang</label><input type="text" name="UNDANG_UNDANG" class="form-input-modern uppercase" placeholder="CONTOH: SEKSYEN 36(1) AKTA BINATANG 1953"></div>
+                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">12. No Kes IP</label><input type="text" name="NO_KES_IP" class="form-input-modern uppercase" placeholder="CONTOH: IP/2026/001"></div>
+                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">13. Jenis Rampasan</label><input type="text" name="JENIS_RAMPASAN" class="form-input-modern uppercase" placeholder="CONTOH: TERNAKAN HIDUP / KARKAS"></div>
                     </div>
                 </div>
 
                 <!-- Section B -->
-                <h3 class="print-section-title">B. Butiran Rampasan Utama (Bilangan)</h3>
+                <h3 class="print-section-title">B. Butiran Rampasan Utama</h3>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
                     <div class="section-card !mb-0 border-t-4 border-blue-500">
                         <div class="grid grid-cols-2 gap-3">
-                            <div class="animal-grid-item"><label class="input-label">14. Lembu</label><input type="number" name="LEMBU" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">15. Kerbau</label><input type="number" name="KERBAU" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">16. Kambing</label><input type="number" name="KAMBING" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">17. Bebiri</label><input type="number" name="BEBIRI" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">18. Babi</label><input type="number" name="BABI" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">19. Ayam</label><input type="number" name="AYAM" class="form-input-modern" value="0" placeholder="0"></div>
+                            <div class="animal-grid-item"><label class="input-label">14. Lembu</label><input type="number" name="LEMBU" class="form-input-modern" value="0" placeholder="10"></div>
+                            <div class="animal-grid-item"><label class="input-label">15. Kerbau</label><input type="number" name="KERBAU" class="form-input-modern" value="0" placeholder="5"></div>
+                            <div class="animal-grid-item"><label class="input-label">16. Kambing</label><input type="number" name="KAMBING" class="form-input-modern" value="0" placeholder="20"></div>
+                            <div class="animal-grid-item"><label class="input-label">17. Bebiri</label><input type="number" name="BEBIRI" class="form-input-modern" value="0" placeholder="15"></div>
+                            <div class="animal-grid-item"><label class="input-label">18. Babi</label><input type="number" name="BABI" class="form-input-modern" value="0" placeholder="50"></div>
+                            <div class="animal-grid-item"><label class="input-label">19. Ayam</label><input type="number" name="AYAM" class="form-input-modern" value="0" placeholder="100"></div>
                         </div>
                     </div>
                     <div class="section-card !mb-0 border-t-4 border-red-500">
                         <div class="grid grid-cols-2 gap-3">
-                            <div class="animal-grid-item"><label class="input-label">20. Karkas Lembu</label><input type="number" name="KARKAS_LEMBU" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">21. Karkas Kerbau</label><input type="number" name="KARKAS_KERBAU" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">22. Karkas Kambing</label><input type="number" name="KARKAS_KAMBING" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">23. Karkas Babi</label><input type="number" name="KARKAS_BABI" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">24. Babi SB</label><input type="number" name="KARKAS_BABI_SEJUK_BEKU" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">25. Karkas Ayam</label><input type="number" name="KARKAS_AYAM" class="form-input-modern" value="0" placeholder="0"></div>
+                            <div class="animal-grid-item"><label class="input-label">20. Karkas Lembu</label><input type="number" name="KARKAS_LEMBU" class="form-input-modern" value="0" placeholder="200KG"></div>
+                            <div class="animal-grid-item"><label class="input-label">21. Karkas Kerbau</label><input type="number" name="KARKAS_KERBAU" class="form-input-modern" value="0" placeholder="150KG"></div>
+                            <div class="animal-grid-item"><label class="input-label">22. Karkas Kambing</label><input type="number" name="KARKAS_KAMBING" class="form-input-modern" value="0" placeholder="50KG"></div>
+                            <div class="animal-grid-item"><label class="input-label">23. Karkas Babi</label><input type="number" name="KARKAS_BABI" class="form-input-modern" value="0" placeholder="300KG"></div>
+                            <div class="animal-grid-item"><label class="input-label">24. Babi SB</label><input type="number" name="KARKAS_BABI_SEJUK_BEKU" class="form-input-modern" value="0" placeholder="1000KG"></div>
+                            <div class="animal-grid-item"><label class="input-label">25. Karkas Ayam</label><input type="number" name="KARKAS_AYAM" class="form-input-modern" value="0" placeholder="500KG"></div>
                         </div>
                     </div>
                     <div class="section-card !mb-0 border-t-4 border-emerald-500">
                         <div class="grid grid-cols-2 gap-3">
-                            <div class="animal-grid-item"><label class="input-label">26. SB Itik</label><input type="number" name="PRODUK_SEJUK_BEKU_ITIK" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">27. SB Ayam</label><input type="number" name="PRODUK_SEJUK_BEKU_AYAM" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">28. SB Babi</label><input type="number" name="PRODUK_SEJUK_BEKU_BABI" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">29. Prod Tin</label><input type="number" name="PRODUK_HAIWAN_TIN" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">30. Anjing</label><input type="number" name="ANJING" class="form-input-modern" value="0" placeholder="0"></div>
-                            <div class="animal-grid-item"><label class="input-label">31. Kucing</label><input type="number" name="KUCING" class="form-input-modern" value="0" placeholder="0"></div>
+                            <div class="animal-grid-item"><label class="input-label">26. SB Itik</label><input type="number" name="PRODUK_SEJUK_BEKU_ITIK" class="form-input-modern" value="0" placeholder="50KG"></div>
+                            <div class="animal-grid-item"><label class="input-label">27. SB Ayam</label><input type="number" name="PRODUK_SEJUK_BEKU_AYAM" class="form-input-modern" value="0" placeholder="200KG"></div>
+                            <div class="animal-grid-item"><label class="input-label">28. SB Babi</label><input type="number" name="PRODUK_SEJUK_BEKU_BABI" class="form-input-modern" value="0" placeholder="400KG"></div>
+                            <div class="animal-grid-item"><label class="input-label">29. Prod Tin</label><input type="number" name="PRODUK_HAIWAN_TIN" class="form-input-modern" value="0" placeholder="100 TIN"></div>
+                            <div class="animal-grid-item"><label class="input-label">30. Anjing</label><input type="number" name="ANJING" class="form-input-modern" value="0" placeholder="2"></div>
+                            <div class="animal-grid-item"><label class="input-label">31. Kucing</label><input type="number" name="KUCING" class="form-input-modern" value="0" placeholder="3"></div>
                         </div>
                     </div>
                 </div>
@@ -201,36 +249,54 @@
                 <h3 class="print-section-title">C. Logistik & Tambahan</h3>
                 <div class="section-card">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4">
-                        <div class="sm:col-span-1 lg:col-span-2 animal-grid-item"><label class="input-label">32. Arnab</label><input type="number" name="ARNAB" class="form-input-modern" value="0" placeholder="0"></div>
-                        <div class="sm:col-span-1 lg:col-span-2 animal-grid-item"><label class="input-label">33. Burung</label><input type="number" name="BURUNG" class="form-input-modern" value="0" placeholder="0"></div>
-                        <div class="sm:col-span-1 lg:col-span-2 animal-grid-item"><label class="input-label">34. Hamster</label><input type="number" name="HAMSTER" class="form-input-modern" value="0" placeholder="0"></div>
-                        <div class="sm:col-span-1 lg:col-span-6"><label class="input-label">35. Rampasan Lain</label><input type="text" name="RAMPASAN_LAIN_LAIN" class="form-input-modern uppercase" placeholder="Cth: 100KG Daging Rusa"></div>
-                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">36. Juml Kenderaan</label><input type="number" name="JUMLAH_RAMPASAN_KENDERAAN" class="form-input-modern" value="0" placeholder="0"></div>
-                        <div class="sm:col-span-1 lg:col-span-9"><label class="input-label">37. Rampasan Pengangkutan</label><input type="text" name="RAMPASAN_PENGANGKUTAN" class="form-input-modern uppercase" placeholder="Cth: PROTON SAGA (ABC 1234) / LORI ISUZU (WXY 9999)"></div>
+                        <div class="sm:col-span-1 lg:col-span-2 animal-grid-item"><label class="input-label">32. Arnab</label><input type="number" name="ARNAB" class="form-input-modern" value="0" placeholder="10"></div>
+                        <div class="sm:col-span-1 lg:col-span-2 animal-grid-item"><label class="input-label">33. Burung</label><input type="number" name="BURUNG" class="form-input-modern" value="0" placeholder="50"></div>
+                        <div class="sm:col-span-1 lg:col-span-2 animal-grid-item"><label class="input-label">34. Hamster</label><input type="number" name="HAMSTER" class="form-input-modern" value="0" placeholder="12"></div>
+                        <div class="sm:col-span-1 lg:col-span-6"><label class="input-label">35. Rampasan Lain</label><input type="text" name="RAMPASAN_LAIN_LAIN" class="form-input-modern uppercase" placeholder="CONTOH: UBAT-UBATAN HAIWAN / TELUR"></div>
+                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">36. Juml Kenderaan</label><input type="number" name="JUMLAH_RAMPASAN_KENDERAAN" class="form-input-modern" value="0" placeholder="1"></div>
+                        <div class="sm:col-span-1 lg:col-span-9"><label class="input-label">37. Rampasan Pengangkutan</label><input type="text" name="RAMPASAN_PENGANGKUTAN" class="form-input-modern uppercase" placeholder="CONTOH: LORI ISUZU ABC1234 / NO. KONTENA MSCU1234567"></div>
                     </div>
                 </div>
 
                 <!-- Section D -->
-                <h3 class="print-section-title">D. Ringkasan Nilai Kes & Catatan</h3>
-                <div class="section-card border-l-[12px] border-indigo-600">
+                <h3 class="print-section-title">D. Ringkasan Nilai & Pengesahan</h3>
+                <div class="section-card border-l-[12px] border-indigo-600 print:border-l-0">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                        <div><label class="input-label">38. Nilai Ekor/KG (RM)</label><input type="number" name="ANGGARAN_NILAI_EKOR_KG" class="calc form-input-modern" value="0" placeholder="5000"></div>
-                        <div><label class="input-label">39. Nilai Kenderaan (RM)</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc form-input-modern" value="0" placeholder="35000"></div>
-                        <div><label class="input-label">40. Nilai Kontena (RM)</label><input type="number" name="ANGGARAN_NILAI_PENGANGKUT_KONTENA" class="calc form-input-modern" value="0" placeholder="0"></div>
-                        <div><label class="input-label">41. Nilai Lain (RM)</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc form-input-modern" value="0" placeholder="0"></div>
+                        <div><label class="input-label">38. Nilai Ekor/KG</label><input type="number" name="ANGGARAN_NILAI_EKOR_KG" class="calc form-input-modern" value="0" placeholder="RM 50000.00"></div>
+                        <div><label class="input-label">39. Nilai Kenderaan</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc form-input-modern" value="0" placeholder="RM 80000.00"></div>
+                        <div><label class="input-label">40. Nilai Kontena</label><input type="number" name="ANGGARAN_NILAI_PENGANGKUT_KONTENA" class="calc form-input-modern" value="0" placeholder="RM 0.00"></div>
+                        <div><label class="input-label">41. Nilai Lain</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc form-input-modern" value="0" placeholder="RM 2000.00"></div>
                     </div>
                     
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-6">
                         <div class="lg:col-span-6">
-                            <label class="input-label">42. Jumlah Nilai Keseluruhan (RM)</label>
+                            <label class="input-label">42. Jumlah Nilai (RM)</label>
                             <input type="text" id="total_val_web" readonly name="JUMLAH_NILAI_KESELURUHAN" class="form-input-modern font-black text-2xl border-none outline-none bg-transparent" value="RM 0.00">
                         </div>
-                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">43. Kes Serahan</label><input type="text" name="KES_SERAHAN" class="form-input-modern uppercase" placeholder="Cth: POLIS / KASTAM"></div>
-                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">44. Catatan</label><input type="text" name="CATATAN" class="form-input-modern uppercase" placeholder="Cth: KES DALAM SIASATAN"></div>
+                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">43. Kes Serahan</label><input type="text" name="KES_SERAHAN" class="form-input-modern uppercase" placeholder="CONTOH: PEJABAT KESIHATAN DAERAH"></div>
+                        <div class="sm:col-span-1 lg:col-span-3"><label class="input-label">44. Catatan</label><input type="text" name="CATATAN" class="form-input-modern uppercase" placeholder="CONTOH: SUSPEK TELAH DIJAMIN OLEH POLIS"></div>
                     </div>
 
                     <div class="mt-8 no-print flex justify-center">
-                        <button type="button" onclick="saveToAll()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v2.2</button>
+                        <button type="button" onclick="saveToAll()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v2.3</button>
+                    </div>
+                </div>
+
+                <!-- SIGNATURES (PRINT) -->
+                <div class="sig-area">
+                    <div class="sig-box">
+                        <p style="font-weight: 800;">DISEDIAKAN OLEH (PEGAWAI PENYEDIA):</p>
+                        <div class="sig-line"></div>
+                        <p>NAMA : __________________________________</p>
+                        <p>TARIKH : _________________________________</p>
+                    </div>
+                    <div class="sig-box" style="text-align: right; display: flex; flex-direction: column; align-items: flex-end;">
+                        <div style="text-align: left; width: 85%;">
+                            <p style="font-weight: 800;">DISAHKAN OLEH (KETUA):</p>
+                            <div class="sig-line" style="width: 100%;"></div>
+                            <p>NAMA : __________________________________</p>
+                            <p>TARIKH : _________________________________</p>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -238,50 +304,87 @@
     </div>
 
     <!-- DB SIDEBAR -->
-    <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-lg h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto p-6">
+    <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-lg h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v2.2</span></h2>
+            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v2.3</span></h2>
             <button onclick="toggleHistory()" class="p-2 bg-white rounded-full border shadow-sm"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
     </aside>
 
     <!-- PROFILE SIDEBAR -->
-    <aside id="profileSidebar" class="fixed top-0 right-[-100%] w-full max-w-sm h-full bg-white z-[2500] shadow-2xl transition-all duration-500 p-8 border-l">
+    <aside id="profileSidebar" class="fixed top-0 right-[-100%] w-full max-w-sm h-full bg-white z-[2500] shadow-2xl transition-all duration-500 p-8 no-print border-l">
         <div class="flex justify-between items-center mb-8">
             <h2 class="font-black text-xl uppercase tracking-tighter">Profil Pegawai</h2>
             <button onclick="toggleProfile()"><i data-lucide="x"></i></button>
         </div>
-        <div id="adminBadge" class="hidden inline-block bg-red-600 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase mb-4">SUPER ADMIN</div>
-        <div class="space-y-4">
-            <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern uppercase" placeholder="Nama Anda"></div>
-            <div><label class="input-label">Gred Jabatan</label><input type="text" id="userGred" class="form-input-modern uppercase" placeholder="Cth: G29"></div>
-            <div><label class="input-label">Negeri / Cawangan</label><input type="text" id="userCawangan" class="form-input-modern uppercase" placeholder="Cth: JPV SELANGOR"></div>
-            <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl uppercase shadow-lg">Kemaskini Profil</button>
-            <hr class="my-4">
-            <div id="adminControls" class="hidden space-y-4">
-                <button onclick="openAdminPanel()" class="premium-gold-btn w-full font-black py-4 rounded-2xl uppercase text-sm">Panel Kawalan Admin</button>
+        
+        <div class="text-center mb-6">
+            <div id="adminBadge" class="hidden inline-block bg-red-600 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase mb-2">
+                SUPER ADMIN
             </div>
+        </div>
+
+        <div class="space-y-4">
+            <div><label class="input-label">Nama Penuh</label><input type="text" id="userName" class="form-input-modern uppercase" placeholder="CONTOH: AHMAD BIN ALI"></div>
+            <div><label class="input-label">Gred Jabatan</label><input type="text" id="userGred" class="form-input-modern uppercase" placeholder="CONTOH: G29 / G41"></div>
+            <div><label class="input-label">Negeri / Cawangan</label><input type="text" id="userCawangan" class="form-input-modern uppercase" placeholder="CONTOH: JPV SELANGOR / BPK HQ"></div>
+            
+            <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl uppercase shadow-lg hover:bg-indigo-700 transition">Kemaskini Profil</button>
+            
+            <hr class="my-4">
+
+            <div id="adminControls" class="hidden space-y-4 mt-6">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="h-[1px] flex-1 bg-amber-200"></div>
+                    <p class="text-[10px] font-black text-amber-600 uppercase tracking-[0.2em]">Pihak ICT BPK</p>
+                    <div class="h-[1px] flex-1 bg-amber-200"></div>
+                </div>
+                
+                <button onclick="openAdminPanel()" class="premium-gold-btn w-full font-black py-4 rounded-2xl uppercase shadow-lg flex items-center justify-center gap-3 tracking-tighter text-sm">
+                    <i data-lucide="crown" class="w-5 h-5"></i>
+                    PANEL KAWALAN SUPER ADMIN
+                </button>
+                
+                <a id="btnOpenSheet" href="https://docs.google.com/spreadsheets/d/1eUBxDHyWJBa407gwPSlhNnBOWeDVng5E01ZJX36pxU8/edit" target="_blank" class="w-full bg-slate-100 text-slate-700 border border-slate-200 text-center font-bold py-3 rounded-2xl uppercase text-[11px] flex items-center justify-center gap-2 hover:bg-white transition">
+                    <i data-lucide="database" class="w-4 h-4"></i> Buka Database Utama
+                </a>
+            </div>
+
             <button onclick="logout()" class="w-full text-red-500 font-bold text-xs uppercase mt-4">Log Keluar</button>
         </div>
     </aside>
 
-    <!-- ADMIN MODAL -->
+    <!-- MODAL PANEL ADMIN -->
     <div id="adminModal" class="fixed inset-0 bg-slate-900/90 z-[3000] hidden flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-2xl rounded-[32px] max-h-[90vh] overflow-y-auto p-8">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-black uppercase text-slate-800">Admin Control Panel</h2>
+                <h2 class="text-2xl font-black uppercase italic text-slate-800">Admin Control Panel</h2>
                 <button onclick="closeAdminPanel()"><i data-lucide="x"></i></button>
             </div>
+            
             <div class="grid grid-cols-2 gap-4 mb-8">
-                <div class="bg-indigo-50 p-6 rounded-2xl"><p class="text-xs font-bold text-indigo-600 uppercase">Total Kes</p><h3 id="statTotalKes" class="text-3xl font-black">0</h3></div>
-                <div class="bg-emerald-50 p-6 rounded-2xl"><p class="text-xs font-bold text-emerald-600 uppercase">Total Nilai</p><h3 id="statTotalRM" class="text-2xl font-black">RM 0</h3></div>
+                <div class="bg-indigo-50 p-6 rounded-2xl">
+                    <p class="text-xs font-bold text-indigo-600 uppercase">Total Kes (Semua)</p>
+                    <h3 id="statTotalKes" class="text-3xl font-black text-indigo-900">0</h3>
+                </div>
+                <div class="bg-emerald-50 p-6 rounded-2xl">
+                    <p class="text-xs font-bold text-emerald-600 uppercase">Total Nilai (RM)</p>
+                    <h3 id="statTotalRM" class="text-2xl font-black text-emerald-900">RM 0</h3>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <p class="text-xs font-black uppercase text-slate-400 mb-2">Tindakan Admin</p>
+                <button onclick="toggleHistory(); closeAdminPanel();" class="w-full text-left p-4 rounded-xl border-2 border-slate-100 hover:border-indigo-500 font-bold flex justify-between items-center">
+                    Padam / Edit Rekod Pegawai <i data-lucide="chevron-right"></i>
+                </button>
             </div>
         </div>
     </div>
 
     <script>
-        // CONFIG
+        // --- 1. KONFIGURASI ---
         const BASEROW_TOKEN = '7OPuNqPLqPtdkykdydfGSHaXReA00BQU';
         const BASEROW_TABLE_ID = '947317';
         const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxTfX2j4dRIbdEg2JhEUC19dS3Is_4IC1mc47KlzFS00vQDrnRVtWn3vc06S9LvDDDpcA/exec';
@@ -301,101 +404,186 @@
 
         let userMeta = { name: '', gred: '', cawangan: '', role: 'USER' };
 
-        // AUTH
+        // --- 2. SISTEM LOGIN & AUTH ---
         async function loginGoogle() {
             const provider = new firebase.auth.GoogleAuthProvider();
             document.getElementById('loader').style.display = 'flex';
-            try { await firebase.auth().signInWithPopup(provider); } 
-            catch (e) { alert(e.message); }
-            finally { document.getElementById('loader').style.display = 'none'; }
+            try {
+                await firebase.auth().signInWithPopup(provider);
+            } catch (error) {
+                console.log("Popup blocked or failed, trying redirect...", error);
+                try {
+                    await firebase.auth().signInWithRedirect(provider);
+                } catch (err) {
+                    alert("Ralat Akses: " + err.message);
+                }
+            } finally {
+                document.getElementById('loader').style.display = 'none';
+            }
         }
 
         firebase.auth().onAuthStateChanged(async (user) => {
+            const landing = document.getElementById('landing-screen');
+            const app = document.getElementById('app-content');
+            
             if (user) {
-                document.getElementById('landing-screen').style.display = 'none';
-                document.getElementById('app-content').classList.remove('hidden');
-                document.getElementById('app-content').style.opacity = "1";
+                landing.style.display = 'none';
+                app.classList.remove('hidden');
+                app.style.opacity = "1";
                 await loadProfile(user);
                 updateClock();
             } else {
-                document.getElementById('landing-screen').style.display = 'flex';
-                document.getElementById('app-content').classList.add('hidden');
+                landing.style.display = 'flex';
+                app.classList.add('hidden');
             }
         });
 
         async function loadProfile(user) {
-            const doc = await db.collection("users").doc(user.uid).get();
-            const d = doc.exists ? doc.data() : {};
-            const isAdmin = (d.role === 'ADMIN' || user.email === 'ttv4u1@gmail.com');
-            
-            userMeta = { name: d.name || '', gred: d.gred || '', cawangan: d.cawangan || '', role: isAdmin ? 'ADMIN' : 'USER' };
-            
-            document.getElementById('navAvatar').src = user.photoURL || `https://ui-avatars.com/api/?name=${userMeta.name}`;
-            document.getElementById('userName').value = userMeta.name;
-            document.getElementById('userGred').value = userMeta.gred;
-            document.getElementById('userCawangan').value = userMeta.cawangan;
-            document.getElementById('adminBadge').classList.toggle('hidden', !isAdmin);
-            document.getElementById('adminControls').classList.toggle('hidden', !isAdmin);
-            
-            if(userMeta.name) {
-                document.getElementById('form_staff').value = `${userMeta.name} (${userMeta.gred}) / ${userMeta.cawangan}`.toUpperCase();
-            }
+            try {
+                const doc = await db.collection("users").doc(user.uid).get();
+                const d = doc.exists ? doc.data() : {};
+                const isAdmin = (d.role === 'ADMIN' || user.email === 'ttv4u1@gmail.com');
+                
+                userMeta = { 
+                    name: d.name || '', 
+                    gred: d.gred || '', 
+                    cawangan: d.cawangan || '',
+                    role: isAdmin ? 'ADMIN' : 'USER' 
+                };
+
+                document.getElementById('adminBadge').classList.toggle('hidden', !isAdmin);
+                document.getElementById('adminControls').classList.toggle('hidden', !isAdmin);
+                document.getElementById('navAvatar').src = user.photoURL || `https://ui-avatars.com/api/?name=${userMeta.name || 'P'}`;
+                document.getElementById('userName').value = userMeta.name;
+                document.getElementById('userGred').value = userMeta.gred;
+                document.getElementById('userCawangan').value = userMeta.cawangan;
+                
+                document.getElementById('p_officer_name').innerText = "NAMA: " + (userMeta.name || "-");
+                document.getElementById('p_officer_gred').innerText = "GRED: " + (userMeta.gred || "-");
+                document.getElementById('p_officer_branch').innerText = "NEGERI/CAWANGAN: " + (userMeta.cawangan || "-");
+
+                if(userMeta.name) {
+                    document.getElementById('form_staff').value = `${userMeta.name} (${userMeta.gred}) / ${userMeta.cawangan}`.toUpperCase();
+                }
+            } catch (e) { console.error("Error Load Profile:", e); }
+        }
+
+        async function openAdminPanel() {
+            document.getElementById('adminModal').classList.remove('hidden');
+            const snapshot = await db.collection("reports").get();
+            let totalRM = 0;
+            snapshot.forEach(doc => {
+                const val = doc.data().JUMLAH_NILAI_KESELURUHAN || "0";
+                totalRM += Number(val.replace(/[^0-9.-]+/g,""));
+            });
+            document.getElementById('statTotalKes').innerText = snapshot.size;
+            document.getElementById('statTotalRM').innerText = "RM " + totalRM.toLocaleString();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminModal').classList.add('hidden');
         }
 
         async function saveProfile() {
             const user = firebase.auth().currentUser;
-            const data = { 
-                name: document.getElementById('userName').value.toUpperCase(),
-                gred: document.getElementById('userGred').value.toUpperCase(),
-                cawangan: document.getElementById('userCawangan').value.toUpperCase()
-            };
-            await db.collection("users").doc(user.uid).set(data, { merge: true });
-            alert("Profil Dikemaskini!");
-            location.reload();
+            const n = document.getElementById('userName').value.toUpperCase();
+            const g = document.getElementById('userGred').value.toUpperCase();
+            const c = document.getElementById('userCawangan').value.toUpperCase();
+            if(!n || !g || !c) return alert("Lengkapkan profil!");
+
+            document.getElementById('loader').style.display = 'flex';
+            try {
+                await db.collection("users").doc(user.uid).set({ name: n, gred: g, cawangan: c }, { merge: true });
+                alert("Profil Dikemaskini!");
+                location.reload();
+            } catch (e) { alert(e.message); }
+            finally { document.getElementById('loader').style.display = 'none'; }
         }
 
-        // CRUD
+        function logout() { firebase.auth().signOut().then(() => location.reload()); }
+
+        // --- 3. PENGURUSAN DATA (SAVE/FETCH) ---
         async function saveToAll() {
             const user = firebase.auth().currentUser;
-            if(!userMeta.name) { alert("Lengkapkan profil dahulu!"); toggleProfile(); return; }
+            if(!user || !userMeta.name) { alert("Sila lengkapkan profil dahulu!"); toggleProfile(); return; }
 
             document.getElementById('loader').style.display = 'flex';
             const formData = new FormData(document.getElementById('mainForm'));
+            const totalVal = document.getElementById('total_val_web').value;
             const dataObj = Object.fromEntries(formData.entries());
+            
+            Object.keys(dataObj).forEach(k => { if(typeof dataObj[k] === 'string') dataObj[k] = dataObj[k].toUpperCase(); });
+            dataObj.JUMLAH_NILAI_KESELURUHAN = totalVal;
             dataObj.userId = user.uid;
             dataObj.recordedBy = userMeta.name;
             dataObj.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
 
             try {
-                await db.collection("reports").add(dataObj);
-                fetch(GOOGLE_SHEET_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dataObj) });
-                alert("Rekod Berjaya Disimpan!");
+                const br = fetch(`https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Token ${BASEROW_TOKEN}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataObj)
+                });
+                const gs = fetch(GOOGLE_SHEET_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dataObj) });
+                const fb = db.collection("reports").add(dataObj);
+
+                await Promise.all([br, gs, fb]);
+                alert("Rekod Berjaya Disimpan ke Semua Database!");
                 resetForm();
-            } catch (e) { alert(e.message); }
+            } catch (e) { alert("Ralat: " + e.message); }
             finally { document.getElementById('loader').style.display = 'none'; }
         }
 
         async function fetchHistory() {
             const user = firebase.auth().currentUser;
             const listDiv = document.getElementById('historyList');
-            listDiv.innerHTML = '<p class="text-center py-10 text-xs">Menarik Rekod...</p>';
+            listDiv.innerHTML = '<p class="text-center py-10 text-xs animate-pulse">Menarik Rekod...</p>';
             
-            let query = (userMeta.role === 'ADMIN') ? db.collection("reports") : db.collection("reports").where("userId", "==", user.uid);
-            const snapshot = await query.orderBy("updatedAt", "desc").limit(20).get();
-            listDiv.innerHTML = "";
-            
-            snapshot.forEach(doc => {
-                const d = doc.data();
-                const card = document.createElement('div');
-                card.className = "bg-white p-4 rounded-2xl border-l-8 border-indigo-600 shadow-sm cursor-pointer";
-                card.onclick = () => loadRecordToForm(doc.id);
-                card.innerHTML = `
-                    <div class="flex justify-between text-[10px] font-black"><span>BIL: ${d.BIL || '-'}</span><span class="text-emerald-600">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0.00'}</span></div>
-                    <p class="text-[10px] mt-1 font-bold">${d.LOKASI_KEJADIAN || 'TIADA LOKASI'}</p>
-                    <p class="text-[8px] text-slate-500 mt-1 uppercase">${d.recordedBy || ''}</p>
-                `;
-                listDiv.appendChild(card);
-            });
+            try {
+                let query = (userMeta.role === 'ADMIN') ? db.collection("reports") : db.collection("reports").where("userId", "==", user.uid);
+                const snapshot = await query.orderBy("updatedAt", "desc").limit(50).get();
+                listDiv.innerHTML = "";
+                
+                snapshot.forEach(doc => {
+                    const d = doc.data();
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-4 rounded-2xl border-l-8 border-indigo-600 shadow-sm mb-3 relative group";
+                    
+                    let deleteBtn = userMeta.role === 'ADMIN' ? 
+                        `<button onclick="deleteRecord('${doc.id}')" class="absolute top-2 right-2 p-2 text-red-500 hover:bg-red-50 rounded-full opacity-0 group-hover:opacity-100 transition">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>` : '';
+
+                    card.innerHTML = `
+                        ${deleteBtn}
+                        <div onclick="loadRecordToForm('${doc.id}')" class="cursor-pointer">
+                            <div class="flex justify-between text-[10px] font-black">
+                                <span>BIL: ${d.BIL || '-'}</span>
+                                <span class="text-emerald-600">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0.00'}</span>
+                            </div>
+                            <p class="text-[10px] mt-1 uppercase text-slate-800 font-bold">${d.LOKASI_KEJADIAN || 'TIADA LOKASI'}</p>
+                            <p class="text-[9px] uppercase text-slate-500">${d.KATEGORI_KES || 'KES'}</p>
+                            <div class="flex justify-between mt-2 items-center">
+                                <span class="text-[8px] bg-slate-100 px-2 py-0.5 rounded text-slate-600">${d.recordedBy || 'STAFF'}</span>
+                            </div>
+                        </div>
+                    `;
+                    listDiv.appendChild(card);
+                });
+                lucide.createIcons();
+            } catch (e) { 
+                console.error(e);
+                listDiv.innerHTML = "Tiada rekod dijumpai."; 
+            }
+        }
+
+        async function deleteRecord(id) {
+            if(!confirm("ADAKAH ANDA PASTI UNTUK PADAM REKOD INI? Data dalam Firebase akan hilang selamanya.")) return;
+            try {
+                await db.collection("reports").doc(id).delete();
+                alert("Rekod dipadam!");
+                fetchHistory();
+            } catch (e) { alert("Gagal padam: " + e.message); }
         }
 
         async function loadRecordToForm(id) {
@@ -410,7 +598,7 @@
             toggleHistory();
         }
 
-        // UTILS
+        // --- 4. UTILITI UI ---
         function calcTotal() {
             let sum = 0;
             document.querySelectorAll('.calc').forEach(i => sum += Number(i.value || 0));
@@ -419,9 +607,9 @@
 
         function resetForm() {
             document.getElementById('mainForm').reset();
-            const d = new Date();
-            document.getElementById('f_tahun').value = d.getFullYear();
-            document.getElementById('f_bulan').selectedIndex = d.getMonth();
+            document.getElementById('currentDocId').value = "";
+            document.getElementById('f_tahun').value = new Date().getFullYear();
+            if(userMeta.name) document.getElementById('form_staff').value = `${userMeta.name} (${userMeta.gred}) / ${userMeta.cawangan}`.toUpperCase();
             calcTotal();
         }
 
@@ -438,7 +626,9 @@
 
         function updateClock() {
             const now = new Date();
-            document.getElementById('realtime-clock').innerText = now.toLocaleString('ms-MY').toUpperCase();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('realtime-clock').innerText = now.toLocaleDateString('ms-MY', options).toUpperCase();
+            document.getElementById('print-timestamp').innerText = "DICETAK PADA: " + now.toLocaleString();
         }
         setInterval(updateClock, 1000);
 
@@ -447,14 +637,11 @@
         function exportToExcel() {
             const ws = XLSX.utils.json_to_sheet([Object.fromEntries(new FormData(document.getElementById('mainForm')).entries())]);
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Laporan");
-            XLSX.writeFile(wb, "ePenguatkuasa_v2.2.xlsx");
+            XLSX.utils.book_append_sheet(wb, ws, "Data");
+            XLSX.writeFile(wb, "Laporan.xlsx");
         }
 
         document.getElementById('mainForm').addEventListener('input', calcTotal);
-        function logout() { firebase.auth().signOut().then(() => location.reload()); }
-        function openAdminPanel() { document.getElementById('adminModal').classList.remove('hidden'); }
-        function closeAdminPanel() { document.getElementById('adminModal').classList.add('hidden'); }
     </script>
 </body>
 </html>
