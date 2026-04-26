@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v30 - Master Database</title>
+    <title>e-Penguatkuasa v60 - Master Database</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -63,14 +63,14 @@
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617] no-print">
         <div class="p-8 text-center bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">e-Penguatkuasa <span class="version-box">v30</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">e-Penguatkuasa <span class="version-box">v60</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl uppercase text-sm mt-6">Akses Sistem</button>
         </div>
     </section>
 
     <div id="app-content" class="hidden min-h-screen pb-20">
         <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b px-4 py-3 flex justify-between items-center no-print">
-            <div class="flex items-center gap-2"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8"><h2 class="font-black text-slate-800 text-[10px] uppercase italic">JPV PENGUAT KUASA <span class="version-box">v30</span></h2></div>
+            <div class="flex items-center gap-2"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8"><h2 class="font-black text-slate-800 text-[10px] uppercase italic">JPV PENGUAT KUASA <span class="version-box">v60</span></h2></div>
             <div class="flex items-center gap-2">
                 <button onclick="resetForm()" class="px-3 py-2 bg-indigo-600 text-white rounded-lg font-black text-[9px] uppercase">Baru</button>
                 <button onclick="toggleHistory()" class="px-3 py-2 bg-amber-500 text-white rounded-lg font-black text-[9px] uppercase tracking-tighter">Database Global</button>
@@ -344,6 +344,18 @@
         console.error("Baserow Error:", e);
     }
 }
+        // Letakkan fungsi ini di bahagian bawah script anda (luar dari fetchHistory)
+async function deleteRecord(id, col) {
+    if (confirm("ADAKAH ANDA PASTI UNTUK MEMADAM REKOD INI? Data akan hilang dari Cloud Database selamanya.")) {
+        try {
+            await db.collection(col).doc(id).delete();
+            alert("Rekod berjaya dipadam!");
+            fetchHistory(); // Refresh senarai selepas padam
+        } catch (e) {
+            alert("Ralat Padam: " + e.message);
+        }
+    }
+}
 
         async function fetchHistory() {
             const list = document.getElementById('historyList');
@@ -377,6 +389,23 @@
                         document.querySelectorAll('.calc-qty, .calc-rm').forEach(i => i.dispatchEvent(new Event('input', {bubbles:true})));
                         toggleHistory();
                     };
+                    // Tambah ini sebelum card.innerHTML
+                    const deleteBtn = userRole === 'ADMIN' ? 
+                        `<button onclick="event.stopPropagation(); deleteRecord('${doc.id}', '${src === 'EXCEL' ? 'kes_penguatkuasaan' : 'reports'}')" class="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>` : '';
+
+                    // Gantikan Baris 380 asal dengan ini:
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start w-full">
+                            <div class="flex-1">
+                                <p class="text-[9px] font-black text-indigo-600">#${d.BIL || '-'}</p>
+                                <h4 class="font-bold text-[10px] uppercase leading-tight group-hover:text-indigo-600">${d.KESALAHAN || d['KATEGORI KES'] || 'KES'}</h4>
+                                <p class="text-[8px] font-black uppercase text-slate-400 mt-1">${src} | ${d.PENGUATKUASA || 'STAF'}</p>
+                            </div>
+                            <div class="flex flex-col items-end gap-2">
+                                <p class="font-black text-xs text-emerald-600">${d.JUMLAH_NILAI_KESELURUHAN || d['JUMLAH NILAI KESELURUHAN'] || 'RM 0'}</p>
+                                ${deleteBtn}
+                            </div>
+                        </div>`;
                     card.innerHTML = `<div class="flex justify-between items-start"><div><p class="text-[9px] font-black text-indigo-600">#${d.BIL || '-'}</p><h4 class="font-bold text-[10px] uppercase leading-tight group-hover:text-indigo-600">${d.KESALAHAN || d['KATEGORI KES'] || 'KES'}</h4><p class="text-[8px] font-black uppercase text-slate-400 mt-1">${src} | ${d.PENGUATKUASA || 'STAF'}</p></div><p class="font-black text-xs text-emerald-600">${d.JUMLAH_NILAI_KESELURUHAN || d['JUMLAH NILAI KESELURUHAN'] || 'RM 0'}</p></div>`;
                     list.appendChild(card);
                 };
