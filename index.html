@@ -468,30 +468,35 @@ async function processFirebaseSave(data) {
         }
         setInterval(updateClock, 1000);
 
-        firebase.auth().onAuthStateChanged(async (user) => {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+firebase.auth().onAuthStateChanged(async (user) => {
     const landing = document.getElementById('landing-screen');
     const app = document.getElementById('app-content');
 
     if (user) {
         console.log("User dikesan:", user.email);
         
-        // 1. Tunjukkan app dahulu, barulah load data
-        landing.style.display = 'none';
+        // Sembunyikan landing secara total
+        landing.style.setProperty('display', 'none', 'important');
+        
+        // Tunjukkan app content
         app.classList.remove('hidden');
-        setTimeout(() => { app.classList.add('opacity-100'); }, 50);
+        setTimeout(() => { 
+            app.style.opacity = "1";
+        }, 100);
 
         try {
-            // 2. Cuba ambil data profil
             await loadProfile(user);
         } catch (e) {
-            console.error("Gagal load profil, tapi teruskan paparan:", e);
+            console.error("Gagal load profil:", e);
         }
-        
         resetForm();
     } else {
-        // Jika belum login
-        landing.style.display = 'flex';
+        // Jika belum login, pastikan landing screen muncul
+        landing.style.setProperty('display', 'flex', 'important');
         app.classList.add('hidden');
+        app.style.opacity = "0";
     }
 });
 
@@ -708,9 +713,13 @@ async function processFirebaseSave(data) {
 
         function printReport() { calcTotal(); window.print(); }
         function loginGoogle() { 
-    console.log("Memulakan proses log masuk...");
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
+    // Gunakan Popup untuk desktop, Redirect untuk mobile lebih stabil
+    if (window.innerWidth > 768) {
+        firebase.auth().signInWithPopup(provider).catch(err => alert(err.message));
+    } else {
+        firebase.auth().signInWithRedirect(provider);
+    }
 }
 
 // --- PENGESAN HASIL LOGIN (PENTING UNTUK GITHUB) ---
