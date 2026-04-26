@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v94 - Sovereign Majestic</title>
+    <title>e-Penguatkuasa v95 - Majestic Gold Pro</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,22 +15,43 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-    <!-- SheetJS for Excel -->
+    <!-- SheetJS -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f1f5f9; color: #0f172a; -webkit-tap-highlight-color: transparent; }
-        .version-box { background: linear-gradient(45deg, #b45309, #fbbf24); color: #451a03; padding: 2px 10px; border-radius: 8px; font-weight: 900; font-size: 0.75em; }
+        
+        @keyframes goldShimmer { 
+            0% { background-position: -200% 0; } 
+            100% { background-position: 200% 0; } 
+        }
+
+        .version-box { 
+            background: linear-gradient(45deg, #b45309, #f59e0b, #fbbf24, #f59e0b, #b45309);
+            background-size: 200% auto; animation: goldShimmer 4s linear infinite;
+            color: #451a03; padding: 2px 10px; border-radius: 8px; font-weight: 900; font-size: 0.75em; 
+        }
+
+        /* Premium Gold Announcement Bar */
+        #announcement-bar {
+            background: linear-gradient(90deg, #b45309, #f59e0b, #fbbf24, #f59e0b, #b45309);
+            background-size: 200% auto; animation: goldShimmer 3s linear infinite;
+            color: #451a03; border-bottom: 2px solid rgba(251, 191, 36, 0.5);
+            display: none;
+        }
+
         .section-card { background: white; border-radius: 24px; padding: 1.5rem; border: 1px solid #e2e8f0; margin-bottom: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .form-input-modern { width: 100%; padding: 12px 14px; border-radius: 12px; border: 2px solid #cbd5e1; font-weight: 700; font-size: 16px; background: white; transition: all 0.2s; }
         .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
         .input-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 6px; display: block; }
         
-        /* Premium UI Elements */
-        .premium-gold-btn { background: linear-gradient(45deg, #b45309, #fbbf24); color: #451a03; font-weight: 900; animation: goldShimmer 4s linear infinite; background-size: 200% auto; }
-        @keyframes goldShimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-        
-        #announcement-bar { background: linear-gradient(90deg, #4f46e5, #7c3aed); color: white; display: none; }
+        .premium-gold-btn {
+            background: linear-gradient(45deg, #b45309, #f59e0b, #fbbf24, #f59e0b, #b45309);
+            background-size: 200% auto; color: #451a03; font-weight: 900;
+            animation: goldShimmer 4s linear infinite; border: 1px solid rgba(251, 191, 36, 0.5);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
         #loader { display:none; position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 9999; align-items: center; justify-content: center; flex-direction: column; }
         .admin-tab-btn.active { border-bottom: 3px solid #4f46e5; color: #4f46e5; }
 
@@ -46,15 +67,15 @@
 
     <div id="loader">
         <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p id="loader-status" class="mt-4 font-black text-indigo-600 uppercase text-[10px] tracking-widest text-center px-6">SISTEM MAJESTIC v94...</p>
+        <p id="loader-status" class="mt-4 font-black text-indigo-600 uppercase text-[10px] tracking-widest text-center px-6">MEMPROSES v95...</p>
     </div>
 
-    <!-- Announcement Bar -->
-    <div id="announcement-bar" class="no-print py-2 px-4 text-center text-[10px] font-bold uppercase tracking-widest">
-        <span id="announcement-text">Sila lengkapkan maklumat borang dengan teliti.</span>
+    <!-- Majestic Announcement Bar -->
+    <div id="announcement-bar" class="no-print py-2.5 px-4 text-center text-[10px] font-black uppercase tracking-[0.2em] shadow-lg">
+        <span id="announcement-text">MOHON KEMASKINI REKOD HARIAN ANDA</span>
     </div>
 
-    <!-- Admin Majestic Modal -->
+    <!-- Admin Modal -->
     <div id="adminModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[5000] p-4 flex items-center justify-center no-print">
         <div class="bg-white w-full max-w-5xl rounded-[32px] h-[90vh] flex flex-col overflow-hidden shadow-2xl">
             <div class="p-6 border-b flex justify-between items-center bg-slate-50">
@@ -72,7 +93,6 @@
             </div>
 
             <div class="flex-1 overflow-y-auto p-6 bg-slate-50">
-                <!-- Tab Dashboard -->
                 <div id="panel-stats" class="admin-panel-content">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                         <div class="bg-white p-8 rounded-[24px] border shadow-sm"><p class="text-[10px] font-black text-indigo-600 uppercase mb-2">Total Kes Sistem</p><h3 id="statTotalKes" class="text-4xl font-black">0</h3></div>
@@ -80,24 +100,13 @@
                         <div class="bg-white p-8 rounded-[24px] border shadow-sm"><p class="text-[10px] font-black text-blue-600 uppercase mb-2">Pegawai Berdaftar</p><h3 id="statTotalUsers" class="text-4xl font-black">0</h3></div>
                     </div>
                 </div>
-
-                <!-- Tab Pegawai -->
                 <div id="panel-users" class="admin-panel-content hidden">
-                    <div class="bg-white border rounded-[24px] overflow-hidden">
-                        <table class="w-full text-left text-sm">
-                            <thead class="bg-slate-50 text-[10px] font-black uppercase text-slate-500 border-b">
-                                <tr><th class="px-6 py-4">Pegawai</th><th class="px-6 py-4">Cawangan</th><th class="px-6 py-4">Status</th><th class="px-6 py-4 text-right">Tindakan</th></tr>
-                            </thead>
-                            <tbody id="adminUserList"></tbody>
-                        </table>
-                    </div>
+                    <div class="bg-white border rounded-[24px] overflow-hidden"><table class="w-full text-left text-sm"><thead class="bg-slate-50 text-[10px] font-black uppercase text-slate-500 border-b"><tr><th class="px-6 py-4">Pegawai</th><th class="px-6 py-4">Cawangan</th><th class="px-6 py-4">Status</th><th class="px-6 py-4 text-right">Tindakan</th></tr></thead><tbody id="adminUserList"></tbody></table></div>
                 </div>
-
-                <!-- Tab Broadcast -->
                 <div id="panel-broadcast" class="admin-panel-content hidden">
                     <div class="bg-white p-8 rounded-[24px] border shadow-sm">
-                        <label class="input-label">Mesej Pengumuman (Real-time)</label>
-                        <textarea id="broadcastInput" class="form-input-modern h-32 mb-4" placeholder="Tulis mesej di sini untuk semua pegawai..."></textarea>
+                        <label class="input-label">Mesej Pengumuman Premium</label>
+                        <textarea id="broadcastInput" class="form-input-modern h-32 mb-4" placeholder="Tulis mesej di sini..."></textarea>
                         <button onclick="updateBroadcast()" class="premium-gold-btn w-full py-4 rounded-xl uppercase text-sm">Kemaskini Pengumuman</button>
                     </div>
                 </div>
@@ -109,36 +118,36 @@
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617] no-print">
         <div class="p-8 text-center bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 w-[90%] max-w-sm">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">e-Penguatkuasa <span class="version-box">v94</span></h1>
-            <p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest mb-8">Sovereign Majestic Edition</p>
-            <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl uppercase text-sm mt-8">Masuk Sistem</button>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">e-Penguatkuasa <span class="version-box">v95</span></h1>
+            <p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest mb-8 italic">Majestic Gold Edition</p>
+            <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl uppercase text-sm">Masuk Sistem</button>
         </div>
     </section>
 
-    <!-- Main Content -->
+    <!-- App Content -->
     <div id="app-content" class="hidden min-h-screen pb-10">
         <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b px-4 py-3 flex justify-between items-center no-print">
             <div class="flex items-center gap-2">
                 <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8">
-                <h2 class="font-black text-slate-800 text-xs uppercase italic leading-none">BORANG <span class="version-box">V94</span></h2>
+                <h2 class="font-black text-slate-800 text-xs uppercase italic leading-none">BORANG <span class="version-box">V95</span></h2>
             </div>
             <div class="flex items-center gap-1">
-                <button onclick="resetForm()" class="px-3 py-2 bg-indigo-600 text-white rounded-lg font-black text-[10px] uppercase">Baru</button>
-                <button onclick="toggleHistory()" class="px-3 py-2 bg-amber-500 text-white rounded-lg font-black text-[10px] uppercase">Rekod</button>
-                <button onclick="window.print()" class="px-3 py-2 bg-slate-900 text-white rounded-lg font-black text-[10px] uppercase">Cetak</button>
+                <button onclick="resetForm()" class="px-3 py-2 bg-indigo-600 text-white rounded-lg font-black text-[10px] uppercase shadow-sm">Baru</button>
+                <button onclick="toggleHistory()" class="px-3 py-2 bg-amber-500 text-white rounded-lg font-black text-[10px] uppercase shadow-sm">Rekod</button>
+                <button onclick="window.print()" class="px-3 py-2 bg-slate-900 text-white rounded-lg font-black text-[10px] uppercase shadow-sm">Cetak</button>
                 <div onclick="toggleProfile()" class="w-9 h-9 rounded-full border-2 border-indigo-500 overflow-hidden cursor-pointer shadow-sm"><img id="navAvatar" src="" class="w-full h-full object-cover"></div>
             </div>
         </header>
 
         <main class="p-4 max-w-7xl mx-auto">
-            <!-- Public Export Buttons -->
-            <div class="flex gap-2 mb-4 no-print">
-                <button onclick="exportToExcel()" class="px-4 py-2 bg-emerald-600 text-white rounded-xl font-black text-[10px] uppercase flex items-center gap-2"><i data-lucide="file-spreadsheet" class="w-3 h-3"></i> Excel</button>
-                <button onclick="exportToAccess()" class="px-4 py-2 bg-blue-600 text-white rounded-xl font-black text-[10px] uppercase flex items-center gap-2"><i data-lucide="database" class="w-3 h-3"></i> AccessDB</button>
+            <div class="flex gap-2 mb-4 no-print overflow-x-auto pb-2">
+                <button onclick="exportToExcel()" class="whitespace-nowrap px-4 py-2 bg-emerald-600 text-white rounded-xl font-black text-[10px] uppercase flex items-center gap-2 shadow-sm"><i data-lucide="file-spreadsheet" class="w-3 h-3"></i> Excel</button>
+                <button onclick="exportToAccess()" class="whitespace-nowrap px-4 py-2 bg-blue-600 text-white rounded-xl font-black text-[10px] uppercase flex items-center gap-2 shadow-sm"><i data-lucide="database" class="w-3 h-3"></i> AccessDB</button>
             </div>
 
             <form id="mainForm">
                 <input type="hidden" id="currentDocId" value="">
+                
                 <!-- A. MAKLUMAT KES -->
                 <div class="section-card">
                     <h3 class="text-[11px] font-black text-indigo-600 mb-5 uppercase tracking-widest flex items-center gap-2"><i data-lucide="info" class="w-4 h-4"></i> A. Maklumat Kes & Kejadian</h3>
@@ -151,7 +160,7 @@
                         <div class="sm:col-span-2"><label class="input-label">No Repot Polis</label><input type="text" name="NO_REPOT_POLIS" class="form-input-modern uppercase"></div>
                         <div><label class="input-label">Tarikh Kejadian</label><input type="date" name="TARIKH_KEJADIAN" class="form-input-modern"></div>
                         <div><label class="input-label">Masa Kejadian</label><input type="time" name="MASA_KEJADIAN" class="form-input-modern"></div>
-                        <div class="sm:col-span-2 lg:col-span-3"><label class="input-label">Lokasi Kejadian</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern uppercase"></div>
+                        <div class="sm:col-span-2 lg:col-span-3"><label class="input-label">Lokasi</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern uppercase"></div>
                         <div class="sm:col-span-2 lg:col-span-3"><label class="input-label">Kesalahan</label><input type="text" name="KESALAHAN" class="form-input-modern uppercase"></div>
                         <div class="sm:col-span-2 lg:col-span-4"><label class="input-label">Undang-Undang</label><input type="text" name="UNDANG_UNDANG" class="form-input-modern uppercase"></div>
                         <div class="sm:col-span-1 lg:col-span-2"><label class="input-label">No Kes IP</label><input type="text" name="NO_KES_IP" class="form-input-modern uppercase"></div>
@@ -161,7 +170,7 @@
 
                 <!-- B. HAIWAN HIDUP -->
                 <div class="section-card">
-                    <h3 class="text-[11px] font-black text-emerald-600 mb-5 uppercase tracking-widest">B. Haiwan Hidup (Ekor)</h3>
+                    <h3 class="text-[11px] font-black text-emerald-600 mb-5 uppercase tracking-widest flex items-center gap-2"><i data-lucide="dog" class="w-4 h-4"></i> B. Rampasan Haiwan Hidup</h3>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
                         <div><label class="input-label">LEMBU</label><input type="number" name="LEMBU" class="calc-qty form-input-modern" value="0"></div>
                         <div><label class="input-label">KERBAU</label><input type="number" name="KERBAU" class="calc-qty form-input-modern" value="0"></div>
@@ -179,7 +188,7 @@
 
                 <!-- C. KARKAS & PRODUK -->
                 <div class="section-card">
-                    <h3 class="text-[11px] font-black text-amber-600 mb-5 uppercase tracking-widest">C. Karkas & Produk</h3>
+                    <h3 class="text-[11px] font-black text-amber-600 mb-5 uppercase tracking-widest flex items-center gap-2"><i data-lucide="package" class="w-4 h-4"></i> C. Rampasan Karkas & Produk</h3>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                         <div><label class="input-label">KARKAS LEMBU</label><input type="number" name="KARKAS_LEMBU" class="calc-qty form-input-modern" value="0"></div>
                         <div><label class="input-label">KARKAS KERBAU</label><input type="number" name="KARKAS_KERBAU" class="calc-qty form-input-modern" value="0"></div>
@@ -191,7 +200,7 @@
                         <div><label class="input-label">BABI (FROZEN)</label><input type="number" name="PRODUK_SEJUK_BEKU_BABI" class="calc-qty form-input-modern" value="0"></div>
                         <div><label class="input-label">BEBIRI (FROZEN)</label><input type="number" name="PRODUK_SEJUK_BEKU_BEBIRI" class="calc-qty form-input-modern" value="0"></div>
                         <div><label class="input-label">PRODUK TIN</label><input type="number" name="PRODUK_HAIWAN_TIN" class="calc-qty form-input-modern" value="0"></div>
-                        <div class="col-span-2"><label class="input-label">Lain-lain Rampasan</label><input type="text" name="RAMPASAN_LAIN" class="form-input-modern uppercase"></div>
+                        <div class="col-span-2"><label class="input-label">Lain-lain Rampasan</label><input type="text" name="RAMPASAN_LAIN" class="form-input-modern uppercase" placeholder="TELUR/LAIN"></div>
                     </div>
                 </div>
 
@@ -205,7 +214,7 @@
                         <div><label class="input-label">NILAI KENDERAAN (RM)</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc-rm form-input-modern" value="0"></div>
                         <div><label class="input-label">NILAI KONTENA (RM)</label><input type="number" name="ANGGARAN_NILAI_PENGANGKUT_KONTENA" class="calc-rm form-input-modern" value="0"></div>
                         <div><label class="input-label">NILAI LAIN-LAIN (RM)</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc-rm form-input-modern" value="0"></div>
-                        <div class="sm:col-span-2"><label class="input-label">TOTAL KESELURUHAN (RM)</label><input type="text" id="disp_rm" name="JUMLAH_NILAI_KESELURUHAN" class="form-input-modern text-3xl font-black text-indigo-700 bg-transparent border-none outline-none" readonly value="RM 0.00"></div>
+                        <div class="sm:col-span-2"><label class="input-label">TOTAL KESELURUHAN (RM)</label><input type="text" id="disp_rm" name="JUMLAH_NILAI_KESELURUHAN" class="form-input-modern text-2xl sm:text-3xl font-black text-indigo-700 bg-transparent border-none outline-none" readonly value="RM 0.00"></div>
                         <div class="sm:col-span-2"><label class="input-label">KES SERAHAN</label><input type="text" name="KES_SERAHAN" class="form-input-modern uppercase"></div>
                         <div class="sm:col-span-4"><label class="input-label">CATATAN</label><input type="text" name="CATATAN" class="form-input-modern uppercase"></div>
                     </div>
@@ -215,9 +224,9 @@
         </main>
     </div>
 
-    <!-- Sidebar Database (All Users Access) -->
+    <!-- Sidebar Database (OPEN TO ALL) -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-md h-full bg-white z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print">
-        <div class="sticky top-0 bg-white p-6 border-b flex justify-between items-center"><h2 class="font-black text-xl uppercase italic">Database <span class="text-indigo-600">Terbuka</span></h2><button onclick="toggleHistory()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x"></i></button></div>
+        <div class="sticky top-0 bg-white p-6 border-b flex justify-between items-center"><h2 class="font-black text-xl uppercase italic">Database <span class="text-indigo-600">Global</span></h2><button onclick="toggleHistory()" class="p-2 bg-slate-100 rounded-full"><i data-lucide="x"></i></button></div>
         <div id="historyList" class="p-4 space-y-3"></div>
     </aside>
 
@@ -230,7 +239,7 @@
             <div><label class="input-label">Gred Jawatan</label><input type="text" id="p_gred" class="form-input-modern uppercase"></div>
             <div><label class="input-label">Cawangan/Negeri</label><input type="text" id="p_caw" class="form-input-modern uppercase"></div>
             <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-xl uppercase shadow-md">Update Profil</button>
-            <div id="adminControls" class="hidden pt-6 border-t mt-6"><button onclick="openAdminPanel()" class="premium-gold-btn w-full py-4 rounded-xl uppercase flex items-center justify-center gap-3"><i data-lucide="crown" class="w-4 h-4"></i> Admin Panel v94</button></div>
+            <div id="adminControls" class="hidden pt-6 border-t mt-6"><button onclick="openAdminPanel()" class="premium-gold-btn w-full py-4 rounded-xl uppercase flex items-center justify-center gap-3"><i data-lucide="crown" class="w-4 h-4"></i> Imperial Panel v95</button></div>
             <button onclick="logout()" class="w-full text-red-500 font-bold text-xs uppercase mt-8 text-center">LOG KELUAR</button>
         </div>
     </aside>
@@ -299,7 +308,7 @@
         async function updateBroadcast() {
             const msg = document.getElementById('broadcastInput').value;
             await db.collection("settings").doc("broadcast").set({ message: msg });
-            alert("Pengumuman dikemaskini!");
+            alert("Pengumuman Real-time Dikemaskini!");
         }
 
         // --- CALCULATIONS ---
@@ -314,7 +323,7 @@
             }
         });
 
-        // --- EXPORT v94 (FOR ALL) ---
+        // --- EXPORT v95 ---
         async function exportToExcel() {
             const loader = document.getElementById('loader'); loader.style.display = 'flex';
             try {
@@ -322,8 +331,8 @@
                 const data = snap.docs.map(doc => doc.data());
                 const ws = XLSX.utils.json_to_sheet(data);
                 const wb = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(wb, ws, "Rekod Kes v94");
-                XLSX.writeFile(wb, "Eksport_Excel_Majestic.xlsx");
+                XLSX.utils.book_append_sheet(wb, ws, "Rekod Global");
+                XLSX.writeFile(wb, "Eksport_Excel_v95.xlsx");
             } catch (e) { alert(e.message); }
             finally { loader.style.display = 'none'; }
         }
@@ -336,33 +345,37 @@
                 const header = Object.keys(items[0]).join(',');
                 const csv = [header, ...items.map(row => Object.values(row).map(v => `"${v}"`).join(','))].join('\n');
                 const blob = new Blob([csv], { type: 'text/csv' });
-                const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'AccessDB_Majestic.csv'; a.click();
+                const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'AccessDB_v95.csv'; a.click();
             } catch (e) { alert(e.message); }
             finally { loader.style.display = 'none'; }
         }
 
-        // --- SUBMIT & SYNC ---
+        // --- SUBMIT / UPDATE FIX v95 ---
         async function submitData() {
-            if(!isVerified) { alert("Akaun anda disekat oleh Admin!"); return; }
+            if(!isVerified) { alert("Akses Disekat!"); return; }
             const loader = document.getElementById('loader'); loader.style.display = 'flex';
+            
             const formData = new FormData(document.getElementById('mainForm'));
             const data = Object.fromEntries(formData.entries());
             const docId = document.getElementById('currentDocId').value;
+            
             data.userID = firebase.auth().currentUser.uid;
             data.timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
             try {
                 if(docId) {
+                    // FIX: Process UPDATE properly
                     await db.collection("reports").doc(docId).update(data);
-                    alert("Rekod berjaya dikemaskini!");
+                    alert("Rekod Global Telah Dikemaskini!");
                 } else {
+                    // FIX: NEW record
                     await db.collection("reports").add(data);
                     if(SCRIPT_URL.startsWith('http')) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
                     await saveToBaserow(data);
-                    alert("Rekod baru berjaya disimpan!");
+                    alert("Rekod Baru Disimpan!");
                 }
                 resetForm();
-            } catch (e) { alert(e.message); }
+            } catch (e) { alert("Ralat Kemaskini: " + e.message); }
             finally { loader.style.display = 'none'; }
         }
 
@@ -380,34 +393,37 @@
             } catch (e) {}
         }
 
-        // --- HISTORY (OPEN FOR ALL) ---
+        // --- GLOBAL DATABASE HISTORY ---
         async function fetchHistory() {
             const list = document.getElementById('historyList');
-            list.innerHTML = '<p class="text-center p-10 animate-pulse text-[10px] font-bold">DATABASE TERBUKA...</p>';
-            const snap = await db.collection("reports").get(); // Get ALL reports
+            list.innerHTML = '<p class="text-center p-10 animate-pulse text-[10px] font-bold">LOADING DATABASE GLOBAL...</p>';
+            
+            // FIX: Get ALL records for everyone
+            const snap = await db.collection("reports").get();
             list.innerHTML = '';
             snap.forEach(doc => {
                 const d = doc.data();
                 const card = document.createElement('div');
-                card.className = "bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 transition cursor-pointer active:scale-95";
+                card.className = "bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 transition cursor-pointer active:scale-95 mb-2";
                 card.onclick = () => {
                     const form = document.getElementById('mainForm');
                     Object.keys(d).forEach(key => { if(form.elements[key]) form.elements[key].value = d[key]; });
                     document.getElementById('currentDocId').value = doc.id;
-                    if(userRole === 'ADMIN') {
-                        document.getElementById('btnSubmit').innerText = "Kemaskini Rekod Imperial";
-                        document.getElementById('btnSubmit').classList.add('premium-gold-btn');
-                    }
+                    
+                    // Update UI to show we are in update mode
+                    document.getElementById('btnSubmit').innerText = "Kemaskini Rekod Pro";
+                    document.getElementById('btnSubmit').classList.add('premium-gold-btn');
+                    
                     toggleHistory();
-                    alert("Rekod " + d.BIL + " dimuatkan!");
+                    alert("Memuatkan Rekod: " + (d.BIL || 'Tanpa Bil'));
                 };
-                card.innerHTML = `<div class="flex justify-between items-start"><div><p class="text-[9px] font-black text-indigo-600">${d.BIL || '-'}</p><h4 class="font-bold text-xs uppercase">${d.KATEGORI_KES || 'KES'}</h4><p class="text-[8px] uppercase text-slate-500">${d.PENGUATKUASA || ''}</p></div><p class="font-black text-xs text-emerald-600">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0'}</p></div>`;
+                card.innerHTML = `<div class="flex justify-between items-start"><div><p class="text-[9px] font-black text-indigo-600">${d.BIL || '-'}</p><h4 class="font-bold text-xs uppercase">${d.KATEGORI_KES || 'KES'}</h4><p class="text-[8px] uppercase text-slate-500">${d.PENGUATKUASA || 'STAF'}</p></div><p class="font-black text-xs text-emerald-600">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0'}</p></div>`;
                 list.appendChild(card);
             });
             lucide.createIcons();
         }
 
-        // --- ADMIN v94 CORE ---
+        // --- ADMIN CORE ---
         function switchAdminTab(tab) {
             document.querySelectorAll('.admin-panel-content').forEach(p => p.classList.add('hidden'));
             document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
@@ -451,10 +467,7 @@
         }
 
         async function deleteUser(id) {
-            if(confirm("Padam akaun pegawai ini secara kekal?")) {
-                await db.collection("users").doc(id).delete();
-                openAdminPanel();
-            }
+            if(confirm("Padam akaun ini?")) { await db.collection("users").doc(id).delete(); openAdminPanel(); }
         }
 
         // --- UTILS ---
