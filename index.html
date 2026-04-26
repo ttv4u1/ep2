@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v60 - Pro Edition</title>
+    <title>e-Penguatkuasa v90 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -296,6 +296,118 @@
     </div>
 
     <script>
+        // --- FUNGSI MENGAMBIL REKOD (HISTORY) ---
+async function fetchHistory() {
+    const user = firebase.auth().currentUser;
+    const listDiv = document.getElementById('historyList');
+    
+    // Tunjukkan loader kecil
+    listDiv.innerHTML = '<div class="flex flex-col items-center py-10"><div class="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div><p class="text-[10px] font-black mt-2 text-indigo-600 animate-pulse uppercase">Menarik Data...</p></div>';
+    
+    try {
+        let query;
+        
+        // Logik Paparan: Admin nampak semua, User nampak sendiri
+        if (userMeta.role === 'ADMIN') {
+            console.log("Admin detected: Fetching all records...");
+            query = db.collection("reports");
+        } else {
+            console.log("User detected: Fetching own records...");
+            query = db.collection("reports").where("userId", "==", user.uid);
+        }
+
+        const snapshot = await query.get();
+        listDiv.innerHTML = "";
+        
+        if (snapshot.empty) {
+            listDiv.innerHTML = `
+                <div class="text-center py-10 bg-white rounded-3xl border-2 border-dashed border-slate-200">
+                    <p class="text-slate-400 font-black text-[10px] uppercase">Tiada Rekod Dijumpai</p>
+                </div>`;
+            return;
+        }
+
+        snapshot.forEach(doc => {
+            const d = doc.data();
+            const card = document.createElement('div');
+            card.className = "bg-white p-4 rounded-2xl border-l-8 border-indigo-600 shadow-sm mb-3 relative group hover:shadow-md transition-all duration-300 cursor-pointer";
+            
+            // Butang Padam (Hanya nampak untuk Admin)
+            let deleteBtn = userMeta.role === 'ADMIN' ? 
+                `<button onclick="event.stopPropagation(); deleteRecord('${doc.id}')" class="absolute top-2 right-2 p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-full transition-opacity">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>` : '';
+
+            card.innerHTML = `
+                ${deleteBtn}
+                <div onclick="loadRecordToForm('${doc.id}')">
+                    <div class="flex justify-between text-[10px] font-black mb-1">
+                        <span class="text-slate-400">BIL: ${d.BIL || 'N/A'}</span>
+                        <span class="text-emerald-600 font-extrabold">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0.00'}</span>
+                    </div>
+                    <p class="text-[11px] uppercase text-slate-800 font-black leading-tight mb-1">${d.LOKASI_KEJADIAN || 'TIADA LOKASI'}</p>
+                    <div class="flex flex-wrap gap-1 mt-2">
+                        <span class="text-[8px] bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded font-bold uppercase">${d.KATEGORI_KES || 'KES'}</span>
+                        <span class="text-[8px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded font-bold uppercase">OLEH: ${d.recordedBy || 'STAFF'}</span>
+                    </div>
+                </div>
+            `;
+            listDiv.appendChild(card);
+        });
+        
+        // Refresh icon lucide
+        lucide.createIcons();
+
+    } catch (e) { 
+        console.error("Ralat FetchHistory:", e);
+        listDiv.innerHTML = `<div class="p-4 bg-red-50 text-red-500 rounded-xl text-[10px] font-bold">RALAT: ${e.message}</div>`; 
+    }
+}
+
+// --- FUNGSI PADAM REKOD ---
+async function deleteRecord(id) {
+    if(!confirm("ADAKAH ANDA PASTI? Rekod ini akan dipadam kekal dari Firebase.")) return;
+    
+    try {
+        await db.collection("reports").doc(id).delete();
+        alert("Rekod telah dipadam.");
+        fetchHistory(); // Refresh senarai
+    } catch (e) {
+        alert("Gagal padam: " + e.message);
+    }
+}
+
+// --- FUNGSI LOAD DATA KE DALAM BORANG ---
+async function loadRecordToForm(id) {
+    document.getElementById('loader').style.display = 'flex';
+    try {
+        const doc = await db.collection("reports").doc(id).get();
+        if (!doc.exists) return alert("Rekod tidak dijumpai!");
+        
+        const d = doc.data();
+        document.getElementById('currentDocId').value = id;
+        
+        // Masukkan data ke dalam input borang secara automatik
+        Object.keys(d).forEach(k => {
+            let input = document.querySelector(`[name="${k}"]`);
+            if (input) input.value = d[k];
+        });
+
+        // Kira semula jumlah (total)
+        calcTotal();
+        
+        // Tutup sidebar history
+        toggleHistory();
+        
+        // Scroll ke atas
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+    } catch (e) {
+        alert("Ralat memuatkan data: " + e.message);
+    } finally {
+        document.getElementById('loader').style.display = 'none';
+    }
+}
         // --- KONFIGURASI (Sama seperti kod anda) ---
         const BASEROW_TOKEN = '7OPuNqPLqPtdkykdydfGSHaXReA00BQU';
         const BASEROW_TABLE_ID = '947317';
