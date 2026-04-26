@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v222 - Pro Edition</title>
+    <title>e-Penguatkuasa v333 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,7 +27,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* v222 ANIMATED BOX */
+        /* v333 ANIMATED BOX */
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -68,7 +68,7 @@
             .btn-action { padding: 8px 6px !important; font-size: 8px !important; }
         }
 
-        /* PRINT OPTIMIZATION v222 */
+        /* PRINT OPTIMIZATION v333 */
         @media print {
             @page { size: A4 portrait; margin: 0.4cm; }
             body { background: white !important; font-size: 9pt !important; color: black !important; }
@@ -106,14 +106,14 @@
 
     <div id="loader">
         <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Memproses Data v222...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Memproses Data v333...</p>
     </div>
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-8 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v222</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v333</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase text-sm">
                 AKSES SISTEM
             </button>
@@ -128,7 +128,7 @@
                 <div class="flex items-center gap-3">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8 sm:h-10">
                     <div>
-                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v222</span></h2>
+                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v333</span></h2>
                         <p id="realtime-clock" class="text-[9px] sm:text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
         <div id="print-header">
             <div class="header-top">
                 <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
-                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v222)</h1>
+                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v333)</h1>
                 <div></div>
             </div>
             <div class="header-sub">
@@ -260,7 +260,7 @@
                     </div>
 
                     <div class="mt-8 no-print flex justify-center">
-                        <button type="button" onclick="saveToAll()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v222</button>
+                        <button type="button" onclick="saveToAll()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v333</button>
                     </div>
                 </div>
 
@@ -288,7 +288,7 @@
     <!-- DB SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-lg h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v222</span></h2>
+            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v333</span></h2>
             <button onclick="toggleHistory()" class="p-2 bg-white rounded-full border shadow-sm"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
@@ -319,565 +319,218 @@
     </aside>
 
     <script>
-        // --- KONFIGURASI BASEROW ---
-const BASEROW_TOKEN = '7OPuNqPLqPtdkykdydfGSHaXReA00BQU';
-const BASEROW_TABLE_ID = '947317';
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxTfX2j4dRIbdEg2JhEUC19dS3Is_4IC1mc47KlzFS00vQDrnRVtWn3vc06S9LvDDDpcA/exec';
+    // --- 1. KONFIGURASI ---
+    const BASEROW_TOKEN = '7OPuNqPLqPtdkykdydfGSHaXReA00BQU';
+    const BASEROW_TABLE_ID = '947317';
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxTfX2j4dRIbdEg2JhEUC19dS3Is_4IC1mc47KlzFS00vQDrnRVtWn3vc06S9LvDDDpcA/exec';
 
-async function saveToAll() {
-    const user = firebase.auth().currentUser;
-    if(!user || !userMeta.name) { 
-        alert("Sila lengkapkan profil sebelum menyimpan!"); 
-        toggleProfile(); 
-        return; 
-    }
-
-    document.getElementById('loader').style.display = 'flex';
-
-    // 1. Kumpul Data dari Borang
-    const formData = new FormData(document.getElementById('mainForm'));
-    const totalVal = document.getElementById('total_val_web').value;
-    const staffInfo = document.getElementById('form_staff').value;
-
-    const dataObj = {
-        "BIL": formData.get("BIL"),
-        "TAHUN": formData.get("TAHUN"),
-        "BULAN": formData.get("BULAN"),
-        "PENGUATKUASA": staffInfo,
-        "KATEGORI_KES": formData.get("KATEGORI_KES"),
-        "NO_REPOT_POLIS": formData.get("NO_REPOT_POLIS"),
-        "TARIKH_KEJADIAN": formData.get("TARIKH_KEJADIAN"),
-        "MASA_KEJADIAN": formData.get("MASA_KEJADIAN"),
-        "LOKASI_KEJADIAN": formData.get("LOKASI_KEJADIAN"),
-        "KESALAHAN": formData.get("KESALAHAN"),
-        "UNDANG_UNDANG": formData.get("UNDANG_UNDANG"),
-        "NO_KES_IP": formData.get("NO_KES_IP"),
-        "JENIS_RAMPASAN": formData.get("JENIS_RAMPASAN"),
-        "LEMBU": formData.get("LEMBU"),
-        "KERBAU": formData.get("KERBAU"),
-        "KAMBING": formData.get("KAMBING"),
-        "BEBIRI": formData.get("BEBIRI"),
-        "BABI": formData.get("BABI"),
-        "AYAM": formData.get("AYAM"),
-        "KARKAS_LEMBU": formData.get("KARKAS_LEMBU"),
-        "KARKAS_KERBAU": formData.get("KARKAS_KERBAU"),
-        "KARKAS_KAMBING": formData.get("KARKAS_KAMBING"),
-        "KARKAS_BABI": formData.get("KARKAS_BABI"),
-        "KARKAS_BABI_SEJUK_BEKU": formData.get("KARKAS_BABI_SEJUK_BEKU"),
-        "KARKAS_AYAM": formData.get("KARKAS_AYAM"),
-        "PRODUK_SEJUK_BEKU_ITIK": formData.get("PRODUK_SEJUK_BEKU_ITIK"),
-        "PRODUK_SEJUK_BEKU_AYAM": formData.get("PRODUK_SEJUK_BEKU_AYAM"),
-        "PRODUK_SE_BEKU_BABI": formData.get("PRODUK_SEJUK_BEKU_BABI"),
-        "PRODUK_HAIWAN_TIN": formData.get("PRODUK_HAIWAN_TIN"),
-        "ANJING": formData.get("ANJING"),
-        "KUCING": formData.get("KUCING"),
-        "ARNAB": formData.get("ARNAB"),
-        "BURUNG": formData.get("BURUNG"),
-        "HAMSTER": formData.get("HAMSTER"),
-        "RAMPASAN_LAIN_LAIN": formData.get("RAMPASAN_LAIN_LAIN"),
-        "JUMLAH_RAMPASAN_KENDERAAN": formData.get("JUMLAH_RAMPASAN_KENDERAAN"),
-        "RAMPASAN_PENGANGKUTAN": formData.get("RAMPASAN_PENGANGKUTAN"),
-        "ANGGARAN_NILAI_EKOR_KG": formData.get("ANGGARAN_NILAI_EKOR_KG"),
-        "ANGGARAN_NILAI_KENDERAAN": formData.get("ANGGARAN_NILAI_KENDERAAN"),
-        "ANGGARAN_NILAI_PENGANGKUT_KONTENA": formData.get("ANGGARAN_NILAI_PENGANGKUT_KONTENA"),
-        "ANGGARAN_NILAI_LAIN_LAIN": formData.get("ANGGARAN_NILAI_LAIN_LAIN"),
-        "JUMLAH_NILAI_KESELURUHAN": totalVal,
-        "KES_SERAHAN": formData.get("KES_SERAHAN"),
-        "CATATAN": formData.get("CATATAN"),
-        "ROLE": userMeta.role || "USER" // Hantar status Admin/User ke Google Sheets
+    const firebaseConfig = {
+        apiKey: "AIzaSyD5rx8TQdkFLzmunEmVtwt56Y8Mlt9Zsvo",
+        authDomain: "e-penguatkuasa-jpv.firebaseapp.com",
+        projectId: "e-penguatkuasa-jpv",
+        storageBucket: "e-penguatkuasa-jpv.firebasestorage.app",
+        messagingSenderId: "790915728070",
+        appId: "1:790915728070:web:d2759cc670024001218dc7"
     };
 
-    try {
-        // --- HANTAR KE BASEROW ---
-        const baserowPromise = fetch(`https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`, {
-            method: 'POST',
-            headers: { 'Authorization': `Token ${BASEROW_TOKEN}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataObj)
-        });
+    // Initialize Firebase
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    lucide.createIcons();
 
-        // --- HANTAR KE GOOGLE SHEETS ---
-        const googlePromise = fetch(GOOGLE_SHEET_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataObj)
-        });
+    let userMeta = { name: '', gred: '', cawangan: '', role: 'USER' };
 
-        // Tunggu kedua-dua selesai
-        await Promise.all([baserowPromise, googlePromise]);
-
-        // Simpan ke Firebase (Gunakan fungsi sedia ada dalam kod anda)
-        // Kita panggil fungsi saveToFirebase secara manual tapi pastikan loader tak tutup lagi
-        await processFirebaseSave(dataObj); 
-        
-        alert("REKOD BERJAYA DISIMPAN!\n(Baserow + Google Sheets + Firebase)");
-        resetForm();
-
-    } catch (error) {
-        console.error("Error:", error);
-        alert("Ralat teknikal: " + error.message);
-    } finally {
-        document.getElementById('loader').style.display = 'none';
+    // --- 2. SISTEM LOGIN & AUTH ---
+    function loginGoogle() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        if (window.innerWidth > 768) {
+            firebase.auth().signInWithPopup(provider).catch(err => alert("Ralat Login: " + err.message));
+        } else {
+            firebase.auth().signInWithRedirect(provider);
+        }
     }
-}
 
-// Fungsi pembantu untuk Firebase supaya tak konflik dengan loader
-async function processFirebaseSave(data) {
-    const user = firebase.auth().currentUser;
-    const now = new Date();
-    const days = ["AHAD", "ISNIN", "SELASA", "RABU", "KHAMIS", "JUMAAT", "SABTU"];
-    
-    data.userId = user.uid;
-    data.recordedBy = userMeta.name;
-    data.recordedGred = userMeta.gred;
-    data.recordedBranch = userMeta.cawangan;
-    data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
-    data.recordedDay = days[now.getDay()];
-    data.recordedTimeStr = now.toLocaleTimeString();
-
-    await db.collection("reports").add(data);
-}
-
-// Kemaskini butang Simpan dalam HTML anda untuk memanggil saveToBaserow()
-// Cari bahagian button simpan dan tukar onclick:
-// <button type="button" onclick="saveToBaserow()" ...>Simpan Rekod v222</button>
-        const firebaseConfig = {
-    apiKey: "AIzaSyD5rx8TQdkFLzmunEmVtwt56Y8Mlt9Zsvo",
-    authDomain: "e-penguatkuasa-jpv.firebaseapp.com",
-    projectId: "e-penguatkuasa-jpv",
-    storageBucket: "e-penguatkuasa-jpv.firebasestorage.app",
-    messagingSenderId: "790915728070",
-    appId: "1:790915728070:web:d2759cc670024001218dc7"
-};
-
-if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-lucide.createIcons();
-
-let userMeta = { name: '', gred: '', cawangan: '', role: 'USER' };
-
-// 1. LOGIN FUNCTION
-function loginGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).catch(err => {
-        console.error("Login Error:", err);
-        alert("Gagal Login: " + err.message);
-    });
-}
-
-// 2. AUTH STATE MONITOR
-firebase.auth().onAuthStateChanged(async (user) => {
-    const landing = document.getElementById('landing-screen');
-    const app = document.getElementById('app-content');
-
-    if (user) {
-        console.log("User detected:", user.email);
-        try {
+    firebase.auth().onAuthStateChanged(async (user) => {
+        const landing = document.getElementById('landing-screen');
+        const app = document.getElementById('app-content');
+        if (user) {
             await loadProfile(user);
             landing.style.display = 'none';
             app.classList.remove('hidden');
             app.style.opacity = "1";
             resetForm();
-        } catch (e) {
-            console.error("Error loading profile:", e);
-        }
-    } else {
-        landing.style.display = 'flex';
-        app.classList.add('hidden');
-    }
-});
-
-// 3. LOAD PROFILE & ADMIN CHECK
-async function loadProfile(user) {
-    try {
-        const doc = await db.collection("users").doc(user.uid).get();
-        const d = doc.exists ? doc.data() : {};
-        
-        // Check role ADMIN dari database
-        const isAdmin = (d.role === 'ADMIN');
-
-        userMeta = { 
-            name: d.name || '', 
-            gred: d.gred || '', 
-            cawangan: d.cawangan || '',
-            role: isAdmin ? 'ADMIN' : 'USER' 
-        };
-
-        // Update UI based on Role
-        const badge = document.getElementById('adminBadge');
-        const sheetBtn = document.getElementById('btnOpenSheet');
-        
-        if (isAdmin) {
-            badge.classList.remove('hidden');
-            sheetBtn.classList.remove('hidden');
+            updateClock();
         } else {
-            badge.classList.add('hidden');
-            sheetBtn.classList.add('hidden');
+            landing.style.display = 'flex';
+            app.classList.add('hidden');
         }
+    });
 
-        document.getElementById('navAvatar').src = user.photoURL || "https://ui-avatars.com/api/?name=" + (userMeta.name || 'P');
-        document.getElementById('userName').value = userMeta.name;
-        document.getElementById('userGred').value = userMeta.gred;
-        document.getElementById('userCawangan').value = userMeta.cawangan;
-        
-        document.getElementById('p_officer_name').innerText = "NAMA: " + (userMeta.name || "-");
-        document.getElementById('p_officer_gred').innerText = "GRED: " + (userMeta.gred || "-");
-        document.getElementById('p_officer_branch').innerText = "NEGERI/CAWANGAN: " + (userMeta.cawangan || "-");
-
-        if(userMeta.name) {
-            document.getElementById('form_staff').value = `${userMeta.name} (${userMeta.gred}) / ${userMeta.cawangan}`.toUpperCase();
-        }
-    } catch (err) {
-        console.error("Firestore read error:", err);
-    }
-}
-
-// 4. FETCH HISTORY (ADMIN & USER LOGIC)
-async function fetchHistory() {
-    const user = firebase.auth().currentUser;
-    const listDiv = document.getElementById('historyList');
-    listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs">Menarik Rekod...</p>';
-    
-    try {
-        let query;
-        // JIKA ADMIN: Ambil semua. JIKA USER: Ambil sendiri.
-        if (userMeta.role === 'ADMIN') {
-            query = db.collection("reports");
-        } else {
-            query = db.collection("reports").where("userId", "==", user.uid);
-        }
-
-        const snapshot = await query.get();
-        let docs = []; 
-        snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
-        
-        docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
-        
-        listDiv.innerHTML = "";
-        if(docs.length === 0) { 
-            listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Rekod</p>'; 
-            return; 
-        }
-
-        docs.forEach(d => {
-            const card = document.createElement('div');
-            const isMine = d.userId === user.uid;
-            const borderColor = isMine ? 'border-indigo-600' : 'border-red-500';
-
-            card.className = `bg-white p-4 rounded-2xl border-l-8 ${borderColor} shadow-sm hover:shadow-md cursor-pointer mb-3 transition-all active:scale-95`;
+    async function loadProfile(user) {
+        try {
+            const doc = await db.collection("users").doc(user.uid).get();
+            const d = doc.exists ? doc.data() : {};
+            const isAdmin = (d.role === 'ADMIN');
             
-            card.onclick = () => {
-                document.getElementById('currentDocId').value = d.id;
-                document.getElementById('mainForm').reset();
-                Object.keys(d).forEach(k => {
-                    let input = document.querySelector(`[name="${k}"]`);
-                    if (input) input.value = d[k];
-                });
-                calcTotal();
-                toggleHistory();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            userMeta = { 
+                name: d.name || '', 
+                gred: d.gred || '', 
+                cawangan: d.cawangan || '',
+                role: isAdmin ? 'ADMIN' : 'USER' 
             };
 
-            card.innerHTML = `
-                <div class="flex justify-between items-start mb-2 text-[10px]">
-                    <span class="font-black bg-slate-100 px-2 py-1 rounded text-slate-700">BIL: ${d.BIL || '-'}</span>
-                    <span class="text-emerald-600 font-black">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0.00'}</span>
-                </div>
-                <div class="space-y-1 text-[10px] font-bold text-slate-600 uppercase border-t pt-2">
-                    <p><span class="text-indigo-500">Kes:</span> ${d.KATEGORI_KES || '-'}</p>
-                    <p><span class="text-indigo-500">Pegawai:</span> ${d.recordedBy || 'N/A'}</p>
-                    <p><span class="text-indigo-500">Tarikh:</span> ${d.TARIKH_KEJADIAN || '-'}</p>
-                </div>
-            `;
-            listDiv.appendChild(card);
-        });
-    } catch (e) { 
-        listDiv.innerHTML = `<p class="text-red-500 text-xs text-center">Ralat: ${e.message}</p>`;
-    }
-}
-});
-
-        function toggleHistory() { 
-            const s = document.getElementById('historySidebar'); 
-            const isOpen = s.style.left === '0px';
-            s.style.left = isOpen ? '-100%' : '0px'; 
-            if(!isOpen) fetchHistory();
-        }
-        function toggleProfile() { const s = document.getElementById('profileSidebar'); s.style.right = (s.style.right === '0px') ? '-100%' : '0px'; }
-
-        function resetForm() {
-            document.getElementById('mainForm').reset();
-            document.getElementById('currentDocId').value = "";
-            document.getElementById('f_tahun').value = 2026;
-            calcTotal();
-        }
-
-        function calcTotal() {
-            let sum = 0;
-            document.querySelectorAll('.calc').forEach(i => sum += Number(i.value || 0));
-            document.getElementById('total_val_web').value = "RM " + sum.toLocaleString('en-MY', {minimumFractionDigits: 2});
-        }
-        document.getElementById('mainForm').addEventListener('input', calcTotal);
-
-        // --- DATABASE OPERATIONS ---
-
-        async function saveToFirebase() {
-            const user = firebase.auth().currentUser;
-            if(!user || !userMeta.name) { alert("Lengkapkan profil!"); toggleProfile(); return; }
-            document.getElementById('loader').style.display = 'flex';
-            try {
-                const formData = new FormData(document.getElementById('mainForm'));
-                const data = Object.fromEntries(formData.entries());
-                Object.keys(data).forEach(k => { if(typeof data[k] === 'string') data[k] = data[k].toUpperCase(); });
-                
-                data.userId = user.uid;
-                data.recordedBy = userMeta.name;
-                data.recordedGred = userMeta.gred;
-                data.recordedBranch = userMeta.cawangan;
-                data.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
-                
-                const now = new Date();
-                const days = ["AHAD", "ISNIN", "SELASA", "RABU", "KHAMIS", "JUMAAT", "SABTU"];
-                let h = now.getHours();
-                const ampm = h >= 12 ? 'PM' : 'AM';
-                h = h % 12 || 12;
-                data.recordedDay = days[now.getDay()];
-                data.recordedTimeStr = `${h}:${now.getMinutes().toString().padStart(2,'0')} ${ampm}`;
-
-                const docId = document.getElementById('currentDocId').value;
-                if(docId) await db.collection("reports").doc(docId).set(data, {merge: true});
-                else await db.collection("reports").add(data);
-                alert("Berjaya!");
-                resetForm();
-            } catch (e) { alert(e.message); }
-            finally { document.getElementById('loader').style.display = 'none'; }
-        }
-
-        async function fetchHistory() {
-    const user = firebase.auth().currentUser;
-    const listDiv = document.getElementById('historyList');
-    listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs">Menarik Rekod...</p>';
-    
-    try {
-        const snapshot = await db.collection("reports").where("userId", "==", user.uid).get();
-        let docs = []; 
-        snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
-        
-        docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
-        
-        listDiv.innerHTML = "";
-        if(docs.length === 0) { 
-            listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Rekod</p>'; 
-            return; 
-        }
-
-        docs.forEach(d => {
-            const card = document.createElement('div');
-            card.className = "bg-white p-4 rounded-2xl border-l-8 border-indigo-600 shadow-sm hover:shadow-md cursor-pointer mb-3 transition-all active:scale-95";
+            document.getElementById('adminBadge').classList.toggle('hidden', !isAdmin);
+            document.getElementById('btnOpenSheet').classList.toggle('hidden', !isAdmin);
+            document.getElementById('navAvatar').src = user.photoURL || `https://ui-avatars.com/api/?name=${userMeta.name || 'P'}`;
+            document.getElementById('userName').value = userMeta.name;
+            document.getElementById('userGred').value = userMeta.gred;
+            document.getElementById('userCawangan').value = userMeta.cawangan;
             
-            // --- FUNGSI KLIK YANG DITAMBAHBAIK ---
-            card.onclick = () => {
-                console.log("Data diklik:", d); // Untuk debug di console
-                document.getElementById('currentDocId').value = d.id;
-                
-                // Reset borang dulu sebelum isi
-                document.getElementById('mainForm').reset();
+            document.getElementById('p_officer_name').innerText = "NAMA: " + (userMeta.name || "-");
+            document.getElementById('p_officer_gred').innerText = "GRED: " + (userMeta.gred || "-");
+            document.getElementById('p_officer_branch').innerText = "NEGERI/CAWANGAN: " + (userMeta.cawangan || "-");
 
-                // Pusing setiap data dalam database
-                Object.keys(d).forEach(k => {
-                    // Cuba cari input guna nama asal (Contoh: KATEGORI_KES)
-                    let input = document.querySelector(`[name="${k}"]`);
-                    
-                    // Jika tak jumpa, cuba tukar space ke underscore (Contoh: "KATEGORI KES" jadi "KATEGORI_KES")
-                    if (!input) {
-                        let newKey = k.replace(/ /g, "_");
-                        input = document.querySelector(`[name="${newKey}"]`);
-                    }
-
-                    if (input) {
-                        input.value = d[k];
-                    }
-                });
-
-                // Khas untuk input Tarikh (kadangkala format lari)
-                if(d.TARIKH_KEJADIAN) {
-                   const dateInput = document.querySelector('[name="TARIKH_KEJADIAN"]');
-                   if(dateInput) dateInput.value = d.TARIKH_KEJADIAN;
-                }
-
-                calcTotal(); // Kira semula jumlah RM
-                toggleHistory(); // Tutup sidebar
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll ke atas
-            };
-
-            card.innerHTML = `
-                <div class="flex justify-between items-start mb-2 text-[10px]">
-                    <span class="font-black bg-indigo-50 text-indigo-700 px-2 py-1 rounded">BIL: ${d.BIL || d['BIL'] || '-'}</span>
-                    <span class="text-emerald-600 font-black">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0.00'}</span>
-                </div>
-                <div class="space-y-1 text-[10px] font-bold text-slate-600 uppercase border-t pt-2">
-                    <p><span class="text-indigo-500">Kes:</span> ${d.KATEGORI_KES || d['KATEGORI KES'] || '-'}</p>
-                    <p><span class="text-indigo-500">Tarikh:</span> ${d.TARIKH_KEJADIAN || '-'}</p>
-                </div>
-            `;
-            listDiv.appendChild(card);
-        });
-    } catch (e) { 
-        console.error(e);
-        listDiv.innerHTML = `<p class="text-red-500 text-xs text-center">Ralat: ${e.message}</p>`;
-    }
-}
-
-        // --- EXPORT MAPPING (URUTAN IMEJ 44 KOLUM) ---
-
-        function getMappedData() {
-            const formData = new FormData(document.getElementById('mainForm'));
-            const total = document.getElementById('total_val_web').value;
-            return {
-                "BIL": formData.get("BIL"),
-                "TAHUN": formData.get("TAHUN"),
-                "BULAN": formData.get("BULAN"),
-                "PENGUATKUASA": formData.get("PENGUATKUASA"),
-                "KATEGORI KES": formData.get("KATEGORI_KES"),
-                "NO REPOT POLIS": formData.get("NO_REPOT_POLIS"),
-                "TARIKH KEJADIAN": formData.get("TARIKH_KEJADIAN"),
-                "MASA KEJADIAN": formData.get("MASA_KEJADIAN"),
-                "LOKASI KEJADIAN": formData.get("LOKASI_KEJADIAN"),
-                "KESALAHAN": formData.get("KESALAHAN"),
-                "UNDANG-UNDANG": formData.get("UNDANG_UNDANG"),
-                "NO KES IP": formData.get("NO_KES_IP"),
-                "JENIS RAMPASAN": formData.get("JENIS_RAMPASAN"),
-                "LEMBU": formData.get("LEMBU"),
-                "KERBAU": formData.get("KERBAU"),
-                "KAMBING": formData.get("KAMBING"),
-                "BEBIRI": formData.get("BEBIRI"),
-                "BABI": formData.get("BABI"),
-                "AYAM": formData.get("AYAM"),
-                "KARKAS LEMBU": formData.get("KARKAS_LEMBU"),
-                "KARKAS KERBAU": formData.get("KARKAS_KERBAU"),
-                "KARKAS KAMBING": formData.get("KARKAS_KAMBING"),
-                "KARKAS BABI": formData.get("KARKAS_BABI"),
-                "KARKAS BABI SEJUK BEKU": formData.get("KARKAS_BABI_SEJUK_BEKU"),
-                "KARKAS AYAM": formData.get("KARKAS_AYAM"),
-                "PRODUK SEJUK BEKU ITIK": formData.get("PRODUK_SEJUK_BEKU_ITIK"),
-                "PRODUK SEJUK BEKU AYAM": formData.get("PRODUK_SEJUK_BEKU_AYAM"),
-                "PRODUK SEJUK BEKU BABI": formData.get("PRODUK_SEJUK_BEKU_BABI"),
-                "PRODUK HAIWAN (TIN)": formData.get("PRODUK_HAIWAN_TIN"),
-                "ANJING": formData.get("ANJING"),
-                "KUCING": formData.get("KUCING"),
-                "ARNAB": formData.get("ARNAB"),
-                "BURUNG": formData.get("BURUNG"),
-                "HAMSTER": formData.get("HAMSTER"),
-                "RAMPASAN LAIN-LAIN": formData.get("RAMPASAN_LAIN_LAIN"),
-                "JUMLAH RAMPASAN KENDERAAN": formData.get("JUMLAH_RAMPASAN_KENDERAAN"),
-                "RAMPASAN PENGANGKUTAN": formData.get("RAMPASAN_PENGANGKUTAN"),
-                "ANGGARAN NILAI (EKOR/KG)": formData.get("ANGGARAN_NILAI_EKOR_KG"),
-                "ANGGARAN NILAI (KENDERAAN)": formData.get("ANGGARAN_NILAI_KENDERAAN"),
-                "ANGGARAN NILAI (PENGANGKUT/KONTENA)": formData.get("ANGGARAN_NILAI_PENGANGKUT_KONTENA"),
-                "ANGGARAN NILAI (LAIN-LAIN)": formData.get("ANGGARAN_NILAI_LAIN_LAIN"),
-                "JUMLAH NILAI KESELURUHAN": total,
-                "KES SERAHAN": formData.get("KES_SERAHAN"),
-                "CATATAN": formData.get("CATATAN")
-            };
-        }
-
-        function exportToExcel() {
-            const data = getMappedData();
-            const ws = XLSX.utils.json_to_sheet([data]);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Data");
-            XLSX.writeFile(wb, `Laporan_v222_BIL_${data.BIL || 'DATA'}.xlsx`);
-        }
-
-        function exportToCSV() {
-            const data = getMappedData();
-            const headers = Object.keys(data).join(",");
-            const values = Object.values(data).map(v => `"${String(v).replace(/"/g, '""')}"`).join(",");
-            const csv = "\ufeff" + headers + "\n" + values;
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = `AccessDB_v222_BIL_${data.BIL || 'DATA'}.csv`;
-            link.click();
-        }
-
-        // --- PROFILE CORE ---
-
-        async function loadProfile(user) {
-    // Ambil data user dari collection "users" dalam Firestore
-    const doc = await db.collection("users").doc(user.uid).get();
-    const d = doc.exists ? doc.data() : {};
-    
-    // Kita tak pakai emel hardcoded lagi. 
-    // Kita check field "role" yang kita set sendiri kat database nanti.
-    const isAdmin = (d.role === 'ADMIN');
-
-    userMeta = { 
-        name: d.name || '', 
-        gred: d.gred || '', 
-        cawangan: d.cawangan || '',
-        role: isAdmin ? 'ADMIN' : 'USER' 
-    };
-    
-    // Papar/Sembunyi butang ikut role
-    if (isAdmin) {
-        document.getElementById('adminBadge').classList.remove('hidden');
-        document.getElementById('btnOpenSheet').classList.remove('hidden');
-    } else {
-        document.getElementById('adminBadge').classList.add('hidden');
-        document.getElementById('btnOpenSheet').classList.add('hidden');
-    }
-        async function saveProfile() {
-            const user = firebase.auth().currentUser;
-            if(!user) return;
-            const n = document.getElementById('userName').value.toUpperCase();
-            const g = document.getElementById('userGred').value.toUpperCase();
-            const c = document.getElementById('userCawangan').value.toUpperCase();
-            
-            if(!n || !g || !c) { alert("Sila isi semua maklumat!"); return; }
-            
-            document.getElementById('loader').style.display = 'flex';
-            try {
-                await db.collection("users").doc(user.uid).set({
-                    name: n, gred: g, cawangan: c, updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                }, { merge: true });
-                alert("Profil Berjaya Disimpan!");
-                location.reload();
-            } catch (e) {
-                alert("Ralat: " + e.message);
-            } finally {
-                document.getElementById('loader').style.display = 'none';
+            if(userMeta.name) {
+                document.getElementById('form_staff').value = `${userMeta.name} (${userMeta.gred}) / ${userMeta.cawangan}`.toUpperCase();
             }
-        }
-
-        function printReport() { calcTotal(); window.print(); }
-        function loginGoogle() { 
-    const provider = new firebase.auth.GoogleAuthProvider();
-    // Gunakan Popup untuk desktop, Redirect untuk mobile lebih stabil
-    if (window.innerWidth > 768) {
-        firebase.auth().signInWithPopup(provider).catch(err => alert(err.message));
-    } else {
-        firebase.auth().signInWithRedirect(provider);
+        } catch (e) { console.error("Error Load Profile:", e); }
     }
-}
 
-// --- PENGESAN HASIL LOGIN (PENTING UNTUK GITHUB) ---
-firebase.auth().getRedirectResult().then((result) => {
-    if (result && result.user) {
-        console.log("Berjaya masuk selepas redirect:", result.user);
+    async function saveProfile() {
+        const user = firebase.auth().currentUser;
+        const n = document.getElementById('userName').value.toUpperCase();
+        const g = document.getElementById('userGred').value.toUpperCase();
+        const c = document.getElementById('userCawangan').value.toUpperCase();
+        if(!n || !g || !c) return alert("Lengkapkan profil!");
+
+        document.getElementById('loader').style.display = 'flex';
+        try {
+            await db.collection("users").doc(user.uid).set({ name: n, gred: g, cawangan: c }, { merge: true });
+            alert("Profil Dikemaskini!");
+            location.reload();
+        } catch (e) { alert(e.message); }
+        finally { document.getElementById('loader').style.display = 'none'; }
     }
-}).catch((error) => {
-    console.error("Ralat Redirect:", error);
-    if(error.code === 'auth/unauthorized-domain') {
-        alert("Domain ini tidak dibenarkan. Sila pastikan ttv4u1.github.io ada dalam Authorized Domains di Firebase.");
+
+    function logout() { firebase.auth().signOut().then(() => location.reload()); }
+
+    // --- 3. PENGURUSAN DATA (SAVE/FETCH) ---
+    async function saveToAll() {
+        const user = firebase.auth().currentUser;
+        if(!user || !userMeta.name) { alert("Sila lengkapkan profil dahulu!"); toggleProfile(); return; }
+
+        document.getElementById('loader').style.display = 'flex';
+        const formData = new FormData(document.getElementById('mainForm'));
+        const totalVal = document.getElementById('total_val_web').value;
+        const dataObj = Object.fromEntries(formData.entries());
+        
+        // Format Data
+        Object.keys(dataObj).forEach(k => { if(typeof dataObj[k] === 'string') dataObj[k] = dataObj[k].toUpperCase(); });
+        dataObj.JUMLAH_NILAI_KESELURUHAN = totalVal;
+        dataObj.userId = user.uid;
+        dataObj.recordedBy = userMeta.name;
+        dataObj.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
+
+        try {
+            // A. Baserow
+            const br = fetch(`https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`, {
+                method: 'POST',
+                headers: { 'Authorization': `Token ${BASEROW_TOKEN}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify(dataObj)
+            });
+            // B. Google Sheets
+            const gs = fetch(GOOGLE_SHEET_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dataObj) });
+            // C. Firebase
+            const fb = db.collection("reports").add(dataObj);
+
+            await Promise.all([br, gs, fb]);
+            alert("Rekod Berjaya Disimpan ke Semua Database!");
+            resetForm();
+        } catch (e) { alert("Ralat: " + e.message); }
+        finally { document.getElementById('loader').style.display = 'none'; }
     }
-});
 
-function logout() { 
-    firebase.auth().signOut().then(() => location.reload()); 
-}
+    async function fetchHistory() {
+        const user = firebase.auth().currentUser;
+        const listDiv = document.getElementById('historyList');
+        listDiv.innerHTML = '<p class="text-center py-10 text-xs animate-pulse">Menarik Rekod...</p>';
+        
+        try {
+            let query = (userMeta.role === 'ADMIN') ? db.collection("reports") : db.collection("reports").where("userId", "==", user.uid);
+            const snapshot = await query.limit(50).get();
+            listDiv.innerHTML = "";
+            
+            snapshot.forEach(doc => {
+                const d = doc.data();
+                const card = document.createElement('div');
+                card.className = "bg-white p-4 rounded-2xl border-l-8 border-indigo-600 shadow-sm mb-3 cursor-pointer active:scale-95 transition";
+                card.onclick = () => {
+                    document.getElementById('currentDocId').value = doc.id;
+                    Object.keys(d).forEach(k => {
+                        let input = document.querySelector(`[name="${k}"]`);
+                        if (input) input.value = d[k];
+                    });
+                    calcTotal();
+                    toggleHistory();
+                };
+                card.innerHTML = `
+                    <div class="flex justify-between text-[10px] font-black">
+                        <span>BIL: ${d.BIL || '-'}</span>
+                        <span class="text-emerald-600">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0.00'}</span>
+                    </div>
+                    <p class="text-[10px] mt-1 uppercase text-slate-500">${d.KATEGORI_KES || 'KES'}</p>
+                    <p class="text-[9px] text-indigo-400">${d.recordedBy || ''}</p>
+                `;
+                listDiv.appendChild(card);
+            });
+        } catch (e) { listDiv.innerHTML = "Ralat menarik data."; }
+    }
 
-// Pastikan penutup script dan body ada
+    // --- 4. UTILITI UI ---
+    function calcTotal() {
+        let sum = 0;
+        document.querySelectorAll('.calc').forEach(i => sum += Number(i.value || 0));
+        document.getElementById('total_val_web').value = "RM " + sum.toLocaleString('en-MY', {minimumFractionDigits: 2});
+    }
+
+    function resetForm() {
+        document.getElementById('mainForm').reset();
+        document.getElementById('currentDocId').value = "";
+        document.getElementById('f_tahun').value = new Date().getFullYear();
+        if(userMeta.name) document.getElementById('form_staff').value = `${userMeta.name} (${userMeta.gred}) / ${userMeta.cawangan}`.toUpperCase();
+        calcTotal();
+    }
+
+    function toggleHistory() { 
+        const s = document.getElementById('historySidebar'); 
+        s.style.left = (s.style.left === '0px') ? '-100%' : '0px'; 
+        if(s.style.left === '0px') fetchHistory();
+    }
+
+    function toggleProfile() { 
+        const s = document.getElementById('profileSidebar'); 
+        s.style.right = (s.style.right === '0px') ? '-100%' : '0px'; 
+    }
+
+    function updateClock() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById('realtime-clock').innerText = now.toLocaleDateString('ms-MY', options).toUpperCase();
+        document.getElementById('print-timestamp').innerText = "DICETAK PADA: " + now.toLocaleString();
+    }
+    setInterval(updateClock, 1000);
+
+    function printReport() { calcTotal(); window.print(); }
+
+    // --- 5. EXPORT ---
+    function exportToExcel() {
+        const ws = XLSX.utils.json_to_sheet([Object.fromEntries(new FormData(document.getElementById('mainForm')).entries())]);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Data");
+        XLSX.writeFile(wb, "Laporan.xlsx");
+    }
+
+    document.getElementById('mainForm').addEventListener('input', calcTotal);
 </script>
 </body>
 </html>
