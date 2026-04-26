@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v55 - Pro Edition</title>
+    <title>e-Penguatkuasa v66 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -46,19 +46,36 @@
 }
 
         /* v333 ANIMATED BOX */
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .version-box {
-            display: inline-block;
-            background: linear-gradient(-45deg, #6366f1, #d946ef, #3b82f6, #6366f1);
-            background-size: 300% 300%;
-            animation: gradientFlow 4s ease infinite;
-            color: white; padding: 2px 8px; border-radius: 6px;
-            font-weight: 900; font-size: 0.75em; vertical-align: middle;
-        }
+        @keyframes goldShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.version-box {
+    display: inline-block;
+    /* Gradient Emas Metalik */
+    background: linear-gradient(45deg, #b45309, #f59e0b, #fbbf24, #f59e0b, #b45309);
+    background-size: 200% auto;
+    animation: goldShimmer 3s linear infinite;
+    
+    /* Warna teks coklat gelap supaya nampak mewah atas emas */
+    color: #451a03; 
+    
+    padding: 2px 10px; 
+    border-radius: 8px;
+    font-weight: 900; 
+    font-size: 0.75em; 
+    vertical-align: middle;
+    
+    /* Kesan Glow & Border */
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+    border: 1px solid rgba(251, 191, 36, 0.6);
+    
+    /* Sedikit bayang pada teks */
+    text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
 
         .section-card {
             background: white; border-radius: 24px; padding: 1.5rem;
