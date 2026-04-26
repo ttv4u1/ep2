@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v90 - Ultimate Sync</title>
+    <title>e-Penguatkuasa v91 - Sovereign Sync</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,16 +22,17 @@
         .form-input-modern { width: 100%; padding: 12px 14px; border-radius: 12px; border: 2px solid #cbd5e1; font-weight: 700; font-size: 16px; background: white; transition: all 0.2s; }
         .form-input-modern:focus { border-color: #4f46e5; outline: none; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
         .input-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 6px; display: block; }
-        .premium-gold-btn { background: linear-gradient(45deg, #b45309, #fbbf24); color: #451a03; font-weight: 900; }
+        .premium-gold-btn { background: linear-gradient(45deg, #b45309, #fbbf24); color: #451a03; font-weight: 900; animation: goldShimmer 4s linear infinite; background-size: 200% auto; }
+        @keyframes goldShimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
         #loader { display:none; position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 9999; align-items: center; justify-content: center; flex-direction: column; }
-        @media print { .no-print { display: none !important; } .section-card { border: 1px solid #000 !important; border-radius: 0 !important; } }
+        @media (max-width: 640px) { .section-card { padding: 1.25rem; } .grid-cols-mobile { grid-template-columns: 1fr !important; } }
     </style>
 </head>
 <body class="antialiased">
 
     <div id="loader">
         <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p id="loader-status" class="mt-4 font-black text-indigo-600 uppercase text-[10px] tracking-widest text-center px-6">SINKRONISASI DATA v90...</p>
+        <p id="loader-status" class="mt-4 font-black text-indigo-600 uppercase text-[10px] tracking-widest text-center px-6">ULTIMATE SYNC v91...</p>
     </div>
 
     <!-- Admin Modal -->
@@ -39,13 +40,13 @@
         <div class="bg-white w-full max-w-4xl rounded-[32px] max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
             <div class="p-6 border-b flex justify-between items-center bg-slate-50">
                 <h2 class="font-black text-xl uppercase italic tracking-tighter">Panel Super Admin</h2>
-                <button onclick="closeAdminPanel()" class="p-2 hover:bg-slate-200 rounded-full"><i data-lucide="x"></i></button>
+                <button onclick="closeAdminPanel()" class="p-2 hover:bg-slate-200 rounded-full transition"><i data-lucide="x"></i></button>
             </div>
-            <div class="flex-1 overflow-y-auto p-6">
+            <div class="flex-1 overflow-y-auto p-6" id="adminContent">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                     <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100"><p class="text-[10px] font-black text-indigo-600 uppercase">Total Kes</p><h3 id="statTotalKes" class="text-3xl font-black">0</h3></div>
-                    <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100"><p class="text-[10px] font-black text-emerald-600 uppercase">Total RM</p><h3 id="statTotalRM" class="text-2xl font-black text-emerald-900">RM 0</h3></div>
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200"><p class="text-[10px] font-black text-slate-500 uppercase">Pegawai</p><h3 id="statTotalUsers" class="text-3xl font-black">0</h3></div>
+                    <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100"><p class="text-[10px] font-black text-emerald-600 uppercase">Total RM</p><h3 id="statTotalRM" class="text-2xl font-black">RM 0</h3></div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200"><p class="text-[10px] font-black text-slate-500 uppercase">Pegawai Berdaftar</p><h3 id="statTotalUsers" class="text-3xl font-black">0</h3></div>
                 </div>
                 <div class="bg-white border rounded-2xl overflow-hidden"><table class="w-full text-left text-sm"><thead class="bg-slate-50 text-[10px] font-black uppercase text-slate-500"><tr><th class="px-6 py-4">Pegawai</th><th class="px-6 py-4 text-right">Tindakan</th></tr></thead><tbody id="adminUserList"></tbody></table></div>
             </div>
@@ -54,21 +55,23 @@
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617] no-print">
-        <div class="p-8 text-center bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
+        <div class="p-8 text-center bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 w-[90%] max-w-sm">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">e-Penguatkuasa <span class="version-box">v90</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">e-Penguatkuasa <span class="version-box">v91</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl uppercase text-sm mt-8">Masuk Sistem</button>
         </div>
     </section>
 
-    <!-- Main App -->
+    <!-- Main Content -->
     <div id="app-content" class="hidden min-h-screen pb-10">
         <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b px-4 py-3 flex justify-between items-center no-print">
-            <div class="flex items-center gap-2"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8"><h2 class="font-black text-slate-800 text-xs uppercase italic leading-none">BORANG <span class="version-box">V90</span></h2></div>
+            <div class="flex items-center gap-2">
+                <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8">
+                <h2 class="font-black text-slate-800 text-xs uppercase italic leading-none">BORANG <span class="version-box">V91</span></h2>
+            </div>
             <div class="flex items-center gap-2">
                 <button onclick="resetForm()" class="px-3 py-2 bg-indigo-600 text-white rounded-xl font-black text-[10px] uppercase shadow-sm">Baru</button>
                 <button onclick="toggleHistory()" class="px-3 py-2 bg-amber-500 text-white rounded-xl font-black text-[10px] uppercase shadow-sm">Rekod</button>
-                <button onclick="window.print()" class="px-3 py-2 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase shadow-sm">Cetak</button>
                 <div onclick="toggleProfile()" class="w-9 h-9 rounded-full border-2 border-indigo-500 overflow-hidden cursor-pointer shadow-sm"><img id="navAvatar" src="" class="w-full h-full object-cover"></div>
             </div>
         </header>
@@ -87,7 +90,7 @@
                         <div class="sm:col-span-2"><label class="input-label">No Repot Polis</label><input type="text" name="NO_REPOT_POLIS" class="form-input-modern uppercase"></div>
                         <div><label class="input-label">Tarikh Kejadian</label><input type="date" name="TARIKH_KEJADIAN" class="form-input-modern"></div>
                         <div><label class="input-label">Masa Kejadian</label><input type="time" name="MASA_KEJADIAN" class="form-input-modern"></div>
-                        <div class="sm:col-span-2 lg:col-span-3"><label class="input-label">Lokasi</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern uppercase"></div>
+                        <div class="sm:col-span-2 lg:col-span-3"><label class="input-label">Lokasi Kejadian</label><input type="text" name="LOKASI_KEJADIAN" class="form-input-modern uppercase"></div>
                         <div class="sm:col-span-2 lg:col-span-3"><label class="input-label">Kesalahan</label><input type="text" name="KESALAHAN" class="form-input-modern uppercase"></div>
                         <div class="sm:col-span-2 lg:col-span-4"><label class="input-label">Undang-Undang</label><input type="text" name="UNDANG_UNDANG" class="form-input-modern uppercase"></div>
                         <div class="sm:col-span-1 lg:col-span-2"><label class="input-label">No Kes IP</label><input type="text" name="NO_KES_IP" class="form-input-modern uppercase"></div>
@@ -140,12 +143,12 @@
                         <div><label class="input-label">NILAI EKOR/KG (RM)</label><input type="number" name="ANGGARAN_NILAI_EKOR_KG" class="calc-rm form-input-modern" value="0"></div>
                         <div><label class="input-label">NILAI KENDERAAN (RM)</label><input type="number" name="ANGGARAN_NILAI_KENDERAAN" class="calc-rm form-input-modern" value="0"></div>
                         <div><label class="input-label">NILAI KONTENA (RM)</label><input type="number" name="ANGGARAN_NILAI_PENGANGKUT_KONTENA" class="calc-rm form-input-modern" value="0"></div>
-                        <div><label class="input-label">NILAI LAIN (RM)</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc-rm form-input-modern" value="0"></div>
+                        <div><label class="input-label">NILAI LAIN-LAIN (RM)</label><input type="number" name="ANGGARAN_NILAI_LAIN_LAIN" class="calc-rm form-input-modern" value="0"></div>
                         <div class="sm:col-span-2"><label class="input-label">TOTAL KESELURUHAN (RM)</label><input type="text" id="disp_rm" name="JUMLAH_NILAI_KESELURUHAN" class="form-input-modern text-3xl font-black text-indigo-700 bg-transparent border-none outline-none" readonly value="RM 0.00"></div>
                         <div class="sm:col-span-2"><label class="input-label">KES SERAHAN</label><input type="text" name="KES_SERAHAN" class="form-input-modern uppercase"></div>
                         <div class="sm:col-span-4"><label class="input-label">CATATAN</label><input type="text" name="CATATAN" class="form-input-modern uppercase"></div>
                     </div>
-                    <button type="button" onclick="submitData()" class="no-print w-full bg-indigo-600 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-indigo-700 transition active:scale-95 uppercase tracking-widest text-sm mt-8">Hantar & Simpan Rekod Ultimate</button>
+                    <button type="button" onclick="submitData()" class="no-print w-full bg-indigo-600 text-white font-black py-5 rounded-2xl shadow-xl hover:bg-indigo-700 transition active:scale-95 uppercase tracking-widest text-sm mt-8">Hantar & Simpan Rekod Sovereign v91</button>
                 </div>
             </form>
         </main>
@@ -166,7 +169,9 @@
             <div><label class="input-label">Gred Jawatan</label><input type="text" id="p_gred" class="form-input-modern uppercase"></div>
             <div><label class="input-label">Cawangan/Negeri</label><input type="text" id="p_caw" class="form-input-modern uppercase"></div>
             <button onclick="saveProfile()" class="w-full bg-indigo-600 text-white font-black py-4 rounded-xl uppercase shadow-md">Update Profil</button>
-            <div id="adminControls" class="hidden pt-6 border-t mt-6"><button onclick="openAdminPanel()" class="premium-gold-btn w-full py-4 rounded-xl uppercase flex items-center justify-center gap-3"><i data-lucide="crown" class="w-4 h-4"></i> Admin Panel</button></div>
+            <div id="adminControls" class="hidden pt-6 border-t mt-6">
+                <button onclick="openAdminPanel()" class="premium-gold-btn w-full py-4 rounded-xl uppercase flex items-center justify-center gap-3"><i data-lucide="crown" class="w-4 h-4"></i> Admin Control Panel</button>
+            </div>
             <button onclick="logout()" class="w-full text-red-500 font-bold text-xs uppercase mt-8 text-center">LOG KELUAR</button>
         </div>
     </aside>
@@ -189,7 +194,7 @@
         lucide.createIcons();
         let userRole = 'USER';
 
-        // --- AUTH & PROFILE ---
+        // --- AUTH ---
         firebase.auth().onAuthStateChanged(async user => {
             if (user) {
                 document.getElementById('landing-screen').style.display = 'none';
@@ -228,54 +233,54 @@
             }
         });
 
-        // --- ULTIMATE SYNC LOGIC (FOR BASEROW FULL DATA) ---
+        // --- BASEROW SYNC v91 (FIXED MAPPING) ---
         async function saveToBaserow(data) {
             try {
-                // Mapping EVERY SINGLE field to Baserow precisely
+                // NAMA FIELD MESTI SAMA TEPAT DENGAN BASEROW (SPASI/HURUF BESAR)
                 const baserowData = {
                     "BIL": data.BIL,
                     "TAHUN": Number(data.TAHUN) || 2026,
                     "BULAN": data.BULAN,
                     "PENGUATKUASA": data.PENGUATKUASA,
-                    "KATEGORI_KES": data.KATEGORI_KES,
-                    "NO_REPOT_POLIS": data.NO_REPOT_POLIS,
-                    "TARIKH_KEJADIAN": data.TARIKH_KEJADIAN,
-                    "MASA_KEJADIAN": data.MASA_KEJADIAN,
-                    "LOKASI_KEJADIAN": data.LOKASI_KEJADIAN,
+                    "KATEGORI KES": data.KATEGORI_KES,
+                    "NO REPOT POLIS": data.NO_REPOT_POLIS,
+                    "TARIKH KEJADIAN": data.TARIKH_KEJADIAN,
+                    "MASA KEJADIAN": data.MASA_KEJADIAN,
+                    "LOKASI KEJADIAN": data.LOKASI_KEJADIAN,
                     "KESALAHAN": data.KESALAHAN,
-                    "UNDANG_UNDANG": data.UNDANG_UNDANG,
-                    "NO_KES_IP": data.NO_KES_IP,
-                    "JENIS_RAMPASAN": data.JENIS_RAMPASAN,
+                    "UNDANG-UNDANG": data.UNDANG_UNDANG,
+                    "NO KES IP": data.NO_KES_IP,
+                    "JENIS RAMPASAN": data.JENIS_RAMPASAN,
                     "LEMBU": Number(data.LEMBU) || 0,
                     "KERBAU": Number(data.KERBAU) || 0,
                     "KAMBING": Number(data.KAMBING) || 0,
                     "BEBIRI": Number(data.BEBIRI) || 0,
                     "BABI": Number(data.BABI) || 0,
                     "AYAM": Number(data.AYAM) || 0,
-                    "KARKAS_LEMBU": Number(data.KARKAS_LEMBU) || 0,
-                    "KARKAS_KERBAU": Number(data.KARKAS_KERBAU) || 0,
-                    "KARKAS_KAMBING": Number(data.KARKAS_KAMBING) || 0,
-                    "KARKAS_BABI": Number(data.KARKAS_BABI) || 0,
-                    "KARKAS_BABI_SEJUK_BEKU": Number(data.KARKAS_BABI_SEJUK_BEKU) || 0,
-                    "KARKAS_AYAM": Number(data.KARKAS_AYAM) || 0,
-                    "PRODUK_SEJUK_BEKU_ITIK": Number(data.PRODUK_SEJUK_BEKU_ITIK) || 0,
-                    "PRODUK_SEJUK_BEKU_BABI": Number(data.PRODUK_SEJUK_BEKU_BABI) || 0,
-                    "PRODUK_SEJUK_BEKU_BEBIRI": Number(data.PRODUK_SEJUK_BEKU_BEBIRI) || 0,
-                    "PRODUK_HAIWAN_TIN": Number(data.PRODUK_HAIWAN_TIN) || 0,
+                    "KARKAS LEMBU": Number(data.KARKAS_LEMBU) || 0,
+                    "KARKAS KERBAU": Number(data.KARKAS_KERBAU) || 0,
+                    "KARKAS KAMBING": Number(data.KARKAS_KAMBING) || 0,
+                    "KARKAS BABI": Number(data.KARKAS_BABI) || 0,
+                    "KARKAS BABI SEJUK BEKU": Number(data.KARKAS_BABI_SEJUK_BEKU) || 0,
+                    "KARKAS AYAM": Number(data.KARKAS_AYAM) || 0,
+                    "PRODUK SEJUK BEKU ITIK": Number(data.PRODUK_SEJUK_BEKU_ITIK) || 0,
+                    "PRODUK SEJUK BEKU BABI": Number(data.PRODUK_SEJUK_BEKU_BABI) || 0,
+                    "PRODUK SEJUK BEKU BEBIRI": Number(data.PRODUK_SEJUK_BEKU_BEBIRI) || 0,
+                    "PRODUK HAIWAN (TIN)": Number(data.PRODUK_HAIWAN_TIN) || 0,
                     "ANJING": Number(data.ANJING) || 0,
                     "KUCING": Number(data.KUCING) || 0,
                     "ARNAB": Number(data.ARNAB) || 0,
                     "BURUNG": Number(data.BURUNG) || 0,
                     "HAMSTER": Number(data.HAMSTER) || 0,
-                    "RAMPASAN_LAIN": data.RAMPASAN_LAIN,
-                    "JUMLAH_RAMPASAN": data.JUMLAH_RAMPASAN,
-                    "RAMPASAN_PENGANGKUTAN": data.RAMPASAN_PENGANGKUTAN,
-                    "ANGGARAN_NILAI_EKOR_KG": Number(data.ANGGARAN_NILAI_EKOR_KG) || 0,
-                    "ANGGARAN_NILAI_KENDERAAN": Number(data.ANGGARAN_NILAI_KENDERAAN) || 0,
-                    "ANGGARAN_NILAI_PENGANGKUT_KONTENA": Number(data.ANGGARAN_NILAI_PENGANGKUT_KONTENA) || 0,
-                    "ANGGARAN_NILAI_LAIN_LAIN": Number(data.ANGGARAN_NILAI_LAIN_LAIN) || 0,
-                    "JUMLAH_NILAI_KESELURUHAN": data.JUMLAH_NILAI_KESELURUHAN,
-                    "KES_SERAHAN": data.KES_SERAHAN,
+                    "RAMPASAN LAIN-LAIN": data.RAMPASAN_LAIN,
+                    "JUMLAH RAMPASAN": data.JUMLAH_RAMPASAN,
+                    "RAMPASAN PENGANGKUTAN": data.RAMPASAN_PENGANGKUTAN,
+                    "ANGGARAN NILAI (EKOR/KG)": Number(data.ANGGARAN_NILAI_EKOR_KG) || 0,
+                    "ANGGARAN NILAI (KENDERAAN)": Number(data.ANGGARAN_NILAI_KENDERAAN) || 0,
+                    "ANGGARAN NILAI (PENGANGKUT/KONTENA)": Number(data.ANGGARAN_NILAI_PENGANGKUT_KONTENA) || 0,
+                    "ANGGARAN NILAI (LAIN-LAIN)": Number(data.ANGGARAN_NILAI_LAIN_LAIN) || 0,
+                    "JUMLAH NILAI KESELURUHAN": data.JUMLAH_NILAI_KESELURUHAN,
+                    "KES SERAHAN": data.KES_SERAHAN,
                     "CATATAN": data.CATATAN
                 };
 
@@ -287,12 +292,9 @@
                     },
                     body: JSON.stringify(baserowData)
                 });
-                
-                const result = await response.json();
-                console.log("Baserow Sync Success:", result);
                 return response.ok;
             } catch (err) {
-                console.error("Baserow Sync Error Details:", err);
+                console.error("Baserow Ralat:", err);
                 return false;
             }
         }
@@ -309,33 +311,25 @@
 
             try {
                 // 1. Cloud Firestore
-                status.innerText = "SINKRONISASI FIRESTORE...";
+                status.innerText = "FIRESTORE SYNC...";
                 await db.collection("reports").add(data);
                 
-                // 2. Spreadsheet Sync
-                status.innerText = "SINKRONISASI SPREADSHEET...";
+                // 2. Spreadsheet GAS
+                status.innerText = "SPREADSHEET SYNC...";
                 if(SCRIPT_URL.startsWith('http')) {
-                    await fetch(SCRIPT_URL, { 
-                        method: 'POST', 
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data) 
-                    });
+                    await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
                 }
 
-                // 3. Baserow Full Data Sync
-                status.innerText = "SINKRONISASI BASEROW (44 KOLUM)...";
-                const baserowOk = await saveToBaserow(data);
+                // 3. Baserow v91 Sync
+                status.innerText = "BASEROW v91 ULTIMATE SYNC...";
+                const bOk = await saveToBaserow(data);
                 
-                if(baserowOk) {
-                    alert("Sync Berjaya ke Firestore, Spreadsheet & Baserow!");
-                } else {
-                    alert("Firestore & Spreadsheet OK, namun Baserow gagal sync (Semak Nama Field Baserow).");
-                }
+                if(bOk) alert("BERJAYA! Data diselaraskan ke Firestore, Spreadsheet & Baserow.");
+                else alert("Firestore & Spreadsheet OK, tetapi Baserow gagal. Sila semak nama kolum di Baserow (mesti ada spasi).");
                 
                 resetForm();
             } catch (e) {
-                alert("Ralat Kritikal: " + e.message);
+                alert("Gagal: " + e.message);
             } finally {
                 loader.style.display = 'none';
             }
@@ -344,7 +338,7 @@
         // --- UTILS ---
         async function fetchHistory() {
             const list = document.getElementById('historyList');
-            list.innerHTML = '<p class="text-center p-10 animate-pulse text-[10px] font-bold">MENGHUBUNGKAN DATABASE...</p>';
+            list.innerHTML = '<p class="text-center p-10 animate-pulse text-[10px] font-bold">LOADING DATABASE...</p>';
             let q = db.collection("reports");
             if(userRole !== 'ADMIN') q = q.where("userID", "==", firebase.auth().currentUser.uid);
             const snap = await q.get();
