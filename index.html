@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v22.1 - Master Database</title>
+    <title>e-Penguatkuasa v30 - Master Database</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -63,14 +63,14 @@
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617] no-print">
         <div class="p-8 text-center bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">e-Penguatkuasa <span class="version-box">v22.1</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">e-Penguatkuasa <span class="version-box">v30</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl uppercase text-sm mt-6">Akses Sistem</button>
         </div>
     </section>
 
     <div id="app-content" class="hidden min-h-screen pb-20">
         <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b px-4 py-3 flex justify-between items-center no-print">
-            <div class="flex items-center gap-2"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8"><h2 class="font-black text-slate-800 text-[10px] uppercase italic">JPV PENGUAT KUASA <span class="version-box">v22.1</span></h2></div>
+            <div class="flex items-center gap-2"><img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8"><h2 class="font-black text-slate-800 text-[10px] uppercase italic">JPV PENGUAT KUASA <span class="version-box">v30</span></h2></div>
             <div class="flex items-center gap-2">
                 <button onclick="resetForm()" class="px-3 py-2 bg-indigo-600 text-white rounded-lg font-black text-[9px] uppercase">Baru</button>
                 <button onclick="toggleHistory()" class="px-3 py-2 bg-amber-500 text-white rounded-lg font-black text-[9px] uppercase tracking-tighter">Database Global</button>
@@ -284,11 +284,66 @@
         }
 
         async function saveToBaserow(data) {
-            try {
-                const bData = { "BIL": data.BIL, "TAHUN": Number(data.TAHUN) || 2026, "BULAN": data.BULAN, "PENGUATKUASA": data.PENGUATKUASA, "KATEGORI KES": data.KATEGORI_KES, "JUMLAH NILAI KESELURUHAN": data.JUMLAH_NILAI_KESELURUHAN };
-                await fetch(`https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`, { method: 'POST', headers: { 'Authorization': `Token ${BASEROW_TOKEN}`, 'Content-Type': 'application/json' }, body: JSON.stringify(bData) });
-            } catch (e) {}
-        }
+    try {
+        const bData = {
+            "BIL": data.BIL,
+            "TAHUN": Number(data.TAHUN) || 2026,
+            "BULAN": data.BULAN,
+            "PENGUATKUASA": data.PENGUATKUASA,
+            "KATEGORI KES": data.KATEGORI_KES,
+            "NO REPOT POLIS": data.NO_REPOT_POLIS,
+            "TARIKH KEJADIAN": data.TARIKH_KEJADIAN,
+            "MASA KEJADIAN": data.MASA_KEJADIAN,
+            "LOKASI KEJADIAN": data.LOKASI_KEJADIAN,
+            "KESALAHAN": data.KESALAHAN,
+            "UNDANG-UNDANG": data.UNDANG_UNDANG,
+            "NO KES IP": data.NO_KES_IP,
+            "JENIS RAMPASAN": data.JENIS_RAMPASAN,
+            "LEMBU": Number(data.LEMBU) || 0,
+            "KERBAU": Number(data.KERBAU) || 0,
+            "KAMBING": Number(data.KAMBING) || 0,
+            "BEBIRI": Number(data.BEBIRI) || 0,
+            "BABI": Number(data.BABI) || 0,
+            "AYAM": Number(data.AYAM) || 0,
+            "KARKAS LEMBU": Number(data.KARKAS_LEMBU) || 0,
+            "KARKAS KERBAU": Number(data.KARKAS_KERBAU) || 0,
+            "KARKAS KAMBING": Number(data.KARKAS_KAMBING) || 0,
+            "KARKAS BABI": Number(data.KARKAS_BABI) || 0,
+            "KARKAS BABI SEJUK BEKU": Number(data.KARKAS_BABI_SEJUK_BEKU) || 0,
+            "KARKAS AYAM": Number(data.KARKAS_AYAM) || 0,
+            "PRODUK SEJUK BEKU ITIK": Number(data.PRODUK_SEJUK_BEKU_ITIK) || 0,
+            "PRODUK SEJUK BEKU AYAM": Number(data.PRODUK_SEJUK_BEKU_AYAM) || 0,
+            "PRODUK SEJUK BEKU BABI": Number(data.PRODUK_SEJUK_BEKU_BABI) || 0,
+            "PRODUK HAIWAN (TIN)": Number(data.PRODUK_HAIWAN_TIN) || 0,
+            "ANJING": Number(data.ANJING) || 0,
+            "KUCING": Number(data.KUCING) || 0,
+            "ARNAB": Number(data.ARNAB) || 0,
+            "BURUNG": Number(data.BURUNG) || 0,
+            "HAMSTER": Number(data.HAMSTER) || 0,
+            "RAMPASAN LAIN-LAIN": data.RAMPASAN_LAIN,
+            "JUMLAH RAMPASAN KENDERAAN": Number(data.JUMLAH_RAMPASAN_KENDERAAN) || 0,
+            "JUMLAH RAMPASAN PENGANGKUT/KONTENA": Number(data.JUMLAH_RAMPASAN_PENGANGKUT_KONTENA) || 0,
+            "ANGGARAN NILAI (EKOR/KG)": data.ANGGARAN_NILAI_EKOR_KG,
+            "ANGGARAN NILAI (KENDERAAN)": data.ANGGARAN_NILAI_KENDERAAN,
+            "ANGGARAN NILAI (PENGANGKUT/KONTENA)": data.ANGGARAN_NILAI_PENGANGKUT_KONTENA,
+            "ANGGARAN NILAI (LAIN-LAIN)": data.ANGGARAN_NILAI_LAIN_LAIN,
+            "JUMLAH NILAI KESELURUHAN": data.JUMLAH_NILAI_KESELURUHAN,
+            "KES SERAHAN": data.KES_SERAHAN,
+            "CATATAN": data.CATATAN
+        };
+
+        await fetch(`https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`, {
+            method: 'POST',
+            headers: { 
+                'Authorization': `Token ${BASEROW_TOKEN}`, 
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(bData)
+        });
+    } catch (e) {
+        console.error("Baserow Error:", e);
+    }
+}
 
         async function fetchHistory() {
             const list = document.getElementById('historyList');
