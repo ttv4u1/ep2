@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>e-Penguatkuasa v20 - Pro Edition</title>
+    <title>e-Penguatkuasa v21 - Pro Edition</title>
     
     <link rel="icon" type="image/png" href="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,7 +27,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* v20 ANIMATED BOX */
+        /* v21 ANIMATED BOX */
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -68,7 +68,7 @@
             .btn-action { padding: 8px 6px !important; font-size: 8px !important; }
         }
 
-        /* PRINT OPTIMIZATION v20 */
+        /* PRINT OPTIMIZATION v21 */
         @media print {
             @page { size: A4 portrait; margin: 0.4cm; }
             body { background: white !important; font-size: 9pt !important; color: black !important; }
@@ -106,14 +106,14 @@
 
     <div id="loader">
         <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Memproses Data v20...</p>
+        <p class="mt-4 font-black text-indigo-600 uppercase text-xs">Memproses Data v21...</p>
     </div>
 
     <!-- Login -->
     <section id="landing-screen" class="fixed inset-0 z-[3000] flex items-center justify-center bg-[#020617]">
         <div class="p-8 text-center bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/10 w-[90%] max-w-sm shadow-2xl">
             <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-16 mx-auto mb-6">
-            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v20</span></h1>
+            <h1 class="text-2xl font-black text-white mb-2 uppercase tracking-tighter">e-Penguatkuasa <span class="version-box">v21</span></h1>
             <button onclick="loginGoogle()" class="w-full bg-white text-slate-900 font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 active:scale-95 transition mt-8 uppercase text-sm">
                 AKSES SISTEM
             </button>
@@ -128,7 +128,7 @@
                 <div class="flex items-center gap-3">
                     <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png" class="h-8 sm:h-10">
                     <div>
-                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v20</span></h2>
+                        <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase leading-none">Borang <span class="version-box">v21</span></h2>
                         <p id="realtime-clock" class="text-[9px] sm:text-[10px] font-bold text-indigo-600 mt-1 uppercase"></p>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
         <div id="print-header">
             <div class="header-top">
                 <img src="https://github.com/ttv4u1/KP/raw/main/Logo%20Penguatkuasa.png">
-                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v20)</h1>
+                <h1>LAPORAN KES PENGUATKUASAAN VETERINAR (v21)</h1>
                 <div></div>
             </div>
             <div class="header-sub">
@@ -260,7 +260,7 @@
                     </div>
 
                     <div class="mt-8 no-print flex justify-center">
-                        <button type="button" onclick="saveToAll()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v20</button>
+                        <button type="button" onclick="saveToAll()" class="w-full sm:w-auto px-12 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase shadow-xl hover:bg-indigo-700 transition active:scale-95">Simpan Rekod v21</button>
                     </div>
                 </div>
 
@@ -288,7 +288,7 @@
     <!-- DB SIDEBAR -->
     <aside id="historySidebar" class="fixed top-0 left-[-100%] w-full max-w-lg h-full bg-slate-50 z-[2500] shadow-2xl transition-all duration-500 overflow-y-auto no-print p-6">
         <div class="flex justify-between items-center mb-6">
-            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v20</span></h2>
+            <h2 class="font-black text-xl uppercase tracking-tighter">Database <span class="version-box">v21</span></h2>
             <button onclick="toggleHistory()" class="p-2 bg-white rounded-full border shadow-sm"><i data-lucide="x"></i></button>
         </div>
         <div id="historyList" class="space-y-4"></div>
@@ -440,7 +440,7 @@ async function processFirebaseSave(data) {
 
 // Kemaskini butang Simpan dalam HTML anda untuk memanggil saveToBaserow()
 // Cari bahagian button simpan dan tukar onclick:
-// <button type="button" onclick="saveToBaserow()" ...>Simpan Rekod v20</button>
+// <button type="button" onclick="saveToBaserow()" ...>Simpan Rekod v21</button>
         const firebaseConfig = {
             apiKey: "AIzaSyD5rx8TQdkFLzmunEmVtwt56Y8Mlt9Zsvo",
             authDomain: "e-penguatkuasa-jpv.firebaseapp.com",
@@ -557,42 +557,79 @@ firebase.auth().onAuthStateChanged(async (user) => {
         }
 
         async function fetchHistory() {
-            const user = firebase.auth().currentUser;
-            const listDiv = document.getElementById('historyList');
-            listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs">Processing...</p>';
-            try {
-                const snapshot = await db.collection("reports").where("userId", "==", user.uid).get();
-                let docs = []; snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
-                docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
-                
-                listDiv.innerHTML = "";
-                if(docs.length === 0) { listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Rekod</p>'; return; }
-
-                docs.forEach(d => {
-                    const card = document.createElement('div');
-                    card.className = "bg-white p-4 rounded-2xl border-l-8 border-indigo-600 shadow-sm hover:shadow-md cursor-pointer mb-3";
-                    card.onclick = () => {
-                        document.getElementById('currentDocId').value = d.id;
-                        Object.keys(d).forEach(k => { const i = document.querySelector(`[name="${k}"]`); if(i) i.value = d[k]; });
-                        calcTotal(); toggleHistory();
-                    };
-                    card.innerHTML = `
-                        <div class="flex justify-between items-start mb-2 text-[10px]">
-                            <span class="font-black bg-indigo-50 text-indigo-700 px-2 py-1 rounded">BIL: ${d.BIL||'-'}</span>
-                            <span class="text-emerald-600 font-black">${d.JUMLAH_NILAI_KESELURUHAN||'RM 0.00'}</span>
-                        </div>
-                        <div class="space-y-1 text-[10px] font-bold text-slate-600 uppercase border-t pt-2">
-                            <p><span class="text-indigo-500">Kategori :</span> ${d.KATEGORI_KES || 'N/A'}</p>
-                            <p><span class="text-indigo-500">Pegawai :</span> ${d.recordedBy || 'N/A'}</p>
-                            <p><span class="text-indigo-500">Negeri :</span> ${d.recordedBranch || '-'}</p>
-                            <p><span class="text-indigo-500">Masa :</span> ${d.recordedDay} | ${d.recordedTimeStr}</p>
-                        </div>
-                    `;
-                    listDiv.appendChild(card);
-                });
-                lucide.createIcons();
-            } catch (e) { console.error(e); }
+    const user = firebase.auth().currentUser;
+    const listDiv = document.getElementById('historyList');
+    listDiv.innerHTML = '<p class="text-center py-10 font-bold animate-pulse text-xs">Menarik Rekod...</p>';
+    
+    try {
+        const snapshot = await db.collection("reports").where("userId", "==", user.uid).get();
+        let docs = []; 
+        snapshot.forEach(doc => docs.push({ id: doc.id, ...doc.data() }));
+        
+        docs.sort((a, b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
+        
+        listDiv.innerHTML = "";
+        if(docs.length === 0) { 
+            listDiv.innerHTML = '<p class="text-center py-10 text-xs">Tiada Rekod</p>'; 
+            return; 
         }
+
+        docs.forEach(d => {
+            const card = document.createElement('div');
+            card.className = "bg-white p-4 rounded-2xl border-l-8 border-indigo-600 shadow-sm hover:shadow-md cursor-pointer mb-3 transition-all active:scale-95";
+            
+            // --- FUNGSI KLIK YANG DITAMBAHBAIK ---
+            card.onclick = () => {
+                console.log("Data diklik:", d); // Untuk debug di console
+                document.getElementById('currentDocId').value = d.id;
+                
+                // Reset borang dulu sebelum isi
+                document.getElementById('mainForm').reset();
+
+                // Pusing setiap data dalam database
+                Object.keys(d).forEach(k => {
+                    // Cuba cari input guna nama asal (Contoh: KATEGORI_KES)
+                    let input = document.querySelector(`[name="${k}"]`);
+                    
+                    // Jika tak jumpa, cuba tukar space ke underscore (Contoh: "KATEGORI KES" jadi "KATEGORI_KES")
+                    if (!input) {
+                        let newKey = k.replace(/ /g, "_");
+                        input = document.querySelector(`[name="${newKey}"]`);
+                    }
+
+                    if (input) {
+                        input.value = d[k];
+                    }
+                });
+
+                // Khas untuk input Tarikh (kadangkala format lari)
+                if(d.TARIKH_KEJADIAN) {
+                   const dateInput = document.querySelector('[name="TARIKH_KEJADIAN"]');
+                   if(dateInput) dateInput.value = d.TARIKH_KEJADIAN;
+                }
+
+                calcTotal(); // Kira semula jumlah RM
+                toggleHistory(); // Tutup sidebar
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll ke atas
+            };
+
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-2 text-[10px]">
+                    <span class="font-black bg-indigo-50 text-indigo-700 px-2 py-1 rounded">BIL: ${d.BIL || d['BIL'] || '-'}</span>
+                    <span class="text-emerald-600 font-black">${d.JUMLAH_NILAI_KESELURUHAN || 'RM 0.00'}</span>
+                </div>
+                <div class="space-y-1 text-[10px] font-bold text-slate-600 uppercase border-t pt-2">
+                    <p><span class="text-indigo-500">Kes:</span> ${d.KATEGORI_KES || d['KATEGORI KES'] || '-'}</p>
+                    <p><span class="text-indigo-500">Tarikh:</span> ${d.TARIKH_KEJADIAN || '-'}</p>
+                </div>
+            `;
+            listDiv.appendChild(card);
+        });
+    } catch (e) { 
+        console.error(e);
+        listDiv.innerHTML = `<p class="text-red-500 text-xs text-center">Ralat: ${e.message}</p>`;
+    }
+}
 
         // --- EXPORT MAPPING (URUTAN IMEJ 44 KOLUM) ---
 
@@ -652,7 +689,7 @@ firebase.auth().onAuthStateChanged(async (user) => {
             const ws = XLSX.utils.json_to_sheet([data]);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Data");
-            XLSX.writeFile(wb, `Laporan_v20_BIL_${data.BIL || 'DATA'}.xlsx`);
+            XLSX.writeFile(wb, `Laporan_v21_BIL_${data.BIL || 'DATA'}.xlsx`);
         }
 
         function exportToCSV() {
@@ -663,7 +700,7 @@ firebase.auth().onAuthStateChanged(async (user) => {
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = `AccessDB_v20_BIL_${data.BIL || 'DATA'}.csv`;
+            link.download = `AccessDB_v21_BIL_${data.BIL || 'DATA'}.csv`;
             link.click();
         }
 
